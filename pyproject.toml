@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mechanism_viewer"
+description = "Tools for diagnosing MCAR, MAR, and MNAR missing-data mechanisms with imputation visualization."
+readme = "README"
+version = "0.0.0"
+requires-python = ">=3.8"
+authors = [{ name = "Valentina Cadime" }]
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "pyampute"
+]
