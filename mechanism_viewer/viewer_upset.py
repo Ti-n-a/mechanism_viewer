@@ -5,6 +5,10 @@ attributes missing.
 import pandas as pd
 import matplotlib.pyplot as plt
 
+__all__ = [
+    "rows_with_similar_missing",
+]
+
 
 def _get_combination_columns(tuple_combination, column_name_array: list[str]):
     """

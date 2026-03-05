@@ -12,6 +12,11 @@ from sklearn.impute import IterativeImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import PoissonRegressor
 
+__all__ = [
+    "scatterplot_imputation_comparison",
+    "plot_imputation_distribution",
+]
+
 
 def _impute_database(df: pd.DataFrame):
     """
