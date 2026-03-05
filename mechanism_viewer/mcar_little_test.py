@@ -1,10 +1,4 @@
-import pandas as pd
-from pyampute.exploration.mcar_statistical_tests import MCARTest
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-"""
-These algorithms run the Little's MCAR Test.
+"""These algorithms run the Little's MCAR Test.
 
 Little's MCAR (Missing Completely At Random) test evaluates whether the probability of data being 
 missing is unrelated to observed or unobserved data. When data is MCAR, missingness does not
@@ -31,14 +25,23 @@ Reference: https://www.linkedin.com/pulse/understanding-littles-mcar-test-compre
 Documentation: https://rianneschouten.github.io/pyampute/build/html/pyampute.exploration.html
 """
 
+import pandas as pd
+from pyampute.exploration.mcar_statistical_tests import MCARTest
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
 def run_little_test(df: pd.DataFrame):
     """
     Runs the Little's MCAR Test. It performs a chi-square test on the entire dataset.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to run the test
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to run the test
    
-    Returns:
+    Returns
+    -------
     p_value (int): The p-value of the test based on the entire dataset
     """
 
@@ -64,10 +67,13 @@ def run_little_test_pairs(df: pd.DataFrame):
     heatmap presenting every p-value number in the matrix. The second one illustrates the matrix by
     only using the colors to represent whether each p-value makes the null hypothesis rejected or not.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to run the test
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to run the test
    
-    Returns:
+    Returns
+    -------
     p_values (pd.DataFrame): A matrix dataframe with every p-value of each pair combination
     """
 

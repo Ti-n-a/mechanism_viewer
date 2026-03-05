@@ -1,23 +1,28 @@
+"""The visualization tools described below can be used to compare observed columns with
+the missingness of a column. For best visualization, the first two should be used with
+an observed column with continuos data type.
+"""
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-"""
-The visualization tools described below can be used to compare observed columns with
-the missingness of a column. For best visualization, the first two should be used with
-an observed column with continuos data type.
-"""
 
 def scatter_missingness_comparison(df: pd.DataFrame, column_name_x: str, column_name_y: str):
     """
     Plots a scatterplot for the data points (column_name_x, is_not_missing(column_name_y))
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
-    column_name_x (str): The observed column name that will be used for comparison
-    column_name_y (str): The missing column name that will be used for comparison
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    column_name_x : str
+        The observed column name that will be used for comparison
+    column_name_y : str
+        The missing column name that will be used for comparison
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     missing_col = df[column_name_y].notna().astype(int)
@@ -40,12 +45,17 @@ def scatter_missingness_comparison_line(df: pd.DataFrame, column_name_x: str, co
     Plots a scatterplot for the data points (column_name_x, is_not_missing(column_name_y)) in
     a single line.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
-    column_name_x (str): The observed column name that will be used for comparison
-    column_name_y (str): The missing column name that will be used for comparison
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    column_name_x : str
+        The observed column name that will be used for comparison
+    column_name_y : str
+        The missing column name that will be used for comparison
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     missing_col = df[column_name_y].notna().astype(int)
@@ -69,12 +79,17 @@ def boxplot_comparison(df: pd.DataFrame, column_name_x: str, column_name_y: str)
     boxplot of column_name_x when the values of column_name_y are missing, and the general
     boxplot of column_name_x no matter the missingness of column_name_y.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
-    column_name_x (str): The observed column name that will be used for comparison
-    column_name_y (str): The missing column name that will be used for comparison
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    column_name_x : str
+        The observed column name that will be used for comparison
+    column_name_y : str
+        The missing column name that will be used for comparison
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     missingness = df[column_name_y].isna().astype(int)

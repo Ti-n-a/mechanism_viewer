@@ -1,10 +1,4 @@
-import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-
-"""
-These algorithms run modelts to obtain an prediction accuracy value.
+"""These algorithms run modelts to obtain an prediction accuracy value.
 
 By splitting the dataset into training and testing sets, and then training a predictive model,
 we can evaluate how accurately the model predicts the missing values. As a consequence, an 
@@ -20,16 +14,26 @@ The models works best at identifying MAR/MCAR/MNAR when the datasets has continu
 Other types of data may have a smaller diference between the missing mechanisms.
 """
 
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+
 def run_random_forest(df: pd.DataFrame, column_name: str):
     """
     Trains a Random Forest model to obtain the test accuracy value. The model uses
     100 estimators.
     
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to train and test the model
-    column_name (str): The missing column to be used on the model.
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to train and test the model
+    column_name : str
+        The missing column to be used on the model.
    
-    Returns:
+    Returns
+    -------
     accuracy (int): The prediction accuracy of the model when train with the dataset.
     It is rounded to the four decimal places.
     """
@@ -60,11 +64,15 @@ def run_logistic_regression(df: pd.DataFrame, column_name: str):
     """
     Trains a Logistic Regression model to obtain the test accuracy value.
     
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to train and test the model
-    column_name (str): The missing column to be used on the model.
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to train and test the model
+    column_name : str
+        The missing column to be used on the model.
    
-    Returns:
+    Returns
+    -------
     accuracy (int): The prediction accuracy of the model when train with the dataset.
     It is rounded to the four decimal places.
     """

@@ -1,14 +1,13 @@
+"""The methods plot matrices with multiple missing and complete columns, with a focus on the missing
+rows and the missing rate.
+"""
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
-
-"""
-The methods plot matrices with multiple missing and complete columns, with a focus on the missing
-rows and the missing rate.
-"""
 
 
 def visualize_column_dependencies(df: pd.DataFrame, sort_complete: bool = False):
@@ -25,11 +24,15 @@ def visualize_column_dependencies(df: pd.DataFrame, sort_complete: bool = False)
 
     Perfect for continuous or numeric complete columns, and for multivariate missing columns.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
-    sort_complete (bool): To sort the complete columns for better visualization
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    sort_complete : bool
+        To sort the complete columns for better visualization
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     _, ax = plt.subplots(figsize=(8, 12))
@@ -93,12 +96,17 @@ def missing_rate_matrix(df: pd.DataFrame, column_name_x: str, sort_column_x: boo
     Its best to use this plot when column_name_x is not continuos or when it does not contain multiple
     values.  Perfect for multivariate missing columns.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
-    column_name_x (str): The observed column name that will be used for comparison
-    sort_column_x (bool): To sort the column_name_x values in ascending order for better visualization
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    column_name_x : str
+        The observed column name that will be used for comparison
+    sort_column_x : bool
+        To sort the column_name_x values in ascending order for better visualization
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     norm_scaler = MinMaxScaler()

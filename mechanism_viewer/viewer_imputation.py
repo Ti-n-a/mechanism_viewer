@@ -1,3 +1,8 @@
+"""The below code implements imputation models to generate values for missing data in a specific
+missing column, depending on its data type. The imputed data can then be used to find hidden
+missing patterns, when comparing to other observed columns. 
+"""
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,11 +12,6 @@ from sklearn.impute import IterativeImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import PoissonRegressor
 
-"""
-The below code implements imputation models to generate values for missing data in a specific
-missing column, depending on its data type. The imputed data can then be used to find hidden
-missing patterns, when comparing to other observed columns. 
-"""
 
 def _impute_database(df: pd.DataFrame):
     """
@@ -27,11 +27,14 @@ def _impute_database(df: pd.DataFrame):
      - Column_name_y is categorical
      - Column_name_y is discrete 
 
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation. Can have multiple columns
-    with missing data.
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation. Can have multiple columns
+        with missing data.
        
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): The dataframe with imputed values.
     """
     imputer = IterativeImputer(max_iter=10, random_state=42, sample_posterior=True)
@@ -51,12 +54,16 @@ def _impute_database_binary(df: pd.DataFrame, column_name_missing: str):
     Use when:
     - column_name_missing is binary (0 or 1)
 
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation. Can not have columns
-    with missing data.
-    column_name_missing (str): The name of the column with the missing data.
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation. Can not have columns
+        with missing data.
+    column_name_missing : str
+        The name of the column with the missing data.
        
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): The dataframe with imputed values.
     """
     mask_obs = df[column_name_missing].notna()
@@ -91,12 +98,16 @@ def _impute_database_discrete(df: pd.DataFrame, column_name_missing: str):
      - column_name_missing is continuous
      - column_name_missing is categorical
 
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation. Can not have columns
-    with missing data.
-    column_name_missing (str): The name of the column with the missing data.
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation. Can not have columns
+        with missing data.
+    column_name_missing : str
+        The name of the column with the missing data.
        
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): The dataframe with imputed values.
     """
 
@@ -127,12 +138,16 @@ def _impute_database_categorical(df: pd.DataFrame, column_name_missing: str):
     Do NOT use when:
      - column_name_missing is ordinal
 
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation. Can not have columns
-    with missing data.
-    column_name_missing (str): The name of the column with the missing data.
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation. Can not have columns
+        with missing data.
+    column_name_missing : str
+        The name of the column with the missing data.
        
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): The dataframe with imputed values.
     """
     df = df.copy()
@@ -170,13 +185,19 @@ def scatterplot_imputation_comparison(df: pd.DataFrame, column_name_x: str, colu
     mechanism, the imputed values might appear to have an uniform distribution. Therefore, it is advisable to run more tests,
     before concluding the column missing mechanism.
     
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation
-    column_name_x (str): The name of the complete column that will be on the x axis
-    column_name_y (str): The name of the column with missing data, that will have its values imputed
-    y_column_type (str): The type of data that column_name_y is, to better select the imputation model
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation
+    column_name_x : str
+        The name of the complete column that will be on the x axis
+    column_name_y : str
+        The name of the column with missing data, that will have its values imputed
+    y_column_type : str
+        The type of data that column_name_y is, to better select the imputation model
     
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
 
@@ -218,12 +239,17 @@ def plot_imputation_distribution(df: pd.DataFrame, column_name: str, column_type
     This does not offer much aid in figuring the data missing mechanism. It only serves the purpose of showcasing each
     imputation model working for the correct data type.
     
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be used for imputation
-    column_name (str): The name of the column with missing data, that will have its values imputed
-    column_type (str): The type of data that column_name is, to better select the imputation model
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be used for imputation
+    column_name : str
+        The name of the column with missing data, that will have its values imputed
+    column_type : str
+        The type of data that column_name is, to better select the imputation model
     
-    Returns:
+    Returns
+    -------
     imputed_df (pd.DataFrame): The dataframe with imputed values on column_name, along with the complete data used for imputation.
     """
 

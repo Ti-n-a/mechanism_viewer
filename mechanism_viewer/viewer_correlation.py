@@ -1,21 +1,24 @@
+"""This file includes correlation heatmaps that use missingness of missing columns.
+"""
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-"""
-This file includes correlation heatmaps that use missingness of missing columns.
-"""
 
 def missing_columns_correlation(df: pd.DataFrame):
     """
     Plots a correlation heatmap showing whether there are missing columns with missing
     values in similar rows. Therefore, it only works with columns with missing data.
     
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot the missingness correlation heatmap
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot the missingness correlation heatmap
    
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     data = df.copy()
@@ -48,10 +51,13 @@ def complete_and_missing_columns_correlation(df: pd.DataFrame):
     correlate with the missing rows in the missing columns. Therefore, it works with both
     complete columns and missing columns.
     
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot the correlation heatmap
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot the correlation heatmap
    
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
     columns_without_na = df.columns[df.notna().all()].tolist()

@@ -1,25 +1,29 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-
-"""
-The visualization tool on this module focuses on plotting a similar UpSet plot for rows with the same
+"""The visualization tool on this module focuses on plotting a similar UpSet plot for rows with the same
 attributes missing.
 """
 
-def _get_combination_columns(tupples_column, column_name_array: list[str]):
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+def _get_combination_columns(tuple_combination, column_name_array: list[str]):
     """
     From the existing tupples, knowing that each tupple indicates the columns that have
     same rows with missing values, creates a string with every column name.
 
-    Parameters:
-    tuple_combination: A tupple simbolizing the combination of columns with the same rows misssing
-    column_name_array (list[str]): Every column name, for easy retrival of the name
+    Parameters
+    ----------
+    tuple_combination : tuple[bool] 
+        A tupple simbolizing the combination of columns with the same rows misssing
+    column_name_array : list[str]
+        Every column name, for easy retrival of the name
    
-    Returns:
+    Returns
+    -------
     A string with all the names of the columns with same missing rows
     """
 
-    true_columns = [column_name_array[i] for i, value in enumerate(tupples_column) if value]    # Create a list of column names where the combination is True
+    true_columns = [column_name_array[i] for i, value in enumerate(tuple_combination) if value]    # Create a list of column names where the combination is True
 
     if not true_columns:
         return "No column values missing"   # If no True values, which are the rows with all attributes complete
@@ -31,10 +35,13 @@ def rows_with_similar_missing(df: pd.DataFrame):
     Creates a plot similar to UpSet plot. It retrives which rows have the same attributes missing, 
     by indicating the count of those rows, and which are the missing attributes.
 
-    Parameters:
-    df (pd.DataFrame): The dataset to be used to plot.
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
 
-    Returns:
+    Returns
+    -------
     This function does not return anything.
     """
 

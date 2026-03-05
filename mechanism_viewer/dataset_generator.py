@@ -1,3 +1,16 @@
+"""This module provides tools for generating synthetic datasets and applying various
+missing data mechanisms.
+
+It allows the generation of complete datasets with customizable properties, such as
+the number of rows, columns, and data types.
+
+In addition to defining the missing data mechanism for each column of the dataset, users
+can specify each column's missing rates and dependencies.
+
+This module enables users to simulate datasets with missing data patterns for visualizing
+missing data and testing the capabilities of other module tools.
+"""
+
 import numpy as np
 import pandas as pd
 import random
@@ -7,12 +20,17 @@ def generate_synthetic_dataset(n_rows: int, n_cols: int, type_array: list[str]):
     """
     Generates a synthetic dataset according to the properties given
     
-    Parameters:
-    n_rows (int): Indicates the number of rows the dataset must have
-    n_cols (int): Indicates the number of columns the dataset must have
-    type_array (list[str]): Indicates the type of each column
+    Parameters
+    ----------
+    n_rows : int
+        Indicates the number of rows the dataset must have
+    n_cols : int
+        Indicates the number of columns the dataset must have
+    type_array : list[str]
+        Indicates the type of each column
    
-    Returns:
+    Returns
+    -------
     data (pd.DataFrame): A dataframe with the given properties
     """
     np.random.seed(42)
@@ -48,11 +66,15 @@ def apply_MCAR(column_data: pd.Series, missing_rate: float = 0.1) -> pd.Series:
     """
     Applies MCAR mechanism to one column.
     
-    Parameters:
-    column_data (pd.Series): The column to transform
-    missing_rate (float): The missing rate of the column
+    Parameters
+    ----------
+    column_data : pd.Series
+        The column to transform
+    missing_rate : float
+        The missing rate of the column
   
-    Returns:
+    Returns
+    -------
     new_column (pd.Series): A copy of the column with the MCAR mechanism applied
     """
     n_rows = len(column_data)
@@ -73,13 +95,19 @@ def apply_MAR(column_data: pd.Series, observable_df: pd.DataFrame, missing_rate:
     """
     Applies MAR mechanism to one column.
     
-    Parameters:
-    column_data (pd.Series): The column to transform
-    observable_df (pd.DataFrame): The column(s) that are observable and will be used as missingness dependency 
-    missing_rate (float): The missing rate of the column
-    missingness_ascending (bool): Indicates whether the highest/lowest values must become missing 
+    Parameters
+    ----------
+    column_data : pd.Series
+        The column to transform
+    observable_df : pd.DataFrame
+        The column(s) that are observable and will be used as missingness dependency 
+    missing_rate : float
+        The missing rate of the column
+    missingness_ascending : bool
+        Indicates whether the highest/lowest values must become missing 
     
-    Returns:
+    Returns
+    -------
     new_column (pd.Series): A copy of the column with the MAR mechanism applied
     """
 
@@ -115,12 +143,17 @@ def apply_MNAR(column_data: pd.Series, missing_rate: float = 0.1, missingness_as
     """
     Applies MNAR mechanism to one column.
     
-    Parameters:
-    column_data (pd.Series): The column to transform
-    missing_rate (float): The missing rate of the column
-    missingness_ascending (bool): Indicates whether the highest/lowest values must become missing 
+    Parameters
+    ----------
+    column_data : pd.Series
+        The column to transform
+    missing_rate : float
+        The missing rate of the column
+    missingness_ascending : bool
+        Indicates whether the highest/lowest values must become missing 
     
-    Returns:
+    Returns
+    -------
     new_column (pd.Series): A copy of the column with the MNAR mechanism applied
     """
     n_rows = len(column_data)
@@ -150,14 +183,21 @@ def apply_missing_data(data: pd.DataFrame, missing_mechanism_array: list[str], m
     """
     Applies multiple missing data mechanisms to a dataframe
     
-    Parameters:
-    data (pd.DataFrame): The dataframe that will be transformed
-    missing_mechanism_array (list[str]): The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
-    missing_rate_array (list[float]): The missing rate of each column with missing mechanism applied
-    n_complete_cols (int): The number of the first columns of the dataframe that won't have the missing mechanism applied
-    missingness_ascending (bool): Indicates whether the highest/lowest values must become missing 
+    Parameters
+    ----------
+    data : pd.DataFrame
+        The dataframe that will be transformed
+    missing_mechanism_array : list[str]
+        The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
+    missing_rate_array : list[float]
+        The missing rate of each column with missing mechanism applied
+    n_complete_cols : int
+        The number of the first columns of the dataframe that won't have the missing mechanism applied
+    missingness_ascending : bool
+        Indicates whether the highest/lowest values must become missing 
     
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): A copy of the dataframe with the missing data mechanisms applied
     """
     _, n_cols = data.shape
@@ -194,16 +234,25 @@ def generate_dataset_with_missing_data(n_rows: int, n_cols: int, type_array: lis
     """
     Generates a dataset with missing data mechanisms. Applies the above functions for user usability.
     
-    Parameters:
-    n_rows (int): Indicates the number of rows the dataset must have
-    n_cols (int): Indicates the number of columns the dataset must have
-    type_array (list[str]): Indicates the type of each column
-    missing_mechanism_array (list[str]): The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
-    missing_rate_array (list[float]): The missing rate of each column with missing mechanism applied
-    n_complete_cols (int): The number of the first columns of the dataframe that won't have the missing mechanism applied
-    missingness_ascending (bool): Indicates whether the highest/lowest values must become missing 
+    Parameters
+    ----------
+    n_rows : int
+        Indicates the number of rows the dataset must have
+    n_cols : int
+        Indicates the number of columns the dataset must have
+    type_array : list[str])
+        Indicates the type of each column
+    missing_mechanism_array : list[str]
+        The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
+    missing_rate_array : list[float]
+        The missing rate of each column with missing mechanism applied
+    n_complete_cols : int
+        The number of the first columns of the dataframe that won't have the missing mechanism applied
+    missingness_ascending : bool
+        Indicates whether the highest/lowest values must become missing 
     
-    Returns:
+    Returns
+    -------
     new_data (pd.DataFrame): A copy of the dataframe with the missing data mechanisms applied
     """
     data = generate_synthetic_dataset(n_rows, n_cols, type_array)
