@@ -7,7 +7,7 @@ name = "mechanism_viewer"
 description = "Tools for diagnosing MCAR, MAR, and MNAR missing-data mechanisms with imputation visualization."
 readme = "README"
 version = "0.0.0"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [{ name = "Valentina Cadime" }]
 dependencies = [
     "pandas",
