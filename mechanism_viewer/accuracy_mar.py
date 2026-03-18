@@ -130,7 +130,8 @@ def _prepare_missingness_dataset(
 
     Returns
     -------
-    This function returns the predictor variables (X) and the target variable (y).
+    tuple[pd.DataFrame, pd.Series]
+        The predictor variables (X) and the target variable (y).
     """
     complete_columns_list = df.columns[df.notna().all()].tolist()
 
@@ -144,7 +145,8 @@ def _train_test_missingness_model(
     X: pd.DataFrame,
     y: pd.Series,
     model: BaseEstimator,
-    model_name: str
+    model_name: str,
+    print_result: bool,
     ) -> float:
     """
     Train and evaluate a model to predict missingness.
@@ -163,10 +165,13 @@ def _train_test_missingness_model(
         The machine learning model used to predict missingness.
     model_name : str
         The name of the model used for output message.
+    print_result : bool
+        The boolean indicating whether to print the result.
 
     Returns
     -------
-    accuracy (float): The prediction accuracy of the model when train with the dataset.
+    float
+        The prediction accuracy of the model when train with the dataset.
     """
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)       # Split the data into training set and testing set, that uses stratification so that both train and test sets contain all classes (0/1).
 
@@ -175,14 +180,17 @@ def _train_test_missingness_model(
     model.fit(X_train, y_train)
 
     accuracy = model.score(X_test, y_test)                      # Obtain the accuracy of the model
-    print(f"{model_name} Model Accuracy: {accuracy:.4f}")
+    
+    if print_result:
+        print(f"{model_name} Model Accuracy: {accuracy:.4f}")
 
     return accuracy
 
 
 def run_random_forest(
     df: pd.DataFrame,
-    column_name: str
+    column_name: str,
+    print_result: bool = True,
     ) -> float:
     """
     Trains a Random Forest model to obtain the test accuracy value. The model uses
@@ -191,13 +199,16 @@ def run_random_forest(
     Parameters
     ----------
     df : pd.DataFrame
-        The dataset to be used to train and test the model
+        The dataset to be used to train and test the model.
     column_name : str
         The missing column to be used on the model.
+    print_result : bool = True
+        The boolean indicating whether to print the result.
    
     Returns
     -------
-    accuracy (float): The prediction accuracy of the model when train with the dataset.
+    float
+        The prediction accuracy of the model when train with the dataset.
     """
     _validate_inputs(df, column_name)
 
@@ -206,14 +217,15 @@ def run_random_forest(
     # Train the Random Forest model
     rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
 
-    rf_accuracy = _train_test_missingness_model(X, y, model=rf_model, model_name="Random Forest")
+    rf_accuracy = _train_test_missingness_model(X, y, model=rf_model, model_name="Random Forest", print_result=print_result)
 
     return rf_accuracy
 
 
 def run_logistic_regression(
     df: pd.DataFrame,
-    column_name: str
+    column_name: str,
+    print_result: bool = True,
     ) -> float:
     """
     Trains a Logistic Regression model to obtain the test accuracy value.
@@ -221,13 +233,16 @@ def run_logistic_regression(
     Parameters
     ----------
     df : pd.DataFrame
-        The dataset to be used to train and test the model
+        The dataset to be used to train and test the model.
     column_name : str
         The missing column to be used on the model.
+    print_result : bool = True
+        The boolean indicating whether to print the result.
    
     Returns
     -------
-    accuracy (float): The prediction accuracy of the model when train with the dataset.
+    float
+        The prediction accuracy of the model when train with the dataset.
     """
     _validate_inputs(df, column_name)
 
@@ -236,14 +251,15 @@ def run_logistic_regression(
     # Train the Logistic Regression model
     lr_model = LogisticRegression(max_iter=1000)
 
-    lr_accuracy = _train_test_missingness_model(X, y, model=lr_model, model_name="Logistic Regression")
+    lr_accuracy = _train_test_missingness_model(X, y, model=lr_model, model_name="Logistic Regression", print_result=print_result)
 
     return lr_accuracy
 
 
 def detect_mar_from_model_accuracy(
     df: pd.DataFrame,
-    column_name: str
+    column_name: str,
+    print_result: bool = True,
     ) -> float:
     """
     Calculates the Accuracy Baseline Difference (ABD), an heuristic that
@@ -275,6 +291,9 @@ def detect_mar_from_model_accuracy(
         The dataset containing the column with missing values.
     column_name : str
         The name of the column whose missingness mechanism will be assessed.
+    print_result : bool = True
+        The boolean indicating whether to print the results of the models and
+        print the accuracy result of the most likely missing data mechanism.
 
     Returns
     -------
@@ -284,19 +303,20 @@ def detect_mar_from_model_accuracy(
         baseline accuracy.
         Result rounded to 2 decimal places.
     """
-    rf_accuracy = run_random_forest(df, column_name)
-    lr_accuracy = run_logistic_regression(df, column_name)
+    rf_accuracy = run_random_forest(df, column_name, print_result)
+    lr_accuracy = run_logistic_regression(df, column_name, print_result)
 
     missing_rate = df[column_name].isna().mean()
     baseline = max(1- missing_rate, missing_rate)
 
     accuracy_baseline_diff = round((((rf_accuracy + lr_accuracy)/2) - baseline)*100,2)
 
-    print(f"The target column {column_name} with missing rate of {missing_rate} gives an Accuracy Baseline Difference of {accuracy_baseline_diff}.")
+    if print_result:
+        print(f"The target column {column_name} with missing rate of {missing_rate} gives an Accuracy Baseline Difference of {accuracy_baseline_diff}.")
 
-    if accuracy_baseline_diff > 5:
-        print(f"Thus, it is likely that the underlying mechanism of {column_name} is MAR.")
-    else:
-        print(f"Thus, it is likely that the underlying mechanism of {column_name} is MCAR/MNAR.")
+        if accuracy_baseline_diff > 5:
+            print(f"Thus, it is likely that the underlying mechanism of {column_name} is MAR.")
+        else:
+            print(f"Thus, it is likely that the underlying mechanism of {column_name} is MCAR/MNAR.")
 
     return accuracy_baseline_diff
