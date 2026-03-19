@@ -21,17 +21,30 @@ Best Practices
     - Ensure adequate sample size to boost test reliability.
     - Use visualization tools like missingness heatmaps for preliminary insights.
 
-Reference: https://www.linkedin.com/pulse/understanding-littles-mcar-test-comprehensive-guide-data-debasish-deb-fbmpf
+Reference
+---------
+https://www.linkedin.com/pulse/understanding-littles-mcar-test-comprehensive-guide-data-debasish-deb-fbmpf
+
 Documentation: https://rianneschouten.github.io/pyampute/build/html/pyampute.exploration.html
 """
 
+import warnings
 import pandas as pd
 from pyampute.exploration.mcar_statistical_tests import MCARTest
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
+
+__all__ = [
+    "run_little_test",
+    "run_little_test_pairs"
+]
 
 
-def run_little_test(df: pd.DataFrame):
+
+def run_little_test(
+    df: pd.DataFrame
+    ) -> np.float64:
     """
     Runs the Little's MCAR Test. It performs a chi-square test on the entire dataset.
 
@@ -42,7 +55,7 @@ def run_little_test(df: pd.DataFrame):
    
     Returns
     -------
-    p_value (int): The p-value of the test based on the entire dataset
+    p_value (np.float64): The p-value of the test based on the entire dataset
     """
 
     mt = MCARTest(method="little")
@@ -59,7 +72,9 @@ def run_little_test(df: pd.DataFrame):
     return p_value
 
 
-def run_little_test_pairs(df: pd.DataFrame):
+def run_little_test_pairs(
+    df: pd.DataFrame
+    ) -> pd.DataFrame:
     """
     Runs the Little's MCAR Test. It performs a separate t-tests for every pair of columns possible.
     Since each t-test returns a p-value, the function returns every pair combination and its p-value.
@@ -77,8 +92,34 @@ def run_little_test_pairs(df: pd.DataFrame):
     p_values (pd.DataFrame): A matrix dataframe with every p-value of each pair combination
     """
 
+    if df.empty:
+        print("The function run_little_test_pairs cannot run with an empty pd.DataFrame as input.")
+        return pd.DataFrame()
+
+    # Keep only columns that have at least 2 missing AND 2 non-missing values,
+    # otherwise ttest_ind receives an empty/single-element group and returns NaN
+    # with a SmallSampleWarning.
+    min_group = 2
+    n = len(df)
+    missing_counts = df.isnull().sum()
+    valid_cols = missing_counts[
+        (missing_counts >= min_group) & (missing_counts <= n - min_group)
+    ].index.tolist()
+
+    if len(valid_cols) < 2:
+        print("Not enough columns with sufficient missing values to run pairwise t-tests.")
+        return pd.DataFrame()
+
+    df_filtered = df[valid_cols]
+
     mt = MCARTest(method="ttest")
-    p_values = mt.mcar_t_tests(df)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        p_values = mt.mcar_t_tests(df_filtered)
+
+    if p_values.empty:
+        print("The resulting p_values matrix is empty. No valid comparisons could be made.")
+        return p_values
 
     plt.figure(figsize=(6, 6))
     sns.heatmap(p_values, annot=True, fmt=".4f", cmap="coolwarm_r", center=0.05, cbar_kws={"label": "p-value"})
