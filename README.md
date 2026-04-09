@@ -11,10 +11,10 @@ There are 3 types of missing data mechanism, which are MCAR, MAR, and MNAR.
 #### Missing Completely At Random (MCAR)
 The missing values *depend neither on the observed variables nor on the missing values themselves*.
 
-#### Missing Completely At Random (MAR)
+#### Missing At Random (MAR)
 The missing values *depend on the observed variables*, but do not depend on the missing values themselves.
 
-#### Missing Completely At Random (MAR)
+#### Missing Not At Random (MNAR)
 The missing values *depend on the missing values themselves*, but do not depend on the observed variables.
 
 ## Steps to use the package on any computer
@@ -54,17 +54,17 @@ python -m pip install -e <path_of_package>/mechanism_viewer
 
 Note: In this mode, it is only necessary to reload the kernel to have the most updated version of the package.
 
-3) After installation is complete, you are ready to use the package on your code. Below, there is a quick example on how to use `missing_columns_similarity()`.
+3) After installation is complete, you are ready to use the package on your code. Below, there is a quick example on how to use `plot_missing_rate()`.
 
 ## Examples
 
 Use one of the visualization tools:
 ```python
 import pandas as pd
-from mechanism_viewer import missing_columns_similarity
+from mechanism_viewer import plot_missing_rate
 
 df = pd.read_csv("data.csv")
-missing_columns_similarity(df)  #plot will be printed automatically
+plot_missing_rate(df)  #plot will be printed automatically
 ```
 
 To generate synthetic dataset with missing data:
