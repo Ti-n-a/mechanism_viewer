@@ -247,7 +247,7 @@ def _prepare_apply_mechanism(
     column_data : pd.Series
         The column where it will be applied the the missing
         data mechanism.
-    missing_rate : float
+    missing_rate : float = 0.1
         The missing rate the new column should have after
         applying the missing data mechanism.
  
@@ -327,7 +327,7 @@ def apply_mcar(
     ----------
     column_data : pd.Series
         The column to transform
-    missing_rate : float
+    missing_rate : float = 0.1
         The missing rate of the column
   
     Returns
@@ -359,9 +359,9 @@ def apply_mar(
         The column to transform
     observable_df : pd.DataFrame
         The column(s) that are observable and will be used as missingness dependency 
-    missing_rate : float
+    missing_rate : float = 0.1
         The missing rate of the column
-    missingness_ascending : bool
+    missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
     
     Returns
@@ -402,9 +402,9 @@ def apply_mnar(
     ----------
     column_data : pd.Series
         The column to transform
-    missing_rate : float
+    missing_rate : float = 0.1
         The missing rate of the column
-    missingness_ascending : bool
+    missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
     
     Returns
@@ -447,7 +447,7 @@ def apply_missing_data(
         The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
     missing_rate_array : list[float]
         The missing rate of each column with missing mechanism applied
-    missingness_ascending : bool
+    missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
     
     Returns
@@ -506,7 +506,7 @@ def generate_dataset_with_missing_data(
         The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)
     missing_rate_array : list[float]
         The missing rate of each column with missing mechanism applied
-    missingness_ascending : bool
+    missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
     
     Returns
