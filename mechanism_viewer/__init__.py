@@ -7,4 +7,4 @@ from .viewer_upset import rows_with_similar_missing
 from .viewer_comparison import scatter_missingness_comparison, scatter_missingness_comparison_line, boxplot_comparison
 from .viewer_imputation import scatterplot_imputation_comparison, plot_imputation_distribution
 from .accuracy_mar import run_random_forest, run_logistic_regression, detect_mar_from_model_accuracy
-from .mcar_little_test import run_little_test, run_little_test_pairs
+from .mcar_little_test import little_mcar_test, interpret_mcar_p_value, little_mcar_pairwise, plot_mcar_pairwise
