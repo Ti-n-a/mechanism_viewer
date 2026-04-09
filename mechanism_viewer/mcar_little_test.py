@@ -179,7 +179,7 @@ def plot_mcar_pairwise(
     alpha : float, default = 0.05
         The alpha value that will be used for the rejection of the null hypothesis
     display_plot : bool, default = False
-        If True, display figures with ``plt.show()``.
+        If True, displays figures with ``plt.show()``
    
     Returns
     ------- 
@@ -204,6 +204,9 @@ def plot_mcar_pairwise(
 
     if display_plot:
         plt.show()
+    else:
+        plt.close(fig_p_values)
+        plt.close(fig_reject)
 
     return fig_p_values, ax_p_values, fig_reject, ax_reject
 
