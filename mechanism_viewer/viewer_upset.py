@@ -10,17 +10,42 @@ __all__ = [
 ]
 
 
-def _get_combination_columns(tuple_combination, column_name_array: list[str]):
+def _validate_input(
+    df: pd.DataFrame
+    ) -> None:
     """
-    From the existing tupples, knowing that each tupple indicates the columns that have
+    Validate the dataset given as input.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be validated for later visualization.
+   
+    Returns
+    ------- 
+    This function does not return anything.
+    """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("The input given is not a pd.DataFrame")
+    if df.empty:
+        raise ValueError("The function cannot run with an empty pd.DataFrame as input.")
+    return
+
+
+def _get_combination_columns(
+    tuple_combination: tuple[bool,...],
+    column_name_array: list[str]
+    ) -> str:
+    """
+    From the existing tuples, knowing that each tuple indicates the columns that have
     same rows with missing values, creates a string with every column name.
 
     Parameters
     ----------
-    tuple_combination : tuple[bool] 
-        A tupple simbolizing the combination of columns with the same rows misssing
+    tuple_combination : tuple[bool,...] 
+        A tuple symbolizing the combination of columns with the same rows missing
     column_name_array : list[str]
-        Every column name, for easy retrival of the name
+        Every column name, for easy retrieval of the name
    
     Returns
     -------
@@ -34,21 +59,28 @@ def _get_combination_columns(tuple_combination, column_name_array: list[str]):
     return ', '.join(true_columns)          # Join column names with commas if multiple columns are True
 
 
-def rows_with_similar_missing(df: pd.DataFrame):
+def rows_with_similar_missing(
+    df: pd.DataFrame,
+    display_plot: bool = False,
+    ) -> tuple[plt.Figure, plt.Axes]:
     """
-    Creates a plot similar to UpSet plot. It retrives which rows have the same attributes missing, 
+    Creates a plot similar to UpSet plot. It retrieves which rows have the same attributes missing, 
     by indicating the count of those rows, and which are the missing attributes.
 
     Parameters
     ----------
     df : pd.DataFrame
         The dataset to be used to plot.
+    display_plot : bool, default = False
+        If True, displays figure with ``plt.show()``
 
     Returns
     -------
-    This function does not return anything.
+    tuple
+        (fig_similar_miss, ax_similar_miss) representing the plot available for display.
     """
-
+    _validate_input(df)
+    
     isna_df = df.isna()
     missing_combinations = isna_df.apply(lambda row: tuple(row), axis=1)        # Convert rows into tuples of missing values (True = missing, False = not missing). E.g.: (True,False,False,True)
 
@@ -56,25 +88,30 @@ def rows_with_similar_missing(df: pd.DataFrame):
 
     combination_counts.columns = ['Combination', 'Count']                       # Rename dataframe for visualization
 
-    combinations = combination_counts['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, df.columns))
+    combinations = combination_counts['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, list(df.columns)))
 
-    plt.bar(combinations, combination_counts["Count"], color='gray')
+    fig_similar_miss, ax_similar_miss = plt.subplots(figsize=(10, 5))
+    ax_similar_miss.bar(combinations, combination_counts["Count"], color='gray')
 
-    plt.title('Number of rows with same missing patterns')
-    plt.xlabel('Column combination (missing values at same rows)')
-    plt.ylabel('Number of rows')
-    plt.xticks(rotation=45, ha='right')     # Rotating the labels on x axis so they can fit better 
+    ax_similar_miss.set_title('Number of rows with same missing patterns')
+    ax_similar_miss.set_xlabel('Column combination (missing values at same rows)')
+    ax_similar_miss.set_ylabel('Number of rows')
+    ax_similar_miss.tick_params(axis='x', rotation=90)     # Rotating the labels on x axis so they fit better
 
     # To add count text on top of each bar
     for i, count in enumerate(combination_counts["Count"]):
-        plt.text(i, count + 0.1, str(count), ha='center')
+        ax_similar_miss.text(i, count + 0.4, str(count), ha='center')
 
     highest_count = max(combination_counts["Count"]) + 5
-    plt.yticks(range(0, highest_count+1, int((highest_count)/5) ))     # Set y axis ticks as integers (previously floats)
+    ax_similar_miss.set_yticks(range(0, highest_count+1, int((highest_count)/5) ))     # Set y axis ticks as integers (previously floats)
 
     # To hide the ugly border around the graph
-    ax = plt.gca()
-    ax.spines['top'].set_visible(False)     # Top border
-    ax.spines['right'].set_visible(False)   # Right border
+    ax_similar_miss.spines['top'].set_visible(False)     # Top border
+    ax_similar_miss.spines['right'].set_visible(False)   # Right border
 
-    plt.show()
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_similar_miss)
+
+    return fig_similar_miss, ax_similar_miss
