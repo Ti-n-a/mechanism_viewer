@@ -7,33 +7,13 @@ from pandas.api.types import is_numeric_dtype
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from ._validation import validate_dataframe
+
 
 __all__ = [
     "plot_missing_rate",
     "build_distribution_of_missingness",
 ]
-
-
-def _validate_input(
-    df: pd.DataFrame
-    ) -> None:
-    """
-    Validate the dataset given as input.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        The dataset to be validated for later visualization.
-   
-    Returns
-    ------- 
-    This function does not return anything.
-    """
-    if not isinstance(df, pd.DataFrame):
-        raise TypeError("The input given is not a pd.DataFrame")
-    if df.empty:
-        raise ValueError("The function cannot run with an empty pd.DataFrame as input.")
-    return
 
 
 def _validate_missing_col(
@@ -82,7 +62,7 @@ def plot_missing_rate(
     tuple
         (fig_missing_rate, ax_missing_rate) representing the plot available for display.
     """
-    _validate_input(df)
+    validate_dataframe(df)
 
     missing_rate_dataset = df.isna().mean().round(2)
 
@@ -133,7 +113,7 @@ def build_distribution_of_missingness(
         (fig1, ax1, fig2, ax2, ..., figN, axN) representing all plots available for display,
         Order follows ``df.columns``, skipping ``missing_col``.
     """
-    _validate_input(df)
+    validate_dataframe(df)
     _validate_missing_col(df, missing_col)
 
     data = df.copy()

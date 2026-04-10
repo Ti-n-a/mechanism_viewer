@@ -34,6 +34,8 @@ from pyampute.exploration.mcar_statistical_tests import MCARTest
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from ._validation import validate_dataframe
+
 __all__ = [
     "little_mcar_test",
     "interpret_mcar_p_value",
@@ -57,10 +59,7 @@ def _validate_input(
     ------- 
     This function does not return anything.
     """
-    if not isinstance(df, pd.DataFrame):
-        raise TypeError("The input given is not a pd.DataFrame")
-    if df.empty:
-        raise ValueError("The function cannot run with an empty pd.DataFrame as input.")
+    validate_dataframe(df)
     
     non_numeric_cols = df.select_dtypes(exclude="number").columns
     if len(non_numeric_cols) > 0:

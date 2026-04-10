@@ -5,31 +5,11 @@ attributes missing.
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from ._validation import validate_dataframe
+
 __all__ = [
     "rows_with_similar_missing",
 ]
-
-
-def _validate_input(
-    df: pd.DataFrame
-    ) -> None:
-    """
-    Validate the dataset given as input.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        The dataset to be validated for later visualization.
-   
-    Returns
-    ------- 
-    This function does not return anything.
-    """
-    if not isinstance(df, pd.DataFrame):
-        raise TypeError("The input given is not a pd.DataFrame")
-    if df.empty:
-        raise ValueError("The function cannot run with an empty pd.DataFrame as input.")
-    return
 
 
 def _get_combination_columns(
@@ -79,7 +59,7 @@ def rows_with_similar_missing(
     tuple
         (fig_similar_miss, ax_similar_miss) representing the plot available for display.
     """
-    _validate_input(df)
+    validate_dataframe(df)
     
     isna_df = df.isna()
     missing_combinations = isna_df.apply(lambda row: tuple(row), axis=1)        # Convert rows into tuples of missing values (True = missing, False = not missing). E.g.: (True,False,False,True)
