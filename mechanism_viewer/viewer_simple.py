@@ -7,7 +7,7 @@ from pandas.api.types import is_numeric_dtype
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from ._validation import validate_dataframe
+from ._validation import validate_dataframe, validate_column
 
 
 __all__ = [
@@ -34,10 +34,8 @@ def _validate_missing_col(
     ------- 
     This function does not return anything.
     """
-    if not isinstance(missing_col, str):
-        raise TypeError("The missing_col input must be a string.")
-    if missing_col not in df.columns:
-        raise ValueError(f"Could not find {missing_col} inside dataframe.")
+    validate_column(df, missing_col)
+    
     if df[missing_col].notna().all():
         raise ValueError(f"The missing column given, {missing_col}, does not contain any missing value.")
     return
