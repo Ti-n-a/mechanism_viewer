@@ -185,7 +185,7 @@ def missing_rate_matrix(
     Returns
     -------
     tuple
-        (fig_missing_rate, ax_missing_rate) representing the plot available for display.
+        (fig_miss_matrix, ax_miss_matrix) representing the plot available for display.
     """
     _validate_input(df)
     validate_column(df, column_name)

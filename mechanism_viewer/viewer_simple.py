@@ -7,38 +7,13 @@ from pandas.api.types import is_numeric_dtype
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from ._validation import validate_dataframe, validate_column
+from ._validation import validate_dataframe, validate_missing_col
 
 
 __all__ = [
     "plot_missing_rate",
     "build_distribution_of_missingness",
 ]
-
-
-def _validate_missing_col(
-    df: pd.DataFrame,
-    missing_col: str
-    ) -> None:
-    """
-    Validate the missing column given as input.
-
-    Parameters
-    ----------
-    df : pd.DataFrame
-        The dataset that contains the missing column.
-    missing_col : str
-        The missing column to be validated for later visualization.
-   
-    Returns
-    ------- 
-    This function does not return anything.
-    """
-    validate_column(df, missing_col)
-    
-    if df[missing_col].notna().all():
-        raise ValueError(f"The missing column given, {missing_col}, does not contain any missing value.")
-    return
 
 
 def plot_missing_rate(
@@ -112,7 +87,7 @@ def build_distribution_of_missingness(
         Order follows ``df.columns``, skipping ``missing_col``.
     """
     validate_dataframe(df)
-    _validate_missing_col(df, missing_col)
+    validate_missing_col(df, missing_col)
 
     data = df.copy()
 

@@ -44,7 +44,32 @@ def validate_column(
     This function does not return anything.
     """
     if not isinstance(column_name, str):
-        raise TypeError("The given column must be in a string format.")
+        raise TypeError(f"The given column {column_name} must be in a string format.")
     if column_name not in df.columns:
         raise ValueError(f"Could not find {column_name} inside the given dataframe.")
+    return
+
+
+def validate_missing_col(
+    df: pd.DataFrame,
+    missing_col: str
+    ) -> None:
+    """
+    Validate the missing column given as input.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset that contains the missing column.
+    missing_col : str
+        The missing column to be validated for later visualization.
+   
+    Returns
+    ------- 
+    This function does not return anything.
+    """
+    validate_column(df, missing_col)
+    
+    if df[missing_col].notna().all():
+        raise ValueError(f"The missing column given, {missing_col}, does not contain any missing value.")
     return
