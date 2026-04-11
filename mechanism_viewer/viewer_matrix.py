@@ -3,6 +3,7 @@ rows and the missing rate.
 """
 
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
@@ -97,7 +98,7 @@ def visualize_column_dependencies(
             cmap = plt.cm.Greens
             # Scale complete columns to [0, 1] so color intensity is comparable.
             col_values = data[column]
-            if pd.api.types.is_numeric_dtype(col_values):
+            if is_numeric_dtype(col_values):
                 col_min = col_values.min()
                 col_max = col_values.max()
                 if col_max > col_min:

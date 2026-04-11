@@ -13,6 +13,7 @@ missing data and testing the capabilities of other module tools.
 
 import numpy as np
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 from sklearn.preprocessing import LabelEncoder
 from .column_data_types import ColType
 
@@ -46,7 +47,7 @@ def _validate_and_convert_column_to_numeric(
     pd.Series
         The column data as numerical data, if the original data was non-numeric.
     """
-    if not pd.api.types.is_numeric_dtype(column):
+    if not is_numeric_dtype(column):
         label_encoder = LabelEncoder()                              
         new_column = label_encoder.fit_transform(column)
         return pd.Series(new_column, index=column.index, name=column.name)

@@ -36,7 +36,7 @@ def validate_column(
     ----------
     df : pd.DataFrame
         The dataset that contains the column.
-    missing_col : str
+    column_name : str
         The column to be validated for later visualization.
    
     Returns
