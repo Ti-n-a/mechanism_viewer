@@ -1,104 +1,208 @@
 """The visualization tools described below can be used to compare observed columns with
 the missingness of a column. For best visualization, the first two should be used with
-an observed column with continuos data type.
+an observed column with continuous data type.
 """
 
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+from ._validation import validate_dataframe, validate_column, validate_missing_col
 
-def scatter_missingness_comparison(df: pd.DataFrame, column_name_x: str, column_name_y: str):
+
+__all__ = [
+    "scatter_missingness_comparison",
+    "scatter_missingness_comparison_line",
+    "boxplot_comparison",
+]
+
+
+def validate_numeric_col(
+    df: pd.DataFrame,
+    numeric_col: str
+    ) -> None:
     """
-    Plots a scatterplot for the data points (column_name_x, is_not_missing(column_name_y))
+    Validate the numeric column given as input.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset that contains the numeric column.
+    numeric_col : str
+        The numeric column to be validated for later visualization.
+   
+    Returns
+    ------- 
+    This function does not return anything.
+    """
+    validate_column(df, numeric_col)
+    
+    if not is_numeric_dtype(df[numeric_col]):
+        raise ValueError(f"The column given, {numeric_col}, is not of numeric type.")
+    if df[numeric_col].isna().all():       
+        raise ValueError(f"{numeric_col} column is full of missing values.")
+    return
+
+
+
+def scatter_missingness_comparison(
+    df: pd.DataFrame,
+    column_name: str,
+    missing_col: str,
+    display_plot: bool = False,
+    ) -> tuple[plt.Figure, plt.Axes]:
+    """
+    Plots a scatterplot for the data points (column_name, is_not_missing(missing_col))
 
     Parameters
     ----------
     df : pd.DataFrame
         The dataset to be used to plot.
-    column_name_x : str
+    column_name : str
         The observed column name that will be used for comparison
-    column_name_y : str
+    missing_col : str
         The missing column name that will be used for comparison
+    display_plot : bool, default = False
+        If True, displays figure with ``plt.show()``
 
     Returns
     -------
-    This function does not return anything.
+    tuple
+        (fig_comp, ax_comp) representing the plot available for display.
     """
-    missing_col = df[column_name_y].notna().astype(int)
+    validate_dataframe(df)
+    validate_column(df, column_name)
+    validate_missing_col(df, missing_col)
 
-    plt.figure(figsize=(10, 2))
+    missing_col_missingness = df[missing_col].notna().astype(int)
 
-    sns.scatterplot(x=df[column_name_x], y=missing_col, alpha=0.5)
+    fig_comp, ax_comp = plt.subplots(figsize=(10, 2))
 
-    plt.title('Missing Values vs Not Missing Values')
-    plt.xlabel(column_name_x)
-    plt.ylabel(f"Missingness of {column_name_y}")
+    sns.scatterplot(x=df[column_name], y=missing_col_missingness, alpha=0.5, ax=ax_comp)
 
-    plt.yticks(range(0, 2), ["missing","not missing"] )
+    ax_comp.set_title(f"Plotting of {column_name} using missingness of {missing_col}")
+    ax_comp.set_xlabel(column_name)
+    ax_comp.set_ylabel(f"Missingness of {missing_col}")
 
-    plt.show()
+    ax_comp.set_yticks(range(0, 2), ["Missing","Not missing"] )
+
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_comp)
+    
+    return fig_comp, ax_comp
 
 
-def scatter_missingness_comparison_line(df: pd.DataFrame, column_name_x: str, column_name_y: str):
+def scatter_missingness_comparison_line(
+    df: pd.DataFrame,
+    column_name: str,
+    missing_col: str,
+    display_plot: bool = False,
+    ) -> tuple[plt.Figure, plt.Axes]:
     """
-    Plots a scatterplot for the data points (column_name_x, is_not_missing(column_name_y)) in
+    Plots a scatterplot for the data points (column_name, is_not_missing(missing_col)) in
     a single line.
 
     Parameters
     ----------
     df : pd.DataFrame
         The dataset to be used to plot.
-    column_name_x : str
+    column_name : str
         The observed column name that will be used for comparison
-    column_name_y : str
+    missing_col : str
         The missing column name that will be used for comparison
+    display_plot : bool, default = False
+        If True, displays figure with ``plt.show()``
 
     Returns
     -------
-    This function does not return anything.
+    tuple
+        (fig_comp_line, ax_comp_line) representing the plot available for display.
     """
-    missing_col = df[column_name_y].notna().astype(int)
+    validate_dataframe(df)
+    validate_column(df, column_name)
+    validate_missing_col(df, missing_col)
 
-    plt.figure(figsize=(10, 2))
+    missing_col_missingness = df[missing_col].notna().astype(int)
+    missing_labels = missing_col_missingness.map({0: "Missing", 1: "Not missing"})
 
-    sns.scatterplot(x=df[column_name_x], y=[1]*len(df), hue=missing_col, palette={0: 'blue', 1: 'red'}, alpha=0.5)
+    fig_comp_line, ax_comp_line = plt.subplots(figsize=(10, 2))
 
-    plt.title('Missing Values vs Not Missing Values')
-    plt.xlabel(column_name_x)
-    plt.ylabel(f"Missingness of {column_name_y}")
+    sns.scatterplot(x=df[column_name], y=[1] * len(df), hue=missing_labels, 
+                    hue_order=["Missing", "Not missing"], palette={"Missing": "red", "Not missing": "blue"},
+                    alpha=0.5, ax=ax_comp_line)
 
-    plt.yticks([])
+    ax_comp_line.set_title(f"Plotting of {column_name} using missingness of {missing_col}")
+    ax_comp_line.set_xlabel(column_name)
+    ax_comp_line.set_ylabel("")
 
-    plt.show()
+    ax_comp_line.set_yticks([])
+
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_comp_line)
+    
+    return fig_comp_line, ax_comp_line
 
 
-def boxplot_comparison(df: pd.DataFrame, column_name_x: str, column_name_y: str):
+def boxplot_comparison(
+    df: pd.DataFrame,
+    column_name: str,
+    missing_col: str,
+    display_plot: bool = False,
+    ) -> tuple[plt.Figure, plt.Axes]:
     """
-    Shows three boxplots: the boxplot of column_name_x when column_name_y has values, the
-    boxplot of column_name_x when the values of column_name_y are missing, and the general
-    boxplot of column_name_x no matter the missingness of column_name_y.
+    Shows three boxplots: the boxplot of column_name when missing_col has values, the
+    boxplot of column_name when the values of missing_col are missing, and the general
+    boxplot of column_name no matter the missingness of missing_col.
 
     Parameters
     ----------
     df : pd.DataFrame
         The dataset to be used to plot.
-    column_name_x : str
+    column_name : str
         The observed column name that will be used for comparison
-    column_name_y : str
+    missing_col : str
         The missing column name that will be used for comparison
+    display_plot : bool, default = False
+        If True, displays figure with ``plt.show()``
 
     Returns
     -------
-    This function does not return anything.
+    tuple
+        (fig_boxplot, ax_boxplot) representing the plot available for display.
     """
-    missingness = df[column_name_y].isna().astype(int)
+    validate_dataframe(df)
+    validate_numeric_col(df, column_name)
+    validate_missing_col(df, missing_col)
 
-    plt.figure(figsize=(8, 6))
-    sns.boxplot(x=missingness, y=column_name_x, data=df)
-    sns.boxplot(y=column_name_x, data=df)
-    plt.title(f"Comparison of values of {column_name_x} with Missingness in {column_name_y}")
-    plt.xticks(range(3), [f"Values of {column_name_y} are not missing", f"Values of {column_name_y} are missing", f"All values of {column_name_x}"])
-    plt.xlabel('')
-    plt.ylabel(f"Values of {column_name_x}")
-    plt.show()
+    not_missing_series = df.loc[df[missing_col].notna(), column_name]
+    missing_series = df.loc[df[missing_col].isna(), column_name]
+    all_series = df[column_name]
+
+    not_missing_str = f"Values of {missing_col} are not missing"
+    missing_str = f"Values of {missing_col} are missing"
+    all_str = f"All values of {column_name}"
+
+    plot_df = pd.concat([pd.DataFrame({"group": not_missing_str, "value": not_missing_series}),
+                         pd.DataFrame({"group": missing_str, "value": missing_series}),
+                         pd.DataFrame({"group": all_str, "value": all_series})
+                        ], ignore_index=True)
+
+    group_order = [not_missing_str, missing_str, all_str]
+
+    fig_boxplot, ax_boxplot = plt.subplots(figsize=(10, 6))
+    sns.boxplot(x="group", y="value", data=plot_df, order=group_order, ax=ax_boxplot)
+    ax_boxplot.set_title(f"Comparison of values of {column_name} with missingness in {missing_col}")
+    ax_boxplot.set_xlabel('')
+    ax_boxplot.set_ylabel(f"Values of {column_name}")
+    
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_boxplot)
+    
+    return fig_boxplot, ax_boxplot
