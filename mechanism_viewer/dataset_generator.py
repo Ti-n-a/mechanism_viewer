@@ -15,7 +15,10 @@ import numpy as np
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from sklearn.preprocessing import LabelEncoder
+
 from .column_data_types import ColType
+
+from ._random import DEFAULT_RANDOM_STATE
 
 __all__ = [
     "generate_synthetic_dataset",
@@ -270,7 +273,8 @@ def _prepare_apply_mechanism(
 
 def generate_synthetic_dataset(
     n_rows: int,
-    type_array: list[str]
+    type_array: list[str],
+    random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.DataFrame:
     """
     Generates a synthetic dataset according to the properties given.
@@ -281,6 +285,8 @@ def generate_synthetic_dataset(
         The number of rows the dataset must have.
     type_array : list[str]
         The array with the type of each column.
+    random_state : int, default = 42
+        Seed used in stochastic routines for reproducible results.
    
     Returns
     -------
@@ -292,7 +298,7 @@ def generate_synthetic_dataset(
 
     n_cols = len(type_array)
 
-    np.random.seed(42)
+    rng = np.random.default_rng(random_state)
 
     col_names = [f"Col{i+1}" for i in range(n_cols)]     # Names columns as Col1, Col2, Col3...
 
@@ -300,16 +306,16 @@ def generate_synthetic_dataset(
 
     for i, col_name in enumerate(col_names):
         if type_array[i] == ColType.CONTINUOUS:
-            data[col_name] = np.random.normal(0, 1, n_rows)  # Normal (Gaussian) Distribution
+            data[col_name] = rng.normal(0, 1, n_rows)  # Normal (Gaussian) Distribution
         elif type_array[i] == ColType.DISC_CATEGORICAL:
             K = 10  # number of categories
-            data[col_name] = np.random.randint(0, K, size=n_rows)       # Discrete uniform distribution
+            data[col_name] = rng.integers(0, K, size=n_rows)       # Discrete uniform distribution
             data[col_name] = data[col_name].astype("Int64")                             # Transforms column to nullable integer type, because pandas normally transforms data into floats when missing values are applied
         elif type_array[i] == ColType.DISCRETE:
-            data[col_name] = np.random.poisson(lam=5, size=n_rows)  # Poisson Distribution (Counts)
+            data[col_name] = rng.poisson(lam=5, size=n_rows)  # Poisson Distribution (Counts)
             data[col_name] = data[col_name].astype("Int64")  
         elif type_array[i] == ColType.BINARY:
-            data[col_name] = np.random.choice([0, 1], size=n_rows)
+            data[col_name] = rng.choice([0, 1], size=n_rows)
             data[col_name] = data[col_name].astype("Int64")  
         else:
             raise ValueError(f"There is an unknown type of data: {type_array[i]}")
@@ -319,7 +325,8 @@ def generate_synthetic_dataset(
 
 def apply_mcar(
     column_data: pd.Series,
-    missing_rate: float = 0.1
+    missing_rate: float = 0.1,
+    random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.Series:
     """
     Applies MCAR mechanism to one column.
@@ -330,6 +337,8 @@ def apply_mcar(
         The column to transform
     missing_rate : float = 0.1
         The missing rate of the column
+    random_state : int, default = 42
+        Seed used in stochastic routines for reproducible results.
   
     Returns
     -------
@@ -338,7 +347,8 @@ def apply_mcar(
     n_rows = len(column_data)
     total_missing_rows, new_column = _prepare_apply_mechanism(column_data, missing_rate)
 
-    missing_indices = np.random.choice(n_rows, size=total_missing_rows, replace=False) # Samples missing rows randomly
+    rng = np.random.default_rng(random_state)
+    missing_indices = rng.choice(n_rows, size=total_missing_rows, replace=False) # Samples missing rows randomly
 
     new_column.iloc[missing_indices] = np.nan
 
@@ -433,7 +443,8 @@ def apply_missing_data(
     n_complete_cols: int,
     missing_mechanism_array: list[str],
     missing_rate_array: list[float],
-    missingness_ascending: bool = True
+    missingness_ascending: bool = True,
+    random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.DataFrame:
     """
     Applies multiple missing data mechanisms to a dataframe
@@ -450,6 +461,8 @@ def apply_missing_data(
         The missing rate of each column with missing mechanism applied
     missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
+    random_state : int, default = 42
+        Seed used in stochastic routines for reproducible results.
     
     Returns
     -------
@@ -468,10 +481,11 @@ def apply_missing_data(
         raise ValueError(f"There is a mismatch between the number of missing rates ({missing_rate_array}) and the number of wanted missing columns ({n_cols-n_complete_cols})")
 
     missing_cols = data.columns[n_complete_cols:]
-    
     for i, col in enumerate(missing_cols):  
         if missing_mechanism_array[i] == "MCAR":     # Missingness is random
-            new_data[col] = apply_mcar(new_data[col], missing_rate_array[i])
+            # Not using the same random_state for every MCAR column.
+            # Although the same random_state would be simpler, it could correlate patterns across columns
+            new_data[col] = apply_mcar(new_data[col], missing_rate_array[i], random_state + i)
 
         elif missing_mechanism_array[i] == "MAR":    # Missingness depends on complete features
             new_data[col] = apply_mar(new_data[col], new_data.iloc[:,:n_complete_cols], missing_rate_array[i], missingness_ascending)
@@ -490,7 +504,8 @@ def generate_dataset_with_missing_data(
     n_complete_cols: int,
     missing_mechanism_array: list[str],
     missing_rate_array: list[float],
-    missingness_ascending: bool = True
+    missingness_ascending: bool = True,
+    random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.DataFrame:
     """
     Generates a dataset with missing data mechanisms. Applies the above functions for user usability.
@@ -509,12 +524,14 @@ def generate_dataset_with_missing_data(
         The missing rate of each column with missing mechanism applied
     missingness_ascending : bool = True
         Indicates whether the highest/lowest values must become missing 
+    random_state : int, default = 42
+        Seed used in stochastic routines for reproducible results.
     
     Returns
     -------
     new_data (pd.DataFrame): A copy of the dataframe with the missing data mechanisms applied
     """
-    data = generate_synthetic_dataset(n_rows, type_array)
-    missing_dataset = apply_missing_data(data, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending)
+    data = generate_synthetic_dataset(n_rows, type_array, random_state)
+    missing_dataset = apply_missing_data(data, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending, random_state)
     
     return missing_dataset

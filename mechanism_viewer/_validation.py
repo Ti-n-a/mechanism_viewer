@@ -71,5 +71,8 @@ def validate_missing_col(
     validate_column(df, missing_col)
     
     if df[missing_col].notna().all():
-        raise ValueError(f"The missing column given, {missing_col}, does not contain any missing value.")
+        raise ValueError(f"The missing column given, {missing_col}, does not contain any missing value. "
+                         "However, the function requires the column to have missing values.")
+    if df[missing_col].isna().all():
+        raise ValueError(f"The missing column given, {missing_col} only contains missing values.")
     return
