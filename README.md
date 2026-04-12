@@ -1,3 +1,5 @@
+# WARNING: README NOT YET UPDATED
+
 # mechanism_viewer
 
 `mechanism_viewer` is a python package that can be used to help diagnose the missing data mechanism of a dataset.
