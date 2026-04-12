@@ -44,7 +44,7 @@ def _validate_input(
 def visualize_column_dependencies(
     df: pd.DataFrame,
     sort_by_complete: bool = False,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a matrix of all missing rows. It enables to check which rows depend on which values
@@ -159,7 +159,7 @@ def missing_rate_matrix(
     df: pd.DataFrame,
     column_name: str,
     sort_by_column: bool = True,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a matrix of missing rate. It uses column_name to group the values of the other columns,

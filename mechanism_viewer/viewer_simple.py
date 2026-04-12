@@ -18,7 +18,7 @@ __all__ = [
 
 def plot_missing_rate(
     df: pd.DataFrame,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots the missing rate of each column.
@@ -59,7 +59,7 @@ def plot_missing_rate(
 def build_distribution_of_missingness(
     df: pd.DataFrame,
     missing_col: str,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure | plt.Axes, ...]:
     """
     Creates multiple plots showing the distribution of each column based on the missingness of missing_col.

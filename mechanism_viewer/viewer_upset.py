@@ -41,7 +41,7 @@ def _get_combination_columns(
 
 def rows_with_similar_missing(
     df: pd.DataFrame,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Creates a plot similar to UpSet plot. It retrieves which rows have the same attributes missing, 

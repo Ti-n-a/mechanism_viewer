@@ -50,7 +50,7 @@ def scatter_missingness_comparison(
     df: pd.DataFrame,
     column_name: str,
     missing_col: str,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a scatterplot for the data points (column_name, is_not_missing(missing_col))
@@ -99,7 +99,7 @@ def scatter_missingness_comparison_line(
     df: pd.DataFrame,
     column_name: str,
     missing_col: str,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a scatterplot for the data points (column_name, is_not_missing(missing_col)) in
@@ -152,7 +152,7 @@ def boxplot_comparison(
     df: pd.DataFrame,
     column_name: str,
     missing_col: str,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Shows three boxplots: the boxplot of column_name when missing_col has values, the

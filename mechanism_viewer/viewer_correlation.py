@@ -57,7 +57,7 @@ def _validate_complete_list(
 
 def missing_columns_correlation(
     df: pd.DataFrame,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a correlation heatmap showing whether there are missing columns with missing
@@ -113,7 +113,7 @@ def missing_columns_correlation(
 
 def complete_and_missing_columns_correlation(
     df: pd.DataFrame,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Plots a correlation heatmap showing whether there are missing columns with missing

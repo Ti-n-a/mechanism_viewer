@@ -152,7 +152,8 @@ def interpret_mcar_p_value(
     
     Returns
     ------- 
-    The string containing a human readable interpretation of a Little's MCAR p-value.
+    str
+        The string containing a human readable interpretation of a Little's MCAR p-value.
     """
     p_value_str = (f"\nObtained p_value is {round(p_value,4)}.\n\nInterpretation: ")
 
@@ -165,7 +166,7 @@ def interpret_mcar_p_value(
 def plot_mcar_pairwise(
     p_values: pd.DataFrame,
     alpha: float = 0.05,
-    display_plot: bool = False,
+    display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes, plt.Figure, plt.Axes]:
     """
     Return the plots of p-values obtained from Little's MCAR t-test, including the
