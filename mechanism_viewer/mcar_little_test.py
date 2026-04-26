@@ -187,8 +187,9 @@ def plot_mcar_pairwise(
         (fig_p_values, ax_p_values, fig_reject, ax_reject) representing the 2 plots available for display.
     """
     _validate_output(p_values)
+    n_rows, n_cols = p_values.shape #square
 
-    fig_p_values, ax_p_values = plt.subplots(figsize=(6, 6))
+    fig_p_values, ax_p_values = plt.subplots(figsize=(n_cols, n_rows))
     sns.heatmap(p_values, annot=True, fmt=".4f", cmap="coolwarm_r", center=alpha, cbar_kws={"label": "p-value"}, ax=ax_p_values)
     ax_p_values.set_title("p_value of t-test for every pair of columns")
     ax_p_values.set_xlabel("Note: white square = No p-value\n(column is complete or square belongs to diagonal)\n grey square = reject the null hypothesis (Data is not MCAR)", labelpad=15)
@@ -196,7 +197,7 @@ def plot_mcar_pairwise(
 
     reject = p_values <= alpha
 
-    fig_reject, ax_reject = plt.subplots(figsize=(8, 5))
+    fig_reject, ax_reject = plt.subplots(figsize=(n_cols, n_rows))
     sns.heatmap(reject, cmap=["#d26256", "#2ecc71"], cbar=False, linewidths=0.75, ax=ax_reject)
     ax_reject.set_title("Pairwise MCAR test rejections")
     ax_reject.set_xlabel("Note: green square = evidence against MCAR\nred square = fail to reject null hypothesis (likely MCAR)", labelpad=15)
@@ -266,9 +267,14 @@ def little_mcar_pairwise(
     mt = MCARTest(method="ttest")
     with warnings.catch_warnings():
         warnings.filterwarnings(
-        "ignore",
-        category=RuntimeWarning,
-        module=r"pyampute\..*",
+            "ignore",
+            category=RuntimeWarning,
+            module=r"pyampute\..*",
+        )
+        warnings.filterwarnings(
+            "ignore",
+            category=RuntimeWarning,
+            message=r".*catastrophic cancellation.*",
         )
         p_values = mt.mcar_t_tests(df_filtered)
 

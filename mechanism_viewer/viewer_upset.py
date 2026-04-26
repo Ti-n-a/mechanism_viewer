@@ -41,16 +41,21 @@ def _get_combination_columns(
 
 def rows_with_similar_missing(
     df: pd.DataFrame,
+    min_rows_display: int = 0,
     display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
     """
     Creates a plot similar to UpSet plot. It retrieves which rows have the same attributes missing, 
     by indicating the count of those rows, and which are the missing attributes.
 
+    The plot can be filtered to show only the bars that have at least the minimum number of rows.
+
     Parameters
     ----------
     df : pd.DataFrame
         The dataset to be used to plot.
+    min_rows_display: int, default = 0
+        The minimum number of rows that a bar must have to be displayed on the plot.
     display_plot : bool, default = False
         If True, displays figure with ``plt.show()``
 
@@ -68,10 +73,12 @@ def rows_with_similar_missing(
 
     combination_counts.columns = ['Combination', 'Count']                       # Rename dataframe for visualization
 
-    combinations = combination_counts['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, list(df.columns)))
+    comb_cnts_filtered = combination_counts[combination_counts['Count'] >= min_rows_display]
+
+    combinations = comb_cnts_filtered['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, list(df.columns)))
 
     fig_similar_miss, ax_similar_miss = plt.subplots(figsize=(10, 5))
-    ax_similar_miss.bar(combinations, combination_counts["Count"], color='gray')
+    ax_similar_miss.bar(combinations, comb_cnts_filtered["Count"], color='gray')
 
     ax_similar_miss.set_title('Number of rows with same missing patterns')
     ax_similar_miss.set_xlabel('Column combination (missing values at same rows)')
@@ -79,10 +86,10 @@ def rows_with_similar_missing(
     ax_similar_miss.tick_params(axis='x', rotation=90)     # Rotating the labels on x axis so they fit better
 
     # To add count text on top of each bar
-    for i, count in enumerate(combination_counts["Count"]):
+    for i, count in enumerate(comb_cnts_filtered["Count"]):
         ax_similar_miss.text(i, count + 0.4, str(count), ha='center')
 
-    highest_count = max(combination_counts["Count"]) + 5
+    highest_count = max(comb_cnts_filtered["Count"]) + 5
     ax_similar_miss.set_yticks(range(0, highest_count+1, int((highest_count)/5) ))     # Set y axis ticks as integers (previously floats)
 
     # To hide the ugly border around the graph

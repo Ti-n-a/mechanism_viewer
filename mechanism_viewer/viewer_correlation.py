@@ -6,12 +6,13 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from ._validation import validate_dataframe
+from ._validation import validate_dataframe, validate_missing_col
 
 
 __all__ = [
     "missing_columns_correlation",
     "complete_and_missing_columns_correlation",
+    "missing_vs_all_correlation",
 ]
 
 
@@ -85,7 +86,9 @@ def missing_columns_correlation(
 
     new_df = data[columns_with_na].corr()
 
-    fig_miss_corr, ax_miss_corr = plt.subplots(figsize=(6, 5))
+    _ , n_cols = new_df.shape
+
+    fig_miss_corr, ax_miss_corr = plt.subplots(figsize=(n_cols, n_cols))
 
     sns.heatmap(
     new_df,
@@ -138,6 +141,8 @@ def complete_and_missing_columns_correlation(
     columns_without_na = df.columns[df.notna().all()].tolist()
     columns_with_na = df.columns[df.isna().any()].tolist()
 
+    n_cols = len(columns_without_na) + len(columns_with_na)
+
     _validate_complete_list(columns_without_na)
     _validate_missing_list(columns_with_na)
 
@@ -149,9 +154,56 @@ def complete_and_missing_columns_correlation(
 
     mask = np.triu(np.ones_like(corr, dtype=bool), k=1)             # Mask the upper triangle
 
-    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(6, 5))
+    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(n_cols, n_cols))
     sns.heatmap(corr, mask=mask, annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_comp_corr)
     ax_comp_corr.set_title("Correlation Heatmap")
+    fig_comp_corr.tight_layout()
+    
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_comp_corr)
+    
+    return fig_comp_corr, ax_comp_corr
+
+
+def missing_vs_all_correlation(
+    df: pd.DataFrame,
+    missing_col: str,
+    display_plot: bool = False
+    ) -> tuple[plt.Figure, plt.Axes]:
+    """
+    Plots a correlation heatmap showing whether the missing column has its missingness
+    correlated with values from the other columns, no matter if they are complete or
+    missing.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot the correlation heatmap
+    missing_col : str
+        The missing column name that will be used for correlation
+    display_plot : bool, default = False
+        If True, displays figure with ``plt.show()``
+   
+    Returns
+    -------
+    tuple
+        (fig_comp_corr, ax_comp_corr) representing the plot available for display.
+    """
+    validate_dataframe(df)
+    validate_missing_col(df, missing_col)
+
+    missing_dataset = df.copy()
+    missing_dataset[missing_col] = df[missing_col].notna().astype(int)
+
+    _, n_cols = missing_dataset.shape
+
+    corr = missing_dataset.corr()           
+
+    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(n_cols, max(4,n_cols)))
+    sns.heatmap(corr[[missing_col]], annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_comp_corr)
+    ax_comp_corr.set_title(f"Correlation Heatmap of {missing_col}")
     fig_comp_corr.tight_layout()
     
     if display_plot:

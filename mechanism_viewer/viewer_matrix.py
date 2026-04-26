@@ -132,6 +132,9 @@ def visualize_column_dependencies(
 
     ax_dep_matrix.set_xticks(range(len(filtered_data.columns)))
     ax_dep_matrix.set_xticklabels(filtered_data.columns)
+    # Rotate labels if any is too long 
+    if max(len(str(v)) for v in filtered_data.columns) > 10:
+        ax_dep_matrix.set_xticklabels(filtered_data.columns, rotation=90, ha="center", va="top")
     ax_dep_matrix.set_yticks([])
     ax_dep_matrix.set_ylabel('Rows')
     ax_dep_matrix.set_xlabel('Columns')
@@ -202,7 +205,7 @@ def missing_rate_matrix(
     data["Complete"] = 0
     data["Incomplete"] = np.nan
 
-    missingness_per_value_df= data.groupby(column_name).agg(lambda x: x.isna().sum())
+    missingness_per_value_df= data.groupby(column_name, observed=True, dropna=False).agg(lambda x: x.isna().sum())
 
     df_scaled = norm_scaler.fit_transform(missingness_per_value_df.T)         # Normalize the data (transform table to rotate it on horizontal axis)
 
@@ -220,6 +223,9 @@ def missing_rate_matrix(
     # Print unique values of the column_name on x axis
     unique_values_arr = data[column_name].unique()
     ax_miss_matrix.set_xticks(range(len(unique_values_arr)), unique_values_arr)
+    # Rotate labels if any is too long 
+    if max(len(str(v)) for v in unique_values_arr) > 10:
+        ax_miss_matrix.set_xticklabels(unique_values_arr, rotation=90, ha="center", va="top")
     ax_miss_matrix.set_xlabel(f"Unique {column_name} Values")
     
     ax_miss_matrix.set_title("Missing Rate Matrix (The darker a cell is, the higher the missing rate on that column for a specific observed value)")
