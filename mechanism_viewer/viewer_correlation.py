@@ -88,7 +88,7 @@ def missing_columns_correlation(
 
     _ , n_cols = new_df.shape
 
-    fig_miss_corr, ax_miss_corr = plt.subplots(figsize=(n_cols, n_cols))
+    fig_miss_corr, ax_miss_corr = plt.subplots(figsize=(max(4,n_cols), max(4,n_cols)))
 
     sns.heatmap(
     new_df,
@@ -103,7 +103,7 @@ def missing_columns_correlation(
     ax=ax_miss_corr
     )
 
-    ax_miss_corr.set_title("Missingness Correlation Heatmap")
+    ax_miss_corr.set_title("Missingness Correlation Heatmap", pad=40)
     fig_miss_corr.tight_layout()
     
     if display_plot:
@@ -154,9 +154,9 @@ def complete_and_missing_columns_correlation(
 
     mask = np.triu(np.ones_like(corr, dtype=bool), k=1)             # Mask the upper triangle
 
-    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(n_cols, n_cols))
+    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=( max(4,n_cols),  max(4,n_cols)))
     sns.heatmap(corr, mask=mask, annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_comp_corr)
-    ax_comp_corr.set_title("Correlation Heatmap")
+    ax_comp_corr.set_title("Correlation Heatmap", pad=20)
     fig_comp_corr.tight_layout()
     
     if display_plot:
@@ -203,7 +203,7 @@ def missing_vs_all_correlation(
 
     fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(n_cols, max(4,n_cols)))
     sns.heatmap(corr[[missing_col]], annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_comp_corr)
-    ax_comp_corr.set_title(f"Correlation Heatmap of {missing_col}")
+    ax_comp_corr.set_title(f"Correlation Heatmap of {missing_col}", pad=20)
     fig_comp_corr.tight_layout()
     
     if display_plot:

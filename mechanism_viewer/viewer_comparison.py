@@ -183,8 +183,8 @@ def boxplot_comparison(
     missing_series = df.loc[df[missing_col].isna(), column_name]
     all_series = df[column_name]
 
-    not_missing_str = f"Values of {missing_col} are not missing"
-    missing_str = f"Values of {missing_col} are missing"
+    not_missing_str = f"When {missing_col} is not missing"
+    missing_str = f"When {missing_col} is missing"
     all_str = f"All values of {column_name}"
 
     plot_df = pd.concat([pd.DataFrame({"group": not_missing_str, "value": not_missing_series}),

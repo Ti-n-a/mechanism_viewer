@@ -190,7 +190,7 @@ def plot_mcar_pairwise(
     n_rows, n_cols = p_values.shape #square
 
     fig_p_values, ax_p_values = plt.subplots(figsize=(n_cols, n_rows))
-    sns.heatmap(p_values, annot=True, fmt=".4f", cmap="coolwarm_r", center=alpha, cbar_kws={"label": "p-value"}, ax=ax_p_values)
+    sns.heatmap(p_values, annot=True, fmt=".4f", vmin=0, vmax=1, cmap="coolwarm_r", center=alpha, cbar_kws={"label": "p-value"}, ax=ax_p_values)
     ax_p_values.set_title("p_value of t-test for every pair of columns")
     ax_p_values.set_xlabel("Note: white square = No p-value\n(column is complete or square belongs to diagonal)\n grey square = reject the null hypothesis (Data is not MCAR)", labelpad=15)
     fig_p_values.tight_layout()
