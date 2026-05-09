@@ -77,7 +77,7 @@ def rows_with_similar_missing(
 
     combinations = comb_cnts_filtered['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, list(df.columns)))
 
-    fig_similar_miss, ax_similar_miss = plt.subplots(figsize=(10, 5))
+    fig_similar_miss, ax_similar_miss = plt.subplots(figsize=(min(len(comb_cnts_filtered),10), 5))
     ax_similar_miss.bar(combinations, comb_cnts_filtered["Count"], color='gray')
 
     ax_similar_miss.set_title('Number of rows with same missing patterns')

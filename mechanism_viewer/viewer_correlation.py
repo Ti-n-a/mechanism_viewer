@@ -197,12 +197,12 @@ def missing_vs_all_correlation(
     missing_dataset = df.copy()
     missing_dataset[missing_col] = df[missing_col].isna().astype(int)
 
-    _, n_cols = missing_dataset.shape
+    corr = missing_dataset.corrwith(missing_dataset[missing_col]).to_frame(name=missing_col)   
 
-    corr = missing_dataset.corr()           
+    n_rows = len(corr)     
 
-    fig_vs_corr, ax_vs_corr = plt.subplots(figsize=(n_cols, max(4,n_cols)))
-    sns.heatmap(corr[[missing_col]], annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_vs_corr)
+    fig_vs_corr, ax_vs_corr = plt.subplots(figsize=(3, max(4, n_rows * 0.6)))
+    sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_vs_corr)
     ax_vs_corr.set_title(f"Correlation Heatmap of {missing_col}", pad=20)
     fig_vs_corr.tight_layout()
     
