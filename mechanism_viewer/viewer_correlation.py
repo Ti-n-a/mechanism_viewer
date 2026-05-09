@@ -189,26 +189,26 @@ def missing_vs_all_correlation(
     Returns
     -------
     tuple
-        (fig_comp_corr, ax_comp_corr) representing the plot available for display.
+        (fig_vs_corr, ax_vs_corr) representing the plot available for display.
     """
     validate_dataframe(df)
     validate_missing_col(df, missing_col)
 
     missing_dataset = df.copy()
-    missing_dataset[missing_col] = df[missing_col].notna().astype(int)
+    missing_dataset[missing_col] = df[missing_col].isna().astype(int)
 
     _, n_cols = missing_dataset.shape
 
     corr = missing_dataset.corr()           
 
-    fig_comp_corr, ax_comp_corr = plt.subplots(figsize=(n_cols, max(4,n_cols)))
-    sns.heatmap(corr[[missing_col]], annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_comp_corr)
-    ax_comp_corr.set_title(f"Correlation Heatmap of {missing_col}", pad=20)
-    fig_comp_corr.tight_layout()
+    fig_vs_corr, ax_vs_corr = plt.subplots(figsize=(n_cols, max(4,n_cols)))
+    sns.heatmap(corr[[missing_col]], annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, square=True, ax=ax_vs_corr)
+    ax_vs_corr.set_title(f"Correlation Heatmap of {missing_col}", pad=20)
+    fig_vs_corr.tight_layout()
     
     if display_plot:
         plt.show()
     else:
-        plt.close(fig_comp_corr)
+        plt.close(fig_vs_corr)
     
-    return fig_comp_corr, ax_comp_corr
+    return fig_vs_corr, ax_vs_corr
