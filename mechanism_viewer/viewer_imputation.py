@@ -137,7 +137,7 @@ def _impute_database_mice(
     """
     imputer = IterativeImputer(max_iter=10, random_state=random_state, sample_posterior=True)
     imputed = imputer.fit_transform(df)
-    imputed_df = pd.DataFrame(imputed, columns=df.columns)
+    imputed_df = pd.DataFrame(imputed, columns=df.columns, index=df.index)
 
     return imputed_df
 
@@ -362,12 +362,18 @@ def _impute_database(
 
 def _prepare_missingness_dataset(
     df: pd.DataFrame,
-    missing_col: str
+    missing_col: str,
+    missing_col_type: str = "normal"
     ) -> pd.DataFrame:
     """
     Prepare the dataset used for the imputation.
     
-    The function selects the complete columns and the missing_col to be used for imputation.
+    For MICE/continuous imputation, numeric columns with missing values are kept
+    because this package uses sklearn's IterativeImputer, which can impute
+    incomplete numeric data directly.
+
+    For binary, discrete, and categorical imputation, only complete columns are used,
+    because the current models cannot handle missing values directly.
 
     Parameters
     ----------
@@ -375,15 +381,26 @@ def _prepare_missingness_dataset(
         The dataset from which complete columns and the missing_col will be obtained
     missing_col : str
         The name of the column with missing data, that will have its values imputed
+    missing_col_type : str, default = "normal"
+        The type of data that missing_col is, to better select the imputation model
 
     Returns
     -------
     pd.DataFrame
-        The dataframe containing only the complete columns and the missing_col.
+        The dataframe prepared for imputation. For MICE/continuous imputation,
+        this contains numeric columns, including columns with missing values.
+        For the other imputation models, this contains complete columns and missing_col.
     """
-    columns_without_na = df.columns[df.notna().all()].tolist()
-    prepared_df = df[columns_without_na].copy()
-    prepared_df[missing_col] = df[missing_col]
+    if missing_col_type in ["normal", ColType.CONTINUOUS]:
+        prepared_df = df.select_dtypes(include=[np.number]).copy()
+        if missing_col not in prepared_df.columns:
+            raise TypeError(f"{missing_col} must be numeric for MICE imputation.")
+        prepared_df = prepared_df.loc[:, prepared_df.notna().any()]     # Remove columns where every value is NaN
+
+    else:
+        columns_without_na = df.columns[df.notna().all()].tolist()
+        prepared_df = df[columns_without_na].copy()
+        prepared_df[missing_col] = df[missing_col]
 
     return prepared_df
 
@@ -433,20 +450,20 @@ def scatterplot_imputation_comparison(
     validate_column(df, column_name)
     validate_missing_col(df, missing_col)
 
-    prepared_df = _prepare_missingness_dataset(df, missing_col)
+    prepared_df = _prepare_missingness_dataset(df, missing_col, missing_col_type)
 
     imputed_df = _impute_database(prepared_df, missing_col, missing_col_type, random_state)
 
-    # Warn about the possibility column_name was not used for imputation 
-    # TODO: Review later due to MICE being 'useless'. Currently, verbose code.
-    # Saved warning comment: f"Currently, using the original values of {column_name} for x-axis in the imputed scatter."
+    # Use the imputed version of column_name if it was part of the imputation dataset.
+    # Otherwise, use the original column only for plotting.
     if column_name in imputed_df.columns:
         imputed_x = imputed_df[column_name]
     else:
         imputed_x = df[column_name]
-        warnings.warn((f"{column_name} is not a complete column in the original dataset. "
-                        "Thus, it was not used for the imputation process. "
-                      ), stacklevel=2)
+        warnings.warn((f"{column_name} was not included in the imputation dataset. \
+                    It is only being used for the x-axis comparison, not to predict \
+                    the missing values in {missing_col}."
+                      ), UserWarning, stacklevel=2)
 
     # To make the plt.scatter() process of displaying the data points more transparent
     plottable_points_before_imput = df[column_name].notna() & df[missing_col].notna()
@@ -456,7 +473,7 @@ def scatterplot_imputation_comparison(
     if dropped_after_imput > 0:
         warnings.warn((f"Some data points were not plotted due to existence of a missing value in either {column_name} or {missing_col}. "
                       f"Total dropped after imputation: {dropped_after_imput}."
-                      ), stacklevel=2)
+                      ), UserWarning, stacklevel=2)
 
     fig_imput_comp, ax_imput_comp = plt.subplots(figsize=(8, 6))
     ax_imput_comp.scatter(imputed_x[plottable_points_after_imput], imputed_df.loc[plottable_points_after_imput, missing_col], color='red', label='Imputed values')   # Data points
@@ -510,7 +527,7 @@ def plot_imputation_distribution(
     validate_dataframe(df)
     validate_missing_col(df, missing_col)
     
-    prepared_df = _prepare_missingness_dataset(df, missing_col)
+    prepared_df = _prepare_missingness_dataset(df, missing_col, missing_col_type)
 
     imputed_df = _impute_database(prepared_df, missing_col, missing_col_type, random_state)
 

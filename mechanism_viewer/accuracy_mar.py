@@ -129,11 +129,11 @@ def _validate_data_splitting(
 
     if y_train.value_counts().min() < min_elements_per_class:
         warnings.warn("Training set may be too small for stable training! \
-                      Increase the dataset size to produce more reliable results.", UserWarning)
+                      Increase the dataset size to produce more reliable results.", UserWarning, stacklevel=2)
 
     if y_test.value_counts().min() < min_elements_per_class:
         warnings.warn("Test set may be too small for reliable evaluation! \
-                      Increase the dataset size to produce more reliable results.", UserWarning)
+                      Increase the dataset size to produce more reliable results.", UserWarning, stacklevel=2)
     
     return
 
@@ -389,7 +389,7 @@ def detect_mar_from_model_accuracy(
     accuracy_baseline_diff = round((((rf_accuracy + lr_accuracy)/2) - baseline)*100,2)
 
     if print_result:
-        print(f"The target column {missing_col} with missing rate of {missing_rate} gives an Accuracy Baseline Difference of {accuracy_baseline_diff}.")
+        print(f"The target column {missing_col} with missing rate of {round(missing_rate,4)} gives an Accuracy Baseline Difference of {accuracy_baseline_diff}.")
         print(interpret_accuracy_baseline_diff(accuracy_baseline_diff, threshold))
 
     return accuracy_baseline_diff
