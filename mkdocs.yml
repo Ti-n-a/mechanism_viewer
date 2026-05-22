@@ -4,6 +4,9 @@ site_url: ""
 repo_url: https://github.com/Ti-n-a/mechanism_viewer
 repo_name: Ti-n-a/mechanism_viewer
 
+extra_css:
+  - assets/css/custom.css
+
 theme:
   name: material
   favicon: assets/favicon.ico
@@ -40,5 +43,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - tables
+  - footnotes
   - toc:
       permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
