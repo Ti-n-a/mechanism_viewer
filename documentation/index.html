@@ -1,0 +1,5571 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Python package for diagnosing missing-data mechanisms in tabular datasets.">
+      
+      
+      
+        <link rel="canonical" href="https://Ti-n-a.github.io/mechanism_viewer/documentation/">
+      
+      
+        <link rel="prev" href="../diagnostics/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Function Documentation - mechanism_viewer</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#function-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mechanism_viewer" class="md-header__button md-logo" aria-label="mechanism_viewer" data-md-component="logo">
+      
+  <img src="../assets/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mechanism_viewer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Function Documentation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Ti-n-a/mechanism_viewer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ti-n-a/mechanism_viewer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mechanism_viewer" class="md-nav__button md-logo" aria-label="mechanism_viewer" data-md-component="logo">
+      
+  <img src="../assets/favicon.ico" alt="logo">
+
+    </a>
+    mechanism_viewer
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Ti-n-a/mechanism_viewer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ti-n-a/mechanism_viewer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../missing_mechanisms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Missing Mechanisms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostic Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Function Documentation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Function Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerdataset_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.dataset_generator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.dataset_generator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset_generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mcar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mcar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_missing_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_missing_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mnar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mnar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.generate_dataset_with_missingness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_dataset_with_missingness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.generate_synthetic_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_synthetic_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewercoltype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.ColType
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missingness-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missingness Visualization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Missingness Visualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_simple
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_simple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_simple
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple.build_distribution_of_missingness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_distribution_of_missingness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple.plot_missing_rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_missing_rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix.missing_rate_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing_rate_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix.visualize_column_dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        visualize_column_dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_upset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_upset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_upset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_upset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_upset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_upset.rows_with_similar_missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rows_with_similar_missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_correlation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_correlation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.complete_and_missing_columns_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        complete_and_missing_columns_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.missing_vs_all_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing_vs_all_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.missingness_misscol_corr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missingness_misscol_corr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.value_misscol_corr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value_misscol_corr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.boxplot_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        boxplot_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter_missingness_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison_line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter_missingness_comparison_line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.validate_numeric_col" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validate_numeric_col
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imputation-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imputation Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Imputation Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_imputation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_imputation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_imputation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation.plot_imputation_distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_imputation_distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation.scatterplot_imputation_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatterplot_imputation_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-missing_col_type-for-imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter missing_col_type for Imputation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistical-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistical Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_vieweraccuracy_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.accuracy_mar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.accuracy_mar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        accuracy_mar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.interpret_mar_abd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        interpret_mar_abd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.run_logistic_regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_logistic_regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.run_random_forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_random_forest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.test_mar_from_model_accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test_mar_from_model_accuracy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewermcar_little_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.mcar_little_test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.mcar_little_test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mcar_little_test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.interpret_mcar_p_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        interpret_mcar_p_value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.little_mcar_pairwise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        little_mcar_pairwise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.little_mcar_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        little_mcar_test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.plot_mcar_pairwise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_mcar_pairwise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerdataset_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.dataset_generator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.dataset_generator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset_generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mcar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mcar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_missing_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_missing_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.apply_mnar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apply_mnar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.generate_dataset_with_missingness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_dataset_with_missingness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.dataset_generator.generate_synthetic_dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        generate_synthetic_dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewercoltype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.ColType
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missingness-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missingness Visualization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Missingness Visualization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_simple
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_simple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_simple
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple.build_distribution_of_missingness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        build_distribution_of_missingness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_simple.plot_missing_rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_missing_rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix.missing_rate_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing_rate_matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_matrix.visualize_column_dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        visualize_column_dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_upset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_upset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_upset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_upset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_upset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_upset.rows_with_similar_missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rows_with_similar_missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_correlation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_correlation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.complete_and_missing_columns_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        complete_and_missing_columns_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.missing_vs_all_correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missing_vs_all_correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.missingness_misscol_corr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        missingness_misscol_corr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_correlation.value_misscol_corr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        value_misscol_corr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.boxplot_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        boxplot_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter_missingness_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison_line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter_missingness_comparison_line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_comparison.validate_numeric_col" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        validate_numeric_col
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imputation-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Imputation Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Imputation Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewerviewer_imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.viewer_imputation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.viewer_imputation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viewer_imputation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation.plot_imputation_distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_imputation_distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.viewer_imputation.scatterplot_imputation_comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatterplot_imputation_comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameter-missing_col_type-for-imputation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameter missing_col_type for Imputation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statistical-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical Diagnostics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Statistical Diagnostics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_vieweraccuracy_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.accuracy_mar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.accuracy_mar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        accuracy_mar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.interpret_mar_abd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        interpret_mar_abd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.run_logistic_regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_logistic_regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.run_random_forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_random_forest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.accuracy_mar.test_mar_from_model_accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test_mar_from_model_accuracy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewermcar_little_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mechanism_viewer.mcar_little_test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mechanism_viewer.mcar_little_test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mcar_little_test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.interpret_mcar_p_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        interpret_mcar_p_value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.little_mcar_pairwise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        little_mcar_pairwise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.little_mcar_test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        little_mcar_test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mechanism_viewer.mcar_little_test.plot_mcar_pairwise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plot_mcar_pairwise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="function-documentation">Function Documentation<a class="headerlink" href="#function-documentation" title="Permanent link">&para;</a></h1>
+<p>This page provides reference documentation for the available tools and functions in <code>mechanism_viewer</code>.</p>
+<h2 id="data-generation">Data Generation<a class="headerlink" href="#data-generation" title="Permanent link">&para;</a></h2>
+<h3 id="mechanism_viewerdataset_generator"><code>mechanism_viewer.dataset_generator</code><a class="headerlink" href="#mechanism_viewerdataset_generator" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.dataset_generator"></a>
+    <div class="doc doc-contents first">
+
+        <p>This module provides tools for generating synthetic datasets and applying various
+missing-data mechanisms.</p>
+<p>It allows the generation of complete datasets with customizable properties, such as
+the number of rows, columns, and data types.</p>
+<p>In addition to defining the missing-data mechanism for each column of the dataset, users
+can specify each column's missing rates and dependencies.</p>
+<p>This module enables users to simulate datasets with missing-data patterns for visualizing
+missing-data and testing the capabilities of other module tools.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.apply_mar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply_mar</span><span class="p">(</span><span class="n">column_data</span><span class="p">,</span> <span class="n">observable_df</span><span class="p">,</span> <span class="n">missing_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">missingness_ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.apply_mar" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Applies MAR mechanism to one column.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_data</code>
+            </td>
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column to transform</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>observable_df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column(s) that are observable and will be used as missingness dependency</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_rate</code>
+            </td>
+            <td>
+                  <code>float = 0.1</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing rate of the column</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missingness_ascending</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates whether the highest/lowest values must become missing</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>new_column (pd.Series): A copy of the column with the MAR mechanism applied</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.apply_mcar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply_mcar</span><span class="p">(</span><span class="n">column_data</span><span class="p">,</span> <span class="n">missing_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.apply_mcar" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Applies MCAR mechanism to one column.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_data</code>
+            </td>
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column to transform</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_rate</code>
+            </td>
+            <td>
+                  <code>float = 0.1</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing rate of the column</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>new_column (pd.Series): A copy of the column with the MCAR mechanism applied</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.apply_missing_data" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply_missing_data</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_complete_cols</span><span class="p">,</span> <span class="n">missing_mechanism_array</span><span class="p">,</span> <span class="n">missing_rate_array</span><span class="p">,</span> <span class="n">missingness_ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.apply_missing_data" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Applies multiple missing-data mechanisms to a dataframe</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataframe that will be transformed</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_complete_cols</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of the first columns of the dataframe that won't have the missing mechanism applied</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_mechanism_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_rate_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing rate of each column with missing mechanism applied</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missingness_ascending</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates whether the highest/lowest values must become missing</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>new_data (pd.DataFrame): A copy of the dataframe with the missing-data mechanisms applied</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.apply_mnar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">apply_mnar</span><span class="p">(</span><span class="n">column_data</span><span class="p">,</span> <span class="n">missing_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">missingness_ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.apply_mnar" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Applies MNAR mechanism to one column.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_data</code>
+            </td>
+            <td>
+                  <code><span title="pandas.Series">Series</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column to transform</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_rate</code>
+            </td>
+            <td>
+                  <code>float = 0.1</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing rate of the column</p>
+              </div>
+            </td>
+            <td>
+                  <code>0.1</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missingness_ascending</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates whether the highest/lowest values must become missing</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>new_column (pd.Series): A copy of the column with the MNAR mechanism applied</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.generate_dataset_with_missingness" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_dataset_with_missingness</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">type_array</span><span class="p">,</span> <span class="n">n_complete_cols</span><span class="p">,</span> <span class="n">missing_mechanism_array</span><span class="p">,</span> <span class="n">missing_rate_array</span><span class="p">,</span> <span class="n">missingness_ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.generate_dataset_with_missingness" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generates a dataset with missing-data mechanisms. Applies the above functions for user usability.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_rows</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates the number of rows the dataset must have</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>type_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates the type of each column</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_complete_cols</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of the first columns of the dataframe that won't have the missing mechanism applied</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_mechanism_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The list containing the missing mechanism that needs to be applied for each column (excluding the complete columns)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_rate_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="float">float</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing rate of each column with missing mechanism applied</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missingness_ascending</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Indicates whether the highest/lowest values must become missing</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>new_data (pd.DataFrame): A copy of the dataframe with the missing-data mechanisms applied</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.dataset_generator.generate_synthetic_dataset" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generate_synthetic_dataset</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">type_array</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.dataset_generator.generate_synthetic_dataset" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Generates a synthetic dataset according to the properties given.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_rows</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of rows the dataset must have.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>type_array</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The array with the type of each column.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>synthetic_df (pd.DataFrame): A dataframe with the given properties</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h2>
+<h3 id="mechanism_viewercoltype"><code>mechanism_viewer.ColType</code><a class="headerlink" href="#mechanism_viewercoltype" title="Permanent link">&para;</a></h3>
+<p>Column data types supported by the synthetic dataset generator
+and imputation diagnostics.</p>
+<p>It specifies the type of synthetic column to generate and the
+imputation strategy to apply.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ColType.CONTINUOUS</code></td>
+<td>Numeric values with continuous variation</td>
+<td>height, age, temperature</td>
+</tr>
+<tr>
+<td><code>ColType.DISC_CATEGORICAL</code></td>
+<td>Discrete values representing categories</td>
+<td>score group, stage, class label</td>
+</tr>
+<tr>
+<td><code>ColType.DISCRETE</code></td>
+<td>Integer numeric values</td>
+<td>number of visits, count values</td>
+</tr>
+<tr>
+<td><code>ColType.BINARY</code></td>
+<td>Binary values represented as <code>0</code> and <code>1</code></td>
+<td>yes/no, positive/negative</td>
+</tr>
+</tbody>
+</table>
+<h2 id="missingness-visualization">Missingness Visualization<a class="headerlink" href="#missingness-visualization" title="Permanent link">&para;</a></h2>
+<h3 id="mechanism_viewerviewer_simple"><code>mechanism_viewer.viewer_simple</code><a class="headerlink" href="#mechanism_viewerviewer_simple" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_simple"></a>
+    <div class="doc doc-contents first">
+
+        <p>The functions below plot simple visualization content, as a way to aid in the profiling 
+of the dataset in the early stages of identifying the missing data mechanism.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_simple.build_distribution_of_missingness" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build_distribution_of_missingness</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_simple.build_distribution_of_missingness" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates multiple plots showing the distribution of each column based on the missingness of missing_col.
+If the existence of red bars appear throughout the plot, then missing_col does not see any relationship
+with the column at hand, in regards to the way its missing values appear. In the other hand, if most
+red bars appear in a zone of the plot, then it is likely that missing_col has a MAR missing mechanism, and
+depends on the column at hand.</p>
+<p>If a column has non-numeric data, then the distribution plot is created using <code>countplot</code> instead of <code>histplot</code></p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataframe that will be used for plotting</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column with missing values, that will be used to group the other columns into 2 groups:
+rows that have NaN in missing_col, and rows that have a value in missing_col.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig1, ax1, fig2, ax2, ..., figN, axN) representing all plots available for display,
+Order follows <code>df.columns</code>, skipping <code>missing_col</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_simple.plot_missing_rate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">plot_missing_rate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_simple.plot_missing_rate" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots the missing rate of each column.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_missing_rate, ax_missing_rate) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="mechanism_viewerviewer_matrix"><code>mechanism_viewer.viewer_matrix</code><a class="headerlink" href="#mechanism_viewerviewer_matrix" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_matrix"></a>
+    <div class="doc doc-contents first">
+
+        <p>The methods plot matrices with multiple missing and complete columns, with a focus on the missing
+rows and the missing rate.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_matrix.missing_rate_matrix" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">missing_rate_matrix</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">sort_by_column</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_matrix.missing_rate_matrix" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a matrix of missing rate. It uses column_name to group the values of the other columns,
+and checks for each group the missing rate of the column. The darker the cells are, the higher
+the missing rate will be of a column for that particular value of column_name. If the color
+of a column is similar all over column_name, then the column is likely to not depend on
+column_name for its missing values. In contrast, if there is a darker region, the column is
+likely having MAR mechanism.</p>
+<p>Its best to use this plot when column_name is not continuous or when it does not contain multiple
+values.  Perfect for multivariate missing columns.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The observed column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>sort_by_column</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>To sort the column_name values in ascending order for better visualization</p>
+              </div>
+            </td>
+            <td>
+                  <code>= True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_miss_matrix, ax_miss_matrix) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_matrix.visualize_column_dependencies" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">visualize_column_dependencies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">sort_by_complete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_matrix.visualize_column_dependencies" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a matrix of all missing rows. It enables to check which rows depend on which values
+of complete columns. Besides, rows with the same attributes missing can as well be viewed.</p>
+<p>Columns with missing rows that have mostly high/low values for complete columns, indicate
+a missingness dependency on that complete column, giving indication for a MAR mechanism.</p>
+<p>Complete columns will be displayed in green hues (light green = low value, dark green = high
+value), while missing columns will have their missingness displayed in red (white = not
+missing, red = missing).</p>
+<p>Perfect for continuous or numeric complete columns, and for multivariate missing columns.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>sort_by_complete</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>To sort the complete columns for better visualization</p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_dep_matrix, ax_dep_matrix) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="mechanism_viewerviewer_upset"><code>mechanism_viewer.viewer_upset</code><a class="headerlink" href="#mechanism_viewerviewer_upset" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_upset"></a>
+    <div class="doc doc-contents first">
+
+        <p>The visualization tool on this module focuses on plotting a similar UpSet plot for rows with the same
+attributes missing.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_upset.rows_with_similar_missing" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">rows_with_similar_missing</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">min_rows_display</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_upset.rows_with_similar_missing" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a plot similar to UpSet plot. It retrieves which rows have the same attributes missing, 
+by indicating the count of those rows, and which are the missing attributes.</p>
+<p>The plot can be filtered to show only the bars that have at least the minimum number of rows.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>min_rows_display</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The minimum number of rows that a bar must have to be displayed on the plot.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_similar_miss, ax_similar_miss) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="mechanism_viewerviewer_correlation"><code>mechanism_viewer.viewer_correlation</code><a class="headerlink" href="#mechanism_viewerviewer_correlation" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_correlation"></a>
+    <div class="doc doc-contents first">
+
+        <p>This file includes correlation heatmaps that use missingness of missing columns.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_correlation.complete_and_missing_columns_correlation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">complete_and_missing_columns_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_correlation.complete_and_missing_columns_correlation" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a correlation heatmap showing whether there are missing columns with missing
+values in similar rows. Besides, it shows whether the complete columns' values will
+correlate with the missing rows in the missing columns. Therefore, it works with both
+complete columns and missing columns.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot the correlation heatmap</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_comp_corr, ax_comp_corr) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_correlation.missing_vs_all_correlation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">missing_vs_all_correlation</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_correlation.missing_vs_all_correlation" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a correlation heatmap showing whether the missing column has its missingness
+correlated with values from the other columns, no matter if they are complete or
+missing.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot the correlation heatmap</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column name that will be used for correlation</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_vs_corr, ax_vs_corr) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_correlation.missingness_misscol_corr" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">missingness_misscol_corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_correlation.missingness_misscol_corr" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a correlation heatmap showing whether there are missing columns with missing
+values in similar rows. Therefore, it only works with columns with missing data.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot the missingness correlation heatmap</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_mssng_corr, ax_mssng_corr) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_correlation.value_misscol_corr" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">value_misscol_corr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_correlation.value_misscol_corr" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a correlation heatmap for the values of the missing columns.
+It is focused on only plotting the correlation for columns with missing data.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot the value correlation heatmap of missing
+columns</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_miss_corr, ax_miss_corr) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="mechanism_viewerviewer_comparison"><code>mechanism_viewer.viewer_comparison</code><a class="headerlink" href="#mechanism_viewerviewer_comparison" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_comparison"></a>
+    <div class="doc doc-contents first">
+
+        <p>The visualization tools described below can be used to compare observed columns with
+the missingness of a column. For best visualization, the first two should be used with
+an observed column with continuous data type.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_comparison.boxplot_comparison" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">boxplot_comparison</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_comparison.boxplot_comparison" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Shows three boxplots: the boxplot of column_name when missing_col has values, the
+boxplot of column_name when the values of missing_col are missing, and the general
+boxplot of column_name no matter the missingness of missing_col.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The observed column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_boxplot, ax_boxplot) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_comparison.scatter_missingness_comparison" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scatter_missingness_comparison</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a scatterplot for the data points (column_name, is_not_missing(missing_col))</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The observed column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_comp, ax_comp) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_comparison.scatter_missingness_comparison_line" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scatter_missingness_comparison_line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_comparison.scatter_missingness_comparison_line" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a scatterplot for the data points (column_name, is_not_missing(missing_col)) in
+a single line.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to plot.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The observed column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column name that will be used for comparison</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_comp_line, ax_comp_line) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_comparison.validate_numeric_col" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validate_numeric_col</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">numeric_col</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_comparison.validate_numeric_col" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Validate the numeric column given as input.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset that contains the numeric column.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>numeric_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The numeric column to be validated for later visualization.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>This function does not return anything.</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="imputation-diagnostics">Imputation Diagnostics<a class="headerlink" href="#imputation-diagnostics" title="Permanent link">&para;</a></h2>
+<h3 id="mechanism_viewerviewer_imputation"><code>mechanism_viewer.viewer_imputation</code><a class="headerlink" href="#mechanism_viewerviewer_imputation" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.viewer_imputation"></a>
+    <div class="doc doc-contents first">
+
+        <p>The below code implements imputation models to generate values for missing data in a specific
+missing column, depending on its data type. The imputed data can then be used to find hidden
+missing patterns, when comparing to other observed columns.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_imputation.plot_imputation_distribution" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">plot_imputation_distribution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">missing_col_type</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_imputation.plot_imputation_distribution" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plots a kdeplot comparing the distribution of a column with the distribution of the same column with imputed values.</p>
+<p>This does not offer much aid in figuring the data missing mechanism. It only serves the purpose of showcasing each
+imputation model working for the correct data type.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataframe that will be used for imputation</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column with missing data, that will have its values imputed</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of data that missing_col is, to better select the imputation model</p>
+              </div>
+            </td>
+            <td>
+                  <code>= &#34;normal&#34;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic imputation routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_imput_dist, ax_imput_dist, imputed_df) representing the plot available for display, and the dataframe with imputed
+values on missing_col, along with the complete data used for imputation.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.viewer_imputation.scatterplot_imputation_comparison" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scatterplot_imputation_comparison</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column_name</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">missing_col_type</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.viewer_imputation.scatterplot_imputation_comparison" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plot a scatterplot that compares the values of a column with missing values, and the imputed values of those missing values. 
+A different column (an observed column) will be used to compare the values.
+All complete columns of the dataset will help the imputation algorithm guess the missing values.</p>
+<p>If the imputed values appear consistently distributed uniformly, then the missing data mechanism is plausible to be MCAR/MNAR.
+If the imputed values appear in a specific zone of the plot, then the missing_col is most likely to have a MAR mechanism
+and be dependent on column_name.</p>
+<p>Note: If missing_col does not depend on column_name to have its values missing, then, even if missing_col has a MAR
+mechanism, the imputed values might appear to have an uniform distribution. Therefore, it is advisable to run more tests,
+before concluding the column missing mechanism.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataframe that will be used for imputation</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>column_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the complete column that will be on the x axis</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column with missing data, that will have its values imputed</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of data that missing_col is, to better select the imputation model</p>
+              </div>
+            </td>
+            <td>
+                  <code>= &#34;normal&#34;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic imputation routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figure with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_imput_comp, ax_imput_comp) representing the plot available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="parameter-missing_col_type-for-imputation">Parameter <code>missing_col_type</code> for Imputation<a class="headerlink" href="#parameter-missing_col_type-for-imputation" title="Permanent link">&para;</a></h3>
+<p>The imputation model to be used in <code>missing_col</code> is determined by <code>missing_col_type</code>. In other words, the function selects the model that is best suited for the data type of the missing column. However, the default value of the parameter, <code>missing_col_type="normal"</code>, can be used for a MICE model imputation. </p>
+<p>Moreover, the columns used for imputation depend on the selected <code>missing_col_type</code>. For continuous/MICE imputation, numeric columns are used, including numeric columns with missing values. This is useful for real-world datasets, where incomplete numeric columns may still help explain each other. For binary, discrete, and categorical imputation, only complete columns are used, because the current models cannot handle missing values.</p>
+<p>Ultimately, always select the appropriate <code>ColType</code> value when using the Imputation module.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">mechanism_viewer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColType</span>
+<span class="n">mv</span><span class="o">.</span><span class="n">plot_imputation_distribution</span><span class="p">(</span><span class="n">df_missing</span><span class="p">,</span> <span class="s2">&quot;Col3&quot;</span><span class="p">,</span> <span class="n">missing_col_type</span><span class="o">=</span><span class="n">ColType</span><span class="o">.</span><span class="n">DISCRETE</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="statistical-diagnostics">Statistical Diagnostics<a class="headerlink" href="#statistical-diagnostics" title="Permanent link">&para;</a></h2>
+<h3 id="mechanism_vieweraccuracy_mar"><code>mechanism_viewer.accuracy_mar</code><a class="headerlink" href="#mechanism_vieweraccuracy_mar" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.accuracy_mar"></a>
+    <div class="doc doc-contents first">
+
+        <p>These algorithms run models to obtain a prediction accuracy value.</p>
+<p>By splitting the dataset into training and testing sets, and then training a predictive model,
+we can evaluate how accurately the model predicts the missing values. As a consequence, an 
+high prediction accuracy suggests that the missingness can be explained by the observed
+variables, which indicates that the underlying mechanism is likely MAR.</p>
+<p>For an average accuracy value that is 5% (which can be changed in parameter <code>threshold</code>) higher
+than the baseline ( max(1-missing_rate, missing_rate) ), it is likely that underlying mechanism
+is MAR. In contrast, if the difference between the average accuracy and the baseline is close
+to 0 or negative, then it is likely to be MCAR/MNAR.</p>
+<p>Common Pitfalls and Limitations
+The models works best at identifying MAR/MCAR/MNAR when the datasets have continuous data.
+Other types of data may have a smaller difference between the missing mechanisms.
+Non-numeric data cannot be used due to the nature of the models.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.accuracy_mar.interpret_mar_abd" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">interpret_mar_abd</span><span class="p">(</span><span class="n">accuracy_baseline_diff</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.accuracy_mar.interpret_mar_abd" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the interpretation of an Accuracy Baseline Difference (ABD) value
+in a human readable way.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>accuracy_baseline_diff</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Accuracy Baseline Difference (ABD) value</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>threshold</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Threshold (in percentage points) used to classify likely MAR vs MCAR/MNAR</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 5.0</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The string containing a human readable interpretation of the ABD value.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.accuracy_mar.run_logistic_regression" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_logistic_regression</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">,</span> <span class="n">print_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.accuracy_mar.run_logistic_regression" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Trains a Logistic Regression model to obtain the test accuracy value.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to train and test the model.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column to be used on the model.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic model routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>print_result</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The boolean indicating whether to print the result.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The prediction accuracy of the model when train with the dataset.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.accuracy_mar.run_random_forest" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_random_forest</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">,</span> <span class="n">print_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.accuracy_mar.run_random_forest" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Trains a Random Forest model to obtain the test accuracy value. The model uses
+100 estimators.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to train and test the model.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The missing column to be used on the model.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic model routines for reproducible results.</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>print_result</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The boolean indicating whether to print the result.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The prediction accuracy of the model when train with the dataset.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.accuracy_mar.test_mar_from_model_accuracy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">test_mar_from_model_accuracy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">missing_col</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">DEFAULT_RANDOM_STATE</span><span class="p">,</span> <span class="n">print_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.accuracy_mar.test_mar_from_model_accuracy" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calculates the Accuracy Baseline Difference (ABD), an heuristic that
+estimates whether the missingness mechanism of a column is likely MAR
+(Missing At Random) by comparing the average model accuracy with a baseline.</p>
+<p>The function trains a Random Forest and a Logistic Regression model to
+predict the missingness of the specified column. It then compares the
+average accuracy of these models with a baseline based on the missing
+rate of the column.</p>
+<p>If the model accuracy exceeds the baseline by more than the threshold,
+(in percentage points), it suggests that the missingness can be predicted
+from other variables, indicating that the mechanism is likely MAR. Otherwise,
+the missingness is more likely MCAR/MNAR.</p>
+
+
+<details class="formula" open>
+  <summary>Formula</summary>
+  <div class="highlight"><pre><span></span><code>ABD = ((RF_accuracy + LR_accuracy) / 2 - baseline) * 100
+</code></pre></div>
+</details>
+
+<details class="where" open>
+  <summary>where</summary>
+  <div class="highlight"><pre><span></span><code>baseline = max(p, 1 - p)
+p = missing_rate(missing_col)
+</code></pre></div>
+</details>
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset containing the column with missing values</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>missing_col</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column whose missingness mechanism will be assessed</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>threshold</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Threshold (in percentage points) used to classify likely MAR vs MCAR/MNAR</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 5.0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used in stochastic model routines for reproducible results</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 42</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>print_result</code>
+            </td>
+            <td>
+                  <code>bool = True</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The boolean indicating whether to print the results of the models and
+print the accuracy result of the most likely missing data mechanism</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The Accuracy Baseline Difference (ABD), which represents the difference
+(in percentage points) between the average model accuracy and the 
+baseline accuracy.
+Result rounded to 2 decimal places.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h3 id="mechanism_viewermcar_little_test"><code>mechanism_viewer.mcar_little_test</code><a class="headerlink" href="#mechanism_viewermcar_little_test" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="mechanism_viewer.mcar_little_test"></a>
+    <div class="doc doc-contents first">
+
+        <p>These algorithms run the Little's MCAR Test.</p>
+<p>Little's MCAR (Missing Completely At Random) test evaluates whether the probability of data being 
+missing is unrelated to observed or unobserved data. When data is MCAR, missingness does not
+introduce bias, making it safe to use techniques like listwise deletion.</p>
+<p>Key Assumptions of Little's MCAR Test
+    - Data missingness is random across all variables.
+    - The sample is representative of the population under study.
+    - Sufficient sample size exists to compute reliable statistics.</p>
+<p>Common Pitfalls and Limitations
+    - Low Power: Small sample sizes or subtle data patterns can lead to inconclusive results.
+    - Misinterpretation: A non-significant result does not confirm data is MCAR;
+    it only indicates insufficient evidence against the null hypothesis.
+    - Numerical Data Dependency: The test is designed for numerical data, limiting its
+    applicability to categorical datasets.</p>
+<p>Best Practices
+    - Use covariates relevant to the context of missing data.
+    - Ensure adequate sample size to boost test reliability.
+    - Use visualization tools like missingness heatmaps for preliminary insights.</p>
+
+
+<details class="reference" open>
+  <summary>Reference</summary>
+  <p>https://www.linkedin.com/pulse/understanding-littles-mcar-test-comprehensive-guide-data-debasish-deb-fbmpf</p>
+<p>Documentation: https://rianneschouten.github.io/pyampute/build/html/pyampute.exploration.html</p>
+</details>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.mcar_little_test.interpret_mcar_p_value" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">interpret_mcar_p_value</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.mcar_little_test.interpret_mcar_p_value" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the results of the Little's MCAR chi-square test in a human readable way,
+including the potential missing data mechanism in the dataset.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>p_value</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The p-value obtained from the Little's MCAR chi-square test</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>alpha</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The alpha value that will be used for the rejection of the null hypothesis</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 0.05</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The string containing a human readable interpretation of a Little's MCAR p-value.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.mcar_little_test.little_mcar_pairwise" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">little_mcar_pairwise</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.mcar_little_test.little_mcar_pairwise" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs the Little's MCAR Test. It performs a separate t-test for every pair of columns possible.
+Since each t-test returns a p-value, the function returns every pair combination and its p-value.</p>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>This function does not plot or print. Use <code>plot_mcar_pairwise</code> to visualize
+the returned matrix.</p>
+</details>
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to run the test</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>p_values (pd.DataFrame): A matrix dataframe with every p-value of each pair combination</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.mcar_little_test.little_mcar_test" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">little_mcar_test</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.mcar_little_test.little_mcar_test" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs the Little's MCAR Test. It performs a chi-square test on the entire dataset.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The dataset to be used to run the test</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The p-value of the test based on the entire dataset</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="mechanism_viewer.mcar_little_test.plot_mcar_pairwise" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">plot_mcar_pairwise</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#mechanism_viewer.mcar_little_test.plot_mcar_pairwise" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the plots of p-values obtained from Little's MCAR t-test, including the
+potential missing data mechanism in the dataset. The plots are available for display.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>p_values</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The output obtained from the Little's MCAR t-test</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>alpha</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The alpha value that will be used for the rejection of the null hypothesis</p>
+              </div>
+            </td>
+            <td>
+                  <code>= 0.05</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>display_plot</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, displays figures with <code>plt.show()</code></p>
+              </div>
+            </td>
+            <td>
+                  <code>= False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>(fig_p_values, ax_p_values, fig_reject, ax_reject) representing the 2 plots available for display.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

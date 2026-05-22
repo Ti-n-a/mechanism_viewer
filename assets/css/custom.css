@@ -1,0 +1,31 @@
+:root {
+  --md-primary-fg-color: #c89fa3;
+  --md-accent-fg-color: #e67c77;
+  --md-primary-fg-color--dark: #7b886f;
+  --md-default-bg-color: #f6efef;
+}
+
+.md-footer {
+    background-color: #7b886f;
+}
+
+.md-footer-meta {
+    background-color: #7b886f;
+}
+
+/* Make the header logo more prominent */
+.md-header__button.md-logo {
+  padding: 0rem;
+}
+
+.md-header__button.md-logo img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+@media screen and (max-width: 76.2344em) {
+  .md-header__button.md-logo img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
