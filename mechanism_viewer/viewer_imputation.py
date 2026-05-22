@@ -124,7 +124,7 @@ def _impute_database_mice(
 
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation. Can have multiple columns
         with missing data.
     random_state : int, default = 42
@@ -158,7 +158,7 @@ def _impute_database_binary(
 
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation. Can not have columns
         with missing data
     missing_col : str
@@ -224,7 +224,7 @@ def _impute_database_discrete(
 
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation. Can not have columns
         with missing data
     missing_col : str
@@ -278,7 +278,7 @@ def _impute_database_categorical(
 
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation. Can not have columns
         with missing data
     missing_col : str
@@ -334,7 +334,7 @@ def _impute_database(
     
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation
     missing_col : str
         The name of the column with missing data, that will have its values imputed
@@ -428,7 +428,7 @@ def scatterplot_imputation_comparison(
     
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation
     column_name : str
         The name of the complete column that will be on the x axis
@@ -507,7 +507,7 @@ def plot_imputation_distribution(
     
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be used for imputation
     missing_col : str
         The name of the column with missing data, that will have its values imputed

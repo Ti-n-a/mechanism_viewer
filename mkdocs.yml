@@ -1,0 +1,44 @@
+site_name: mechanism_viewer
+site_description: A Python package for diagnosing missing-data mechanisms in tabular datasets.
+site_url: ""
+repo_url: https://github.com/Ti-n-a/mechanism_viewer
+repo_name: Ti-n-a/mechanism_viewer
+
+theme:
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/favicon.ico
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+
+nav:
+  - Home: index.md
+  - Missing Mechanisms: missing_mechanisms.md
+  - Workflow: workflow.md
+  - Diagnostic Overview: diagnostics.md
+  - Function Documentation: documentation.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            docstring_style: numpy
+            show_source: false
+            show_root_heading: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - tables
+  - toc:
+      permalink: true

@@ -1,14 +1,14 @@
 """This module provides tools for generating synthetic datasets and applying various
-missing data mechanisms.
+missing-data mechanisms.
 
 It allows the generation of complete datasets with customizable properties, such as
 the number of rows, columns, and data types.
 
-In addition to defining the missing data mechanism for each column of the dataset, users
+In addition to defining the missing-data mechanism for each column of the dataset, users
 can specify each column's missing rates and dependencies.
 
-This module enables users to simulate datasets with missing data patterns for visualizing
-missing data and testing the capabilities of other module tools.
+This module enables users to simulate datasets with missing-data patterns for visualizing
+missing-data and testing the capabilities of other module tools.
 """
 
 import numpy as np
@@ -26,7 +26,7 @@ __all__ = [
     "apply_mar",
     "apply_mnar",
     "apply_missing_data",
-    "generate_dataset_with_missing_data",
+    "generate_dataset_with_missingness",
 ]
 
 
@@ -219,7 +219,7 @@ def _validate_column_is_complete(
     ) -> None:
     """
     Validates whether the given column has no missing values to proceed
-    with applying a missing data mechanism.
+    with applying a missing-data mechanism.
     
     Parameters
     ----------
@@ -232,7 +232,7 @@ def _validate_column_is_complete(
     This function does not return anything.
     """
     if column_data.isna().any():
-        raise ValueError(f"The column {column_data.name} has already missing values. The missing mechanism needs to be applied on a complete dataset. This way, a column with a mixture of missing data mechanisms is not returned.")
+        raise ValueError(f"The column {column_data.name} has already missing values. The missing mechanism needs to be applied on a complete dataset. This way, a column with a mixture of missing-data mechanisms is not returned.")
 
     return
 
@@ -253,7 +253,7 @@ def _prepare_apply_mechanism(
         data mechanism.
     missing_rate : float = 0.1
         The missing rate the new column should have after
-        applying the missing data mechanism.
+        applying the missing-data mechanism.
  
     Returns
     -------
@@ -290,7 +290,7 @@ def generate_synthetic_dataset(
    
     Returns
     -------
-    data (pd.DataFrame): A dataframe with the given properties
+    synthetic_df (pd.DataFrame): A dataframe with the given properties
     """
     _validate_rows(n_rows)
 
@@ -302,25 +302,25 @@ def generate_synthetic_dataset(
 
     col_names = [f"Col{i+1}" for i in range(n_cols)]     # Names columns as Col1, Col2, Col3...
 
-    data = pd.DataFrame()
+    synthetic_df = pd.DataFrame()
 
     for i, col_name in enumerate(col_names):
         if type_array[i] == ColType.CONTINUOUS:
-            data[col_name] = rng.normal(0, 1, n_rows)  # Normal (Gaussian) Distribution
+            synthetic_df[col_name] = rng.normal(0, 1, n_rows)  # Normal (Gaussian) Distribution
         elif type_array[i] == ColType.DISC_CATEGORICAL:
             K = 10  # number of categories
-            data[col_name] = rng.integers(0, K, size=n_rows)       # Discrete uniform distribution
-            data[col_name] = data[col_name].astype("Int64")                             # Transforms column to nullable integer type, because pandas normally transforms data into floats when missing values are applied
+            synthetic_df[col_name] = rng.integers(0, K, size=n_rows)       # Discrete uniform distribution
+            synthetic_df[col_name] = synthetic_df[col_name].astype("Int64")                             # Transforms column to nullable integer type, because pandas normally transforms data into floats when missing values are applied
         elif type_array[i] == ColType.DISCRETE:
-            data[col_name] = rng.poisson(lam=5, size=n_rows)  # Poisson Distribution (Counts)
-            data[col_name] = data[col_name].astype("Int64")  
+            synthetic_df[col_name] = rng.poisson(lam=5, size=n_rows)  # Poisson Distribution (Counts)
+            synthetic_df[col_name] = synthetic_df[col_name].astype("Int64")  
         elif type_array[i] == ColType.BINARY:
-            data[col_name] = rng.choice([0, 1], size=n_rows)
-            data[col_name] = data[col_name].astype("Int64")  
+            synthetic_df[col_name] = rng.choice([0, 1], size=n_rows)
+            synthetic_df[col_name] = synthetic_df[col_name].astype("Int64")  
         else:
             raise ValueError(f"There is an unknown type of data: {type_array[i]}")
     
-    return data
+    return synthetic_df
 
 
 def apply_mcar(
@@ -439,7 +439,7 @@ def apply_mnar(
 
 
 def apply_missing_data(
-    data: pd.DataFrame,
+    df: pd.DataFrame,
     n_complete_cols: int,
     missing_mechanism_array: list[str],
     missing_rate_array: list[float],
@@ -447,11 +447,11 @@ def apply_missing_data(
     random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.DataFrame:
     """
-    Applies multiple missing data mechanisms to a dataframe
+    Applies multiple missing-data mechanisms to a dataframe
     
     Parameters
     ----------
-    data : pd.DataFrame
+    df : pd.DataFrame
         The dataframe that will be transformed
     n_complete_cols : int
         The number of the first columns of the dataframe that won't have the missing mechanism applied
@@ -466,10 +466,10 @@ def apply_missing_data(
     
     Returns
     -------
-    new_data (pd.DataFrame): A copy of the dataframe with the missing data mechanisms applied
+    new_data (pd.DataFrame): A copy of the dataframe with the missing-data mechanisms applied
     """
-    _, n_cols = data.shape
-    new_data = data.copy()
+    _, n_cols = df.shape
+    new_data = df.copy()
 
     _validate_n_complete_cols(n_complete_cols, n_cols)
 
@@ -480,7 +480,7 @@ def apply_missing_data(
     if len(missing_rate_array) != n_incomplete_cols:
         raise ValueError(f"There is a mismatch between the number of missing rates ({missing_rate_array}) and the number of wanted missing columns ({n_cols-n_complete_cols})")
 
-    missing_cols = data.columns[n_complete_cols:]
+    missing_cols = df.columns[n_complete_cols:]
     for i, col in enumerate(missing_cols):  
         if missing_mechanism_array[i] == "MCAR":     # Missingness is random
             # Not using the same random_state for every MCAR column.
@@ -498,7 +498,7 @@ def apply_missing_data(
     return new_data
 
 
-def generate_dataset_with_missing_data(
+def generate_dataset_with_missingness(
     n_rows: int,
     type_array: list[str],
     n_complete_cols: int,
@@ -508,7 +508,7 @@ def generate_dataset_with_missing_data(
     random_state: int = DEFAULT_RANDOM_STATE
     ) -> pd.DataFrame:
     """
-    Generates a dataset with missing data mechanisms. Applies the above functions for user usability.
+    Generates a dataset with missing-data mechanisms. Applies the above functions for user usability.
     
     Parameters
     ----------
@@ -529,9 +529,9 @@ def generate_dataset_with_missing_data(
     
     Returns
     -------
-    new_data (pd.DataFrame): A copy of the dataframe with the missing data mechanisms applied
+    new_data (pd.DataFrame): A copy of the dataframe with the missing-data mechanisms applied
     """
-    data = generate_synthetic_dataset(n_rows, type_array, random_state)
-    missing_dataset = apply_missing_data(data, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending, random_state)
+    synthetic_df = generate_synthetic_dataset(n_rows, type_array, random_state)
+    missing_dataset = apply_missing_data(synthetic_df, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending, random_state)
     
     return missing_dataset

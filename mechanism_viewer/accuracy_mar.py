@@ -33,8 +33,8 @@ from ._validation import validate_dataframe, validate_missing_col
 __all__ = [
     "run_random_forest",
     "run_logistic_regression",
-    "detect_mar_from_model_accuracy",
-    "interpret_accuracy_baseline_diff",
+    "test_mar_from_model_accuracy",
+    "interpret_mar_abd",
 ]
 
 
@@ -298,7 +298,7 @@ def run_logistic_regression(
     return lr_accuracy
 
 
-def interpret_accuracy_baseline_diff(
+def interpret_mar_abd(
     accuracy_baseline_diff: float,
     threshold: float = 5.0
     ) -> str:
@@ -327,7 +327,7 @@ def interpret_accuracy_baseline_diff(
         return(abd_str + f"thus, it is likely that the underlying mechanism of the missing column is MCAR/MNAR.")
 
 
-def detect_mar_from_model_accuracy(
+def test_mar_from_model_accuracy(
     df: pd.DataFrame,
     missing_col: str,
     threshold: float = 5.0,
@@ -390,6 +390,6 @@ def detect_mar_from_model_accuracy(
 
     if print_result:
         print(f"The target column {missing_col} with missing rate of {round(missing_rate,4)} gives an Accuracy Baseline Difference of {accuracy_baseline_diff}.")
-        print(interpret_accuracy_baseline_diff(accuracy_baseline_diff, threshold))
+        print(interpret_mar_abd(accuracy_baseline_diff, threshold))
 
     return accuracy_baseline_diff
