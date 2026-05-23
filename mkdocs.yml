@@ -1,6 +1,6 @@
 site_name: mechanism_viewer
 site_description: A Python package for diagnosing missing-data mechanisms in tabular datasets.
-site_url: ""
+site_url: https://Ti-n-a.github.io/mechanism_viewer/
 repo_url: https://github.com/Ti-n-a/mechanism_viewer
 repo_name: Ti-n-a/mechanism_viewer
 
