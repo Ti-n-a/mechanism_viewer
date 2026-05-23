@@ -3,6 +3,7 @@
   --md-accent-fg-color: #e67c77;
   --md-primary-fg-color--dark: #7b886f;
   --md-default-bg-color: #fffbfb;
+  --md-code-bg-color: #efeded;
 }
 
 .md-footer {
@@ -12,6 +13,35 @@
 .md-footer-meta {
     background-color: #7b886f;
 }
+
+/* Change color of titles with ## on documentation page */
+
+.md-nav__link:is(
+  [href*="data-generation"],
+  [href*="data-types"],
+  [href*="missingness-visualization"],
+  [href*="imputation-diagnostics"],
+  [href*="statistical-diagnostics"]
+) {
+  font-weight: bold;
+}
+
+.md-nav__link:is(
+  [href*="data-generation"],
+  [href*="data-types"],
+  [href*="missingness-visualization"],
+  [href*="imputation-diagnostics"],
+  [href*="statistical-diagnostics"]
+)
++ .md-nav
+> .md-nav__list
+> .md-nav__item
+> a {
+  font-weight: 600;
+  color: #4f524e;
+}
+
+
 
 /* Make the header logo more prominent */
 .md-header__button.md-logo {
