@@ -258,7 +258,8 @@ def little_mcar_pairwise(
    
     Returns
     -------
-    p_values (pd.DataFrame): A matrix dataframe with every p-value of each pair combination
+    pd.DataFrame
+        A p_value matrix dataframe with every p-value of each pair combination
     """
     _validate_input(df)
 

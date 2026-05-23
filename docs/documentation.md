@@ -2,6 +2,8 @@
 
 This page provides reference documentation for the available tools and functions in `mechanism_viewer`.
 
+<div class="documentation-page" markdown>
+
 ## Data Generation
 
 ### `mechanism_viewer.dataset_generator`
@@ -116,3 +118,5 @@ mv.plot_imputation_distribution(df_missing, "Col3", missing_col_type=ColType.DIS
 		show_root_heading: false
 		show_source: false
 		heading_level: 4
+
+</div>

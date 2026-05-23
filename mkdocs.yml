@@ -44,6 +44,8 @@ markdown_extensions:
   - pymdownx.snippets
   - tables
   - footnotes
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.arithmatex:
