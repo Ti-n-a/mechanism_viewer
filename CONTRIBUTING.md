@@ -33,7 +33,7 @@ Contributions should preserve the following principles:
 3) Create an environment:
 
 
-    create a python virtual environment.
+    Create a python virtual environment:
     ```bash
     python -m venv .venv
     source .venv/bin/activate

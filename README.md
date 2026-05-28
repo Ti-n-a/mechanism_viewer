@@ -1,120 +1,144 @@
-# WARNING: README NOT YET UPDATED
-
 # mechanism_viewer
 
-`mechanism_viewer` is a python package that can be used to help diagnose the missing data mechanism of a dataset.
+mechanism_viewer is a python package that can be used to help diagnose the missing data mechanism of a dataset.
 
-It includes a variety of visualization tools, such as, plots and heatmaps, to offer multiple perspectives on the missingness, and, therefore, guide the user to a more responsible solution.
+It includes visualization tools, statistical testing, imputation tools, and synthetic dataset generation.
 
-## Missing data mechanism
+
+## Missing Data Mechanisms
 
 There are 3 types of missing data mechanism, which are MCAR, MAR, and MNAR.
 
-#### Missing Completely At Random (MCAR)
+### Missing Completely At Random (MCAR)
 
-The missing values _depend neither on the observed variables nor on the missing values themselves_.
+Missing values depend neither on observed variables nor on the missing values themselves.
 
-#### Missing At Random (MAR)
+### Missing At Random (MAR)
 
-The missing values _depend on the observed variables_, but do not depend on the missing values themselves.
+Missing values depend on observed variables but do not depend on the missing values themselves.
 
-#### Missing Not At Random (MNAR)
+### Missing Not At Random (MNAR)
 
-The missing values _depend on the missing values themselves_, but do not depend on the observed variables.
+Missing values depend on the missing values themselves or on unobserved variables, but do not depend on the observed variables.
 
-## Steps to use the package on any computer
 
-1. First, guarantee you have downloaded the package to the computer. You can place it in any folder, as long as you remember the path.
+## Features
 
-Note: The path to be taken is the first folder from the package, not `mechanism_viewer` folder that is inside the package next to README.
+### Visualization Tools
 
-2. Open the terminal and execute the following command. The command will install the package in non-editable mode. In other words, if any changes are made to the package, you need to reinstall the package again.
+* Missing-rate heatmaps
+* Missingness dependency matrices
+* Missingness correlation heatmaps
+* Missing-pattern visualizations
+* Missing-rate matrices
+* Missingness comparison plots
+* Imputation comparison plots
 
-```python
-# Make sure to be inside the path of the package 'mechanism_viewer'
-python -m pip install .
-```
+### Statistical Tools
 
-```python
-# To execute command outside the path
-python -m pip install <path_of_package>/mechanism_viewer
-```
+* Little’s MCAR test
+* Pairwise MCAR testing
+* Missingness correlation analysis
+* Accuracy-based MAR detection
 
-```python
-# If you are already inside the python environment
-pip install <path_of_package>/mechanism_viewer
-```
+### Synthetic Dataset Generation
 
-As an alternative, you may install the package in editable mode, if you wish to edit the package internally.
+Generate datasets with:
 
-```python
-# To execute command outside the path
-python -m pip install -e <path_of_package>/mechanism_viewer
-```
+* MCAR mechanisms
+* MAR mechanisms
+* MNAR mechanisms
+* Multiple data types
+* Controlled missing rates
 
-```python
-# For example, inside a Jupiter Notebook file on Windows
-%pip install -e "<path_of_package>\mechanism_viewer"
-```
 
-Note: In this mode, it is only necessary to reload the kernel to have the most updated version of the package.
+## Installation
 
-3. After installation is complete, you are ready to use the package on your code. Below, there is a quick example on how to use `plot_missing_rate()`.
+1) Clone the repository:
 
-## Examples
+    ```bash
+    git clone https://github.com/Ti-n-a/mechanism_viewer.git
+    cd mechanism_viewer
+    ```
 
-Use one of the visualization tools:
+2) Create a virtual environment.
 
-```python
-import pandas as pd
-from mechanism_viewer import plot_missing_rate
+    Create a python virtual environment:
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    ```
 
-df = pd.read_csv("data.csv")
-plot_missing_rate(df)  #plot will be printed automatically
-```
+    Or create a conda environment:
+    ```bash
+    conda create -n mechanism-viewer python=3.11
+    conda activate mechanism-viewer
+    ```
 
-To generate synthetic dataset with missing data:
+3) Install the package:
 
-```python
-import pandas as pd
-import mechanism_viewer
+    ```bash
+    pip install -e .
+    ```
 
-n_rows = 100
-n_cols = 5
-data = mechanism_viewer.generate_synthetic_dataset(n_rows, n_cols, ["continuous", "discrete" ,"discrete", "discrete_categorical", "binary"])
+4) Install documentation dependencies if necessary:
 
-missing_rate = 0.2
-n_complete_cols = 2
+    ```bash
+    pip install -e ".[docs]"
+    ```
 
-data_missing = mechanism_viewer.apply_missing_data(data, ["MAR", "MCAR", "MNAR"], [missing_rate, missing_rate, missing_rate], n_complete_cols)
 
-display(data_missing.head(10))
-```
+## Example
 
-Or using compact version:
+1) Generate a synthetic dataset with missingness:
 
-```python
-import mechanism_viewer
+    ```python
+    from mechanism_viewer import (
+        generate_dataset_with_missing_data,
+        plot_missing_rate,
+        ColType)
 
-data_missing = mechanism_viewer.generate_dataset_with_missingness(n_rows=100, n_cols=5, type_array=["continuous", "discrete","discrete", "discrete_categorical", "binary"], missing_mechanism_array=["MAR", "MCAR", "MNAR"], missing_rate_array=[0.2, 0.2, 0.2], n_complete_cols=2, missingness_ascending=True)
+    df = generate_dataset_with_missing_data(
+        n_rows=1000,
+        type_array=[
+            ColType.CONTINUOUS,
+            ColType.CONTINUOUS,
+            ColType.DISCRETE
+        ],
+        n_complete_cols=1,
+        missing_mechanism_array=["MAR", "MCAR"],
+        missing_rate_array=[0.20, 0.15])
 
-display(data_missing.head(10))
-```
+    fig, ax = plot_missing_rate(df)
+    fig.show()
+    ```
 
-## Visualize every tool inside the package
+2) Run Little’s MCAR Test:
 
-An additional Jupyter Notebook file is included in the deliverables zip. The file displays every tool of the package, using some synthetic datasets as examples of tool usage.
+    ```python
+    from mechanism_viewer import (
+        little_mcar_test,
+        interpret_mcar_p_value)
 
-## Steps to reproduce the experiments
+    p_value = little_mcar_test(df)
 
-The main experiments are listed in the report, in section IV, `Analysis and Discussion`. To reproduce the experiments:
+    print(interpret_mcar_p_value(p_value))
+    ```
 
-1. Make sure the package is installed and running smoothly.
+## Notebook Examples
 
-2. Go to `Apendix A: Code to obtain tables in section B`
+- Example notebooks demonstrating package usage are available inside ``examples/``
 
-3. Copy the code of the desired experiment.
+- Real-world use cases are available inside ``tests_real_datasets/``
 
-4. Run the experiment.
+## Contributing
 
-Note: Some small alterations might be necessary, such as, teaking the array of missing rates, or hide certain columns.
+Please read ``CONTRIBUTING.md`` for more information.
+
+## Limitations
+
+Missing-data mechanisms generally cannot be proven using a single method. 
+
+The best practice is to combine multiple tools with domain knowledge.
+
+> This package should be used as supporting evidence rather than definitive proof of missing-data mechanisms.
