@@ -4,7 +4,6 @@ mechanism_viewer is a python package that can be used to help diagnose the missi
 
 It includes visualization tools, statistical testing, imputation tools, and synthetic dataset generation.
 
-
 ## Missing Data Mechanisms
 
 There are 3 types of missing data mechanism, which are MCAR, MAR, and MNAR.
@@ -22,122 +21,113 @@ Missing values depend on observed variables but do not depend on the missing val
 Missing values depend on the missing values themselves or on unobserved variables, but do not depend on the observed variables.
 
 
-## Features
+## Project Structure
 
-### Visualization Tools
-
-* Missing-rate heatmaps
-* Missingness dependency matrices
-* Missingness correlation heatmaps
-* Missing-pattern visualizations
-* Missing-rate matrices
-* Missingness comparison plots
-* Imputation comparison plots
-
-### Statistical Tools
-
-* Little’s MCAR test
-* Pairwise MCAR testing
-* Missingness correlation analysis
-* Accuracy-based MAR detection
-
-### Synthetic Dataset Generation
-
-Generate datasets with:
-
-* MCAR mechanisms
-* MAR mechanisms
-* MNAR mechanisms
-* Multiple data types
-* Controlled missing rates
-
+```bash
+mechanism_viewer/
+│
+├── dataset_generator.py
+├── viewer_simple.py
+├── viewer_matrix.py
+├── viewer_correlation.py
+├── viewer_upset.py
+├── viewer_comparison.py
+├── viewer_imputation.py
+├── mcar_little_test.py
+├── accuracy_mar.py
+├── column_data_types.py
+├── _validation.py
+├── _utils.py
+└── _random.py
+```
 
 ## Installation
 
-1) Clone the repository:
+1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/Ti-n-a/mechanism_viewer.git
-    cd mechanism_viewer
-    ```
+   ```bash
+   git clone https://github.com/Ti-n-a/mechanism_viewer.git
+   cd mechanism_viewer
+   ```
 
-2) Create a virtual environment.
+2. Create a virtual environment.
 
-    Create a python virtual environment:
-    ```bash
-    python -m venv .venv
-    source .venv/bin/activate
-    ```
+   Create a python virtual environment:
 
-    Or create a conda environment:
-    ```bash
-    conda create -n mechanism-viewer python=3.11
-    conda activate mechanism-viewer
-    ```
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-3) Install the package:
+   Or create a conda environment:
 
-    ```bash
-    pip install -e .
-    ```
+   ```bash
+   conda create -n mechanism-viewer python=3.11
+   conda activate mechanism-viewer
+   ```
 
-4) Install documentation dependencies if necessary:
+3. Install the package:
 
-    ```bash
-    pip install -e ".[docs]"
-    ```
+   ```bash
+   pip install -e .
+   ```
 
+4. Install documentation dependencies if necessary:
+
+   ```bash
+   pip install -e ".[docs]"
+   ```
 
 ## Example
 
-1) Generate a synthetic dataset with missingness:
+1. Generate a synthetic dataset with missingness:
 
-    ```python
-    from mechanism_viewer import (
-        generate_dataset_with_missing_data,
-        plot_missing_rate,
-        ColType)
+   ```python
+   from mechanism_viewer import (
+       generate_dataset_with_missing_data,
+       plot_missing_rate,
+       ColType)
 
-    df = generate_dataset_with_missing_data(
-        n_rows=1000,
-        type_array=[
-            ColType.CONTINUOUS,
-            ColType.CONTINUOUS,
-            ColType.DISCRETE
-        ],
-        n_complete_cols=1,
-        missing_mechanism_array=["MAR", "MCAR"],
-        missing_rate_array=[0.20, 0.15])
+   df = generate_dataset_with_missing_data(
+       n_rows=1000,
+       type_array=[
+           ColType.CONTINUOUS,
+           ColType.CONTINUOUS,
+           ColType.DISCRETE
+       ],
+       n_complete_cols=1,
+       missing_mechanism_array=["MAR", "MCAR"],
+       missing_rate_array=[0.20, 0.15])
 
-    fig, ax = plot_missing_rate(df)
-    fig.show()
-    ```
+   fig, ax = plot_missing_rate(df)
+   fig.show()
+   ```
 
-2) Run Little’s MCAR Test:
+2. Run Little’s MCAR Test:
 
-    ```python
-    from mechanism_viewer import (
-        little_mcar_test,
-        interpret_mcar_p_value)
+   ```python
+   from mechanism_viewer import (
+       little_mcar_test,
+       interpret_mcar_p_value)
 
-    p_value = little_mcar_test(df)
+   p_value = little_mcar_test(df)
 
-    print(interpret_mcar_p_value(p_value))
-    ```
+   print(interpret_mcar_p_value(p_value))
+   ```
 
 ## Notebook Examples
 
-- Example notebooks demonstrating package usage are available inside ``examples/``
+- Example notebooks demonstrating package usage are available inside `examples/`
 
-- Real-world use cases are available inside ``tests_real_datasets/``
+- Real-world use cases are available inside `use_cases/`
 
 ## Contributing
 
-Please read ``CONTRIBUTING.md`` for more information.
+Please read `CONTRIBUTING.md` for more information.
 
 ## Limitations
 
-Missing-data mechanisms generally cannot be proven using a single method. 
+Missing-data mechanisms generally cannot be proven using a single method.
 
 The best practice is to combine multiple tools with domain knowledge.
 

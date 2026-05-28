@@ -1,11 +1,10 @@
-# Contributing to ``mechanism_viewer``
+# Contributing to `mechanism_viewer`
 
 Thank you for your interest in contributing to this project.
 
 This package aims to provide visualization and analysis tools for understanding missing data mechanisms (MCAR, MAR, and MNAR).
 
 Please read this guide before contributing.
-
 
 ## Development principles
 
@@ -18,44 +17,46 @@ Contributions should preserve the following principles:
 - Visualization tools easy to interpret
 - Modular design
 
-
 ## Setting up development environment
 
-1) Fork the repository on GitHub
+1. Fork the repository on GitHub
 
-2) Clone your fork locally:
+2. Clone your fork locally:
 
-    ```bash
-    git clone https://github.com/<your-username>/mechanism_viewer.git
-    cd mechanism_viewer
-    ```
+   ```bash
+   git clone https://github.com/<your-username>/mechanism_viewer.git
+   cd mechanism_viewer
+   ```
 
-3) Create an environment:
+3. Create an environment:
 
+   Create a python virtual environment:
 
-    Create a python virtual environment:
-    ```bash
-    python -m venv .venv
-    source .venv/bin/activate
-    ```
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-    Or create a conda environment:
-    ```bash
-    conda create -n mechanism-viewer python=3.11
-    conda activate mechanism-viewer
-    ```
+   Or create a conda environment:
 
-4) Install dependencies:
+   ```bash
+   conda create -n mechanism-viewer python=3.11
+   conda activate mechanism-viewer
+   ```
 
-    This installs the package together with its main dependencies listed in ``pyproject.toml``.
-    ```bash
-    pip install -e .
-    ```
+4. Install dependencies:
 
-    To install documentation dependencies as well:
-    ```bash
-    pip install -e ".[docs]"
-    ```
+   This installs the package together with its main dependencies listed in `pyproject.toml`.
+
+   ```bash
+   pip install -e .
+   ```
+
+   To install documentation dependencies as well:
+
+   ```bash
+   pip install -e ".[docs]"
+   ```
 
 ## What Can I Contribute?
 
@@ -100,59 +101,55 @@ Contributions should preserve the following principles:
 - Real-world missingness case studies
 - Benchmark datasets for comparison
 
-
 ## Development Workflow
 
-1) Create a new branch for your changes:
+1. Create a new branch for your changes:
 
-    ```bash
-    git checkout -b your-branch-name
-    ```
+   ```bash
+   git checkout -b your-branch-name
+   ```
 
-2) Make your changes.
+2. Make your changes.
 
-3) Update exports in `__init__.py`
+3. Update exports in `__init__.py`
 
-4) Run the package locally to check that your changes work.
+4. Run the package locally to check that your changes work.
 
-5) Create or update the notebooks demonstrating the new functionality.
+5. Create or update the notebooks demonstrating the new functionality.
 
-    This includes:
-    
-     - A notebook example: 
-        - Placed inside the ``examples/`` folder
-        - Demonstrates how the feature works
-        - Uses a small, fully reproducible synthetic dataset
-     
-     - A real-world use case example:
-       - Placed inside the ``tests_real_datasets/`` folder
-       - Provides additional validation of the new functionality
-       - Shows that the feature produces meaningful results
-       - Includes interpretation of outputs and notes on limitations of the approach
+   This includes:
+   - A notebook example:
+     - Placed inside the `examples/` folder
+     - Demonstrates how the feature works
+     - Uses a small, fully reproducible synthetic dataset
+   - A real-world use case example:
+     - Placed inside the `use_cases/` folder
+     - Provides additional validation of the new functionality
+     - Shows that the feature produces meaningful results
+     - Includes interpretation of outputs and notes on limitations of the approach
 
-6) Update the documentation.
+6. Update the documentation.
 
-    This may include:
+   This may include:
+   - Updating function docstrings
+   - Updating documentation pages
+   - Adding usage examples
+   - Explaining assumptions, expected use cases, and limitations
 
-     - Updating function docstrings
-     - Updating documentation pages
-     - Adding usage examples
-     - Explaining assumptions, expected use cases, and limitations
+7. Commit your changes:
 
-7) Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Describe your change"
+   ```
 
-    ```bash
-    git add .
-    git commit -m "Describe your change"
-    ```
+8. Push your branch to your fork:
 
-8) Push your branch to your fork:
-    ```bash
-    git push origin your-branch-name
-    ```
+   ```bash
+   git push origin your-branch-name
+   ```
 
-9) Open a pull request against the main branch.
-
+9. Open a pull request against the main branch.
 
 ## Coding Standards
 
@@ -178,7 +175,6 @@ def example_function(
 
 All public functions should validate inputs. Use existing validation helpers from `_validation.py` whenever possible.
 
-
 ## Reproducibility Rules
 
 Random operations must remain reproducible. Therefore, use `DEFAULT_RANDOM_STATE` instead of hardcoded seeds.
@@ -195,7 +191,6 @@ Do this:
 rng = np.random.default_rng(DEFAULT_RANDOM_STATE)
 ```
 
-
 ## Plotting Guidelines
 
 Visualization functions should:
@@ -203,7 +198,6 @@ Visualization functions should:
 - Return `(fig, ax)` objects
 - Not display figures by default
 - Include `display_plot=False`
-
 
 ## Documentation Requirements
 
@@ -215,7 +209,6 @@ Public functions should contain:
 
 Use NumPy-style docstrings.
 
-
 ## Reporting Issues
 
 The reports should include:
@@ -226,7 +219,6 @@ The reports should include:
 - Package version
 - Reproducible example
 
-
 ## Disclaimer
 
 - Missing data mechanism detection is inherently uncertain.
@@ -234,4 +226,3 @@ The reports should include:
 - Outputs from this package should be interpreted as supporting evidence rather than definitive proof of MCAR, MAR, or MNAR mechanisms.
 
 - Combining multiple tools is strongly recommended.
-
