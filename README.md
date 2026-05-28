@@ -121,6 +121,28 @@ mechanism_viewer/
 
 - Real-world use cases are available inside `use_cases/`
 
+## Sources of Use Case Datasets
+
+The real-world examples in this repository use publicly available datasets from the following sources:
+
+- [Cancer Dataset](https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data)
+  - Used in: `use_cases/cancer.ipynb`
+
+- [Student Dataset](https://archive.ics.uci.edu/dataset/320/student+performance)
+  - Used in: `use_cases/student.ipynb`
+
+- [Contraceptive Dataset](https://archive.ics.uci.edu/dataset/30/contraceptive+method+choice)
+  - Used in: `use_cases/contraceptive.ipynb`
+
+- [Diabetes Dataset](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
+  - Used in: `use_cases/diabetes.ipynb`
+
+- [Horses Dataset](https://www.kaggle.com/datasets/uciml/horse-colic/code)
+  - Used in: `use_cases/horses.ipynb`
+
+
+Please refer to the original sources for licensing and dataset documentation.
+
 ## Contributing
 
 Please read `CONTRIBUTING.md` for more information.
