@@ -20,7 +20,6 @@ Missing values depend on observed variables but do not depend on the missing val
 
 Missing values depend on the missing values themselves or on unobserved variables, but do not depend on the observed variables.
 
-
 ## Project Structure
 
 ```bash
@@ -33,7 +32,7 @@ mechanism_viewer/
 ├── viewer_upset.py
 ├── viewer_comparison.py
 ├── viewer_imputation.py
-├── mcar_little_test.py
+├── little_mcar.py
 ├── accuracy_mar.py
 ├── column_data_types.py
 ├── _validation.py
@@ -84,11 +83,11 @@ mechanism_viewer/
 
    ```python
    from mechanism_viewer import (
-       generate_dataset_with_missing_data,
+       generate_dataset_with_missingness,
        plot_missing_rate,
        ColType)
 
-   df = generate_dataset_with_missing_data(
+   df = generate_dataset_with_missingness(
        n_rows=1000,
        type_array=[
            ColType.CONTINUOUS,
@@ -107,10 +106,10 @@ mechanism_viewer/
 
    ```python
    from mechanism_viewer import (
-       little_mcar_test,
+       little_mcar_global,
        interpret_mcar_p_value)
 
-   p_value = little_mcar_test(df)
+   p_value = little_mcar_global(df)
 
    print(interpret_mcar_p_value(p_value))
    ```
@@ -139,7 +138,6 @@ The real-world examples in this repository use publicly available datasets from 
 
 - [Horses Dataset](https://www.kaggle.com/datasets/uciml/horse-colic/code)
   - Used in: `use_cases/horses.ipynb`
-
 
 Please refer to the original sources for licensing and dataset documentation.
 

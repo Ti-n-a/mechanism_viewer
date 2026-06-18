@@ -59,7 +59,6 @@ python -m pip install -e <path_of_package>/mechanism_viewer
 
 > Note: In this mode, it is only necessary to reload the kernel to have the most updated version of the package.
 
-
 ## Quick Start
 
 ```python
@@ -72,17 +71,17 @@ df = mv.generate_synthetic_dataset( n_rows=300, type_array=[ColType.CONTINUOUS, 
 															ColType.CONTINUOUS])
 
 # 2) Inject missingness in the last 3 columns
-df_missing = mv.apply_missing_data( df=df, n_complete_cols=2,
+df_missing = mv.apply_missingness( df=df, n_complete_cols=2,
 									missing_mechanism_array=["MAR", "MCAR", "MNAR"],
 									missing_rate_array=[0.20, 0.15, 0.25],
 									missingness_ascending=True)
 
 # 3) Run diagnostics
 fig, ax = mv.plot_missing_rate(df_missing, display_plot=True)
-fig_corr, ax_corr = mv.complete_and_missing_columns_correlation(df_missing, display_plot=True)
+fig_corr, ax_corr = mv.complete_and_misscol_corr(df_missing, display_plot=True)
 
 # 4) Test MCAR hypothesis on whole dataset
-p_value = mv.little_mcar_test(df_missing)
+p_value = mv.little_mcar_global(df_missing)
 interpretation = mv.interpret_mcar_p_value(p_value)
 print(interpretation)
 
@@ -92,14 +91,12 @@ interpretation_abd = mv.interpret_mar_abd(abd)
 print(interpretation_abd)
 ```
 
-
 ## Next Steps
 
 1. Read [Missing Mechanisms](missing_mechanisms.md) for an introduction to the concepts of MCAR, MAR, and MNAR.
 2. Understand the [Workflow](workflow.md) to diagnose the missing patterns of datasets.
 3. Check [Diagnostic Overview](diagnostics.md) for a general categorization of the available tools.
 4. Browse the [Function Documentation](documentation.md) to see all available tools.
-
 
 ## Reproducibility
 

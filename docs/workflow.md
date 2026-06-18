@@ -2,8 +2,6 @@
 
 This page explains the typical workflow when using `mechanism_viewer` to diagnose a dataset with missing values.
 
-
-
 ## Typical Workflow
 
 1. Load or generate a dataset.
@@ -13,7 +11,6 @@ This page explains the typical workflow when using `mechanism_viewer` to diagnos
 5. Test hypotheses about the missingness mechanism.
 6. Use imputation diagnostics as additional evidence for difficult cases.
 7. Combine all evidences before concluding.
-
 
 ## Workflow Example
 
@@ -29,17 +26,15 @@ df = mv.generate_synthetic_dataset(n_rows=500, type_array=[ColType.CONTINUOUS, C
                                 ColType.DISCRETE, ColType.CONTINUOUS], random_state=7)
 ```
 
-
 ### 2. Inject missingness onto the dataset
 
-The first ``n_complete_cols`` remain complete and can be used as dependencies for applying MAR missingness to columns.
+The first `n_complete_cols` remain complete and can be used as dependencies for applying MAR missingness to columns.
 
 ```python
-df_missing = mv.apply_missing_data(df=df, n_complete_cols=2, missing_mechanism_array=["MAR", "MCAR"],
+df_missing = mv.apply_missingness(df=df, n_complete_cols=2, missing_mechanism_array=["MAR", "MCAR"],
                                     missing_rate_array=[0.20, 0.25], missingness_ascending=True,
                                     random_state=7)
 ```
-
 
 ### 3. View missingness structure
 
@@ -47,20 +42,19 @@ Start with general diagnostic tools.
 
 ```python
 mv.plot_missing_rate(df_missing, display_plot=True)
-mv.rows_with_similar_missing(df_missing, display_plot=True)
+mv.upset_missing_rows(df_missing, display_plot=True)
 ```
 
 Then, inspect the missingness dependencies.
 
 ```python
-mv.build_distribution_of_missingness(df_missing["Col1","Col2","Col4"], missing_col="Col3", 
+mv.plot_missingness_distribution(df_missing["Col1","Col2","Col4"], missing_col="Col3",
                                     display_plot=True)
-mv.build_distribution_of_missingness(df_missing["Col1","Col2","Col3"], missing_col="Col4", 
+mv.plot_missingness_distribution(df_missing["Col1","Col2","Col3"], missing_col="Col4",
                                     display_plot=True)
 mv.missing_rate_matrix(df_missing, column_name="Col1", display_plot=True)
 mv.missing_rate_matrix(df_missing, column_name="Col2", display_plot=True)
 ```
-
 
 ### 4. Estimate MAR plausibility
 
@@ -74,18 +68,17 @@ abd = mv.test_mar_from_model_accuracy(df_missing, missing_col="Col3")
 print(mv.interpret_mar_abd(abd, threshold=5.0))
 ```
 
-
 ### 5. Test MCAR hypothesis
 
 Little's test operates on numeric data and needs enough rows per pattern.
 
 ```python
-p_value = mv.little_mcar_test(df_missing)
+p_value = mv.little_mcar_global(df_missing)
 interpretation_str = mv.interpret_mcar_p_value(p_value, alpha=0.05)
 print(interpretation_str)
 ```
 
-There is also the pairwise version of the Little's test, where each 
+There is also the pairwise version of the Little's test, where each
 pair of colums is tested.
 
 ```python
@@ -98,7 +91,7 @@ mv.plot_mcar_pairwise(p_value_matrix, alpha=0.05, display_plot=True)
 Use complete columns as predictors and compare observed vs imputed values.
 
 ```python
-mv.scatterplot_imputation_comparison(df_missing, column_name="Col1", missing_col="Col3",
+mv.scatter_imputation_comparison(df_missing, column_name="Col1", missing_col="Col3",
                                     missing_col_type="continuous", display_plot=True)
 ```
 

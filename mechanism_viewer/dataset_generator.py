@@ -25,7 +25,7 @@ __all__ = [
     "apply_mcar",
     "apply_mar",
     "apply_mnar",
-    "apply_missing_data",
+    "apply_missingness",
     "generate_dataset_with_missingness",
 ]
 
@@ -438,7 +438,7 @@ def apply_mnar(
     return new_column
 
 
-def apply_missing_data(
+def apply_missingness(
     df: pd.DataFrame,
     n_complete_cols: int,
     missing_mechanism_array: list[str],
@@ -532,6 +532,6 @@ def generate_dataset_with_missingness(
     new_data (pd.DataFrame): A copy of the dataframe with the missing-data mechanisms applied
     """
     synthetic_df = generate_synthetic_dataset(n_rows, type_array, random_state)
-    missing_dataset = apply_missing_data(synthetic_df, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending, random_state)
+    missing_dataset = apply_missingness(synthetic_df, n_complete_cols, missing_mechanism_array, missing_rate_array, missingness_ascending, random_state)
     
     return missing_dataset

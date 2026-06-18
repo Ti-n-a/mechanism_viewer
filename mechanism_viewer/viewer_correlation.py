@@ -12,8 +12,8 @@ from ._validation import validate_dataframe, validate_missing_col
 __all__ = [
     "missingness_misscol_corr",
     "value_misscol_corr",
-    "complete_and_missing_columns_correlation",
-    "missing_vs_all_correlation",
+    "complete_and_misscol_corr",
+    "misscol_vs_all_corr",
 ]
 
 
@@ -158,7 +158,7 @@ def value_misscol_corr(
     return fig_miss_corr, ax_miss_corr
 
 
-def complete_and_missing_columns_correlation(
+def complete_and_misscol_corr(
     df: pd.DataFrame,
     display_plot: bool = False
     ) -> tuple[plt.Figure, plt.Axes]:
@@ -211,7 +211,7 @@ def complete_and_missing_columns_correlation(
     return fig_comp_corr, ax_comp_corr
 
 
-def missing_vs_all_correlation(
+def misscol_vs_all_corr(
     df: pd.DataFrame,
     missing_col: str,
     display_plot: bool = False

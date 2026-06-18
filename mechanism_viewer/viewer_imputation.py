@@ -24,7 +24,7 @@ from ._validation import validate_dataframe, validate_column, validate_missing_c
 
 
 __all__ = [
-    "scatterplot_imputation_comparison",
+    "scatter_imputation_comparison",
     "plot_imputation_distribution",
 ]
 
@@ -405,7 +405,7 @@ def _prepare_missingness_dataset(
     return prepared_df
 
 
-def scatterplot_imputation_comparison(
+def scatter_imputation_comparison(
     df: pd.DataFrame,
     column_name: str,
     missing_col: str,

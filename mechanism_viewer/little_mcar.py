@@ -37,7 +37,7 @@ import seaborn as sns
 from ._validation import validate_dataframe
 
 __all__ = [
-    "little_mcar_test",
+    "little_mcar_global",
     "interpret_mcar_p_value",
     "little_mcar_pairwise",
     "plot_mcar_pairwise",
@@ -212,7 +212,7 @@ def plot_mcar_pairwise(
     return fig_p_values, ax_p_values, fig_reject, ax_reject
 
 
-def little_mcar_test(
+def little_mcar_global(
     df: pd.DataFrame
     ) -> float:
     """

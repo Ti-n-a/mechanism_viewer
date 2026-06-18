@@ -12,7 +12,7 @@ from ._validation import validate_dataframe, validate_missing_col
 
 __all__ = [
     "plot_missing_rate",
-    "build_distribution_of_missingness",
+    "plot_missingness_distribution",
 ]
 
 
@@ -56,7 +56,7 @@ def plot_missing_rate(
     return fig_missing_rate, ax_missing_rate
 
 
-def build_distribution_of_missingness(
+def plot_missingness_distribution(
     df: pd.DataFrame,
     missing_col: str,
     display_plot: bool = False

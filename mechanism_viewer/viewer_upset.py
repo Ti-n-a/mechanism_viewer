@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from ._validation import validate_dataframe
 
 __all__ = [
-    "rows_with_similar_missing",
+    "upset_missing_rows",
 ]
 
 
@@ -39,7 +39,7 @@ def _get_combination_columns(
     return ', '.join(true_columns)          # Join column names with commas if multiple columns are True
 
 
-def rows_with_similar_missing(
+def upset_missing_rows(
     df: pd.DataFrame,
     min_rows_display: int = 0,
     display_plot: bool = False
