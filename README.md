@@ -4,6 +4,8 @@ mechanism_viewer is a python package that can be used to help diagnose the missi
 
 It includes visualization tools, statistical testing, imputation tools, and synthetic dataset generation.
 
+**Documentation:** [https://ti-n-a.github.io/mechanism_viewer/](https://ti-n-a.github.io/mechanism_viewer/)
+
 ## Missing Data Mechanisms
 
 There are 3 types of missing data mechanism, which are MCAR, MAR, and MNAR.
