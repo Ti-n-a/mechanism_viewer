@@ -10,7 +10,7 @@ This page summarizes the main diagnostic tools in `mechanism_viewer`.
 ## Missingness Compared to Complete Columns
 
 - `plot_missingness_distribution`: plot distribution of an observed column based on the missingness of a column.
-- `visualize_column_dependencies`: visualization of the value itensity of complete columns and the missingness indicator of missing rows.
+- `missing_rows_matrix`: visualization of the value itensity of complete columns and the missingness indicator of missing rows.
 - `missing_rate_matrix`: plot missig rates of columns based on the values of one observed column.
 - `scatter_missingness_comparison` and `scatter_missingness_comparison_line`: plot the missingness indicator against another column.
 - `boxplot_comparison`: use the missingness indicator to compare the distribution of an observed column.

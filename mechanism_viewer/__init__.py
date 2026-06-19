@@ -2,7 +2,7 @@ from .column_data_types import ColType
 from ._random import DEFAULT_RANDOM_STATE
 from .dataset_generator import generate_synthetic_dataset, apply_missingness, generate_dataset_with_missingness, apply_mnar, apply_mcar, apply_mar
 from .viewer_simple import plot_missing_rate, plot_missingness_distribution
-from .viewer_matrix import visualize_column_dependencies, missing_rate_matrix
+from .viewer_matrix import missing_rows_matrix, missing_rate_matrix
 from .viewer_correlation import missingness_misscol_corr, value_misscol_corr, complete_and_misscol_corr, misscol_vs_all_corr
 from .viewer_upset import upset_missing_rows
 from .viewer_comparison import scatter_missingness_comparison, scatter_missingness_comparison_line, boxplot_comparison

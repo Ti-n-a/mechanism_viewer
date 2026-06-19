@@ -14,7 +14,7 @@ from ._validation import validate_dataframe, validate_column
 
 
 __all__ = [
-    "visualize_column_dependencies",
+    "missing_rows_matrix",
     "missing_rate_matrix",
 ]
 
@@ -41,7 +41,7 @@ def _validate_input(
     return
 
 
-def visualize_column_dependencies(
+def missing_rows_matrix(
     df: pd.DataFrame,
     sort_by_complete: bool = False,
     display_plot: bool = False
