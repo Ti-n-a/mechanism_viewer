@@ -605,27 +605,30 @@
 <p>This page summarizes the main diagnostic tools in <code>mechanism_viewer</code>.</p>
 <h2 id="general-missingness-diagnostics">General Missingness Diagnostics<a class="headerlink" href="#general-missingness-diagnostics" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>plot_missing_rate</code>: heatmap with the missing rate of each column. </li>
-<li><code>rows_with_similar_missing</code>: UpSet similar plot counting the row-level missing combinations.</li>
+<li><code>plot_total_missingness</code>: bar chart with total number of missing and observed cells.</li>
+<li><code>plot_missing_rate</code>: heatmap with the missing rate of each column.</li>
+<li><code>missingness_dendrogram</code>: groups columns with similar missingness patterns using hierarchical clustering.</li>
+<li><code>upset_missing_rows</code>: UpSet similar plot counting the row-level missing combinations.</li>
 </ul>
 <h2 id="missingness-compared-to-complete-columns">Missingness Compared to Complete Columns<a class="headerlink" href="#missingness-compared-to-complete-columns" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>build_distribution_of_missingness</code>: plot distribution of an observed column based on the missingness of a column.</li>
-<li><code>visualize_column_dependencies</code>: visualization of the value itensity of complete columns and the missingness indicator of missing rows.</li>
+<li><code>plot_missingness_distribution</code>: plot distribution of an observed column based on the missingness of a column.</li>
+<li><code>missing_rows_matrix</code>: visualization of the value itensity of complete columns and the missingness indicator of missing rows.</li>
 <li><code>missing_rate_matrix</code>: plot missig rates of columns based on the values of one observed column.</li>
 <li><code>scatter_missingness_comparison</code> and <code>scatter_missingness_comparison_line</code>: plot the missingness indicator against another column.</li>
 <li><code>boxplot_comparison</code>: use the missingness indicator to compare the distribution of an observed column.</li>
+<li><code>parallel_comparison</code>: parallel coordinates chart comparing observed values according to the missingness of a column.</li>
 </ul>
 <h2 id="correlation-plots">Correlation Plots<a class="headerlink" href="#correlation-plots" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>missingness_misscol_corr</code>: correlation of the missingness indicator among columns with missing values.</li>
 <li><code>value_misscol_corr</code>: value correlation among columns that contain missing values.</li>
-<li><code>complete_and_missing_columns_correlation</code>: correlation between the values of complete columns and the missingness indicator of missing columns.</li>
-<li><code>missing_vs_all_correlation</code>: correlation between the missingness indicator of a missing column and the values of all other columns.</li>
+<li><code>complete_and_misscol_corr</code>: correlation between the values of complete columns and the missingness indicator of missing columns.</li>
+<li><code>misscol_vs_all_corr</code>: correlation between the missingness indicator of a missing column and the values of all other columns.</li>
 </ul>
 <h2 id="statistical-tests-and-mar-heuristic">Statistical Tests and MAR Heuristic<a class="headerlink" href="#statistical-tests-and-mar-heuristic" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>little_mcar_test</code> and <code>interpret_mcar_p_value</code>: global Little's MCAR test via <code>pyampute</code> and its text interpretation.</li>
+<li><code>little_mcar_global</code> and <code>interpret_mcar_p_value</code>: global Little's MCAR test via <code>pyampute</code> and its text interpretation.</li>
 <li><code>little_mcar_pairwise</code> and <code>plot_mcar_pairwise</code>: pairwise MCAR checks and visual summaries.</li>
 <li><code>run_random_forest</code> and <code>run_logistic_regression</code>: compute model accuracy in predicting the missingness.</li>
 <li><code>test_mar_from_model_accuracy</code>: heuristic that calculates Accuracy Baseline Difference (ABD).</li>
@@ -633,7 +636,7 @@
 </ul>
 <h2 id="imputation-diagnostics">Imputation Diagnostics<a class="headerlink" href="#imputation-diagnostics" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>scatterplot_imputation_comparison</code>: compare observed and imputed values against an observed column.</li>
+<li><code>scatter_imputation_comparison</code>: compare observed and imputed values against an observed column.</li>
 <li><code>plot_imputation_distribution</code>: compare original and imputed distributions.</li>
 </ul>
 <h2 id="function-requirements">Function Requirements<a class="headerlink" href="#function-requirements" title="Permanent link">&para;</a></h2>
@@ -641,12 +644,12 @@
 <li>Public functions expect a pandas DataFrame where applicable.</li>
 <li>Many diagnostics require at least one column containing missing values.</li>
 <li>MAR accuracy and several imputers require complete predictor columns to be numeric.</li>
-<li><code>little_mcar_test</code> and <code>little_mcar_pairwise</code> require numeric columns and sufficient missing/non-missing counts.</li>
+<li><code>little_mcar_global</code> and <code>little_mcar_pairwise</code> require numeric columns and sufficient missing/non-missing counts.</li>
 <li>Imputation helpers require the correct <code>missing_col_type</code> using <code>ColType</code>.</li>
 </ul>
 <p>If the input requirements are not met, a ValueError or TypeError may be raised during execution.</p>
 <h2 id="final-notes">Final Notes<a class="headerlink" href="#final-notes" title="Permanent link">&para;</a></h2>
-<p>No single plot or test proves the missingness is based on MCAR, MAR, or MNAR. Use the package to build a conclusion step by step, by checking whether different diagnostics point toward the same missing-data mechanism, while keeping in mind that each method has assumptions, limitations, and potential sources of bias. </p>
+<p>No single plot or test proves the missingness is based on MCAR, MAR, or MNAR. Use the package to build a conclusion step by step, by checking whether different diagnostics point toward the same missing-data mechanism, while keeping in mind that each method has assumptions, limitations, and potential sources of bias.</p>
 <p><code>mechanism_viewer</code> is an exploratory package, and interpretations of its results should always be made with caution.</p>
 <p>Furthermore, users can also use other plots, analyses, or domain knowledge when they are useful. The goal should be to combine multiple sources of evidence and reach the most reliable conclusion possible.</p>
 

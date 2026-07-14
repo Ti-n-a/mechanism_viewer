@@ -593,8 +593,8 @@
 <ul>
 <li>Generate synthetic datasets with configurable column types and missingness patterns.</li>
 <li>Apply MCAR, MAR, and MNAR mechanisms in individual columns.</li>
-<li>Visualize missingness structure, dependence, and row-level patterns.</li>
-<li>Compare observed and imputed distributions.</li>
+<li>Visualize missingness structure, relationships, clustering, and row-level patterns.</li>
+<li>Compare observed and imputed values and distributions.</li>
 <li>Estimate whether MAR is plausible using model accuracy heuristics.</li>
 <li>Run Little's MCAR test and pairwise MCAR checks.</li>
 </ul>
@@ -641,17 +641,17 @@
                                                             <span class="n">ColType</span><span class="o">.</span><span class="n">CONTINUOUS</span><span class="p">])</span>
 
 <span class="c1"># 2) Inject missingness in the last 3 columns</span>
-<span class="n">df_missing</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">apply_missing_data</span><span class="p">(</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">n_complete_cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="n">df_missing</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">apply_missingness</span><span class="p">(</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">n_complete_cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                     <span class="n">missing_mechanism_array</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MCAR&quot;</span><span class="p">,</span> <span class="s2">&quot;MNAR&quot;</span><span class="p">],</span>
                                     <span class="n">missing_rate_array</span><span class="o">=</span><span class="p">[</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
                                     <span class="n">missingness_ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># 3) Run diagnostics</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">plot_missing_rate</span><span class="p">(</span><span class="n">df_missing</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">fig_corr</span><span class="p">,</span> <span class="n">ax_corr</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">complete_and_missing_columns_correlation</span><span class="p">(</span><span class="n">df_missing</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig_corr</span><span class="p">,</span> <span class="n">ax_corr</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">complete_and_misscol_corr</span><span class="p">(</span><span class="n">df_missing</span><span class="p">,</span> <span class="n">display_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># 4) Test MCAR hypothesis on whole dataset</span>
-<span class="n">p_value</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">little_mcar_test</span><span class="p">(</span><span class="n">df_missing</span><span class="p">)</span>
+<span class="n">p_value</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">little_mcar_global</span><span class="p">(</span><span class="n">df_missing</span><span class="p">)</span>
 <span class="n">interpretation</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">interpret_mcar_p_value</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">interpretation</span><span class="p">)</span>
 
