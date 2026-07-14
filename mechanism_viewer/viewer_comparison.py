@@ -5,6 +5,7 @@ an observed column with continuous data type.
 
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
+import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -15,6 +16,7 @@ __all__ = [
     "scatter_missingness_comparison",
     "scatter_missingness_comparison_line",
     "boxplot_comparison",
+    "parallel_comparison",
 ]
 
 
@@ -206,3 +208,96 @@ def boxplot_comparison(
         plt.close(fig_boxplot)
     
     return fig_boxplot, ax_boxplot
+
+
+def parallel_comparison(
+    df: pd.DataFrame,
+    missing_col: str,
+    display_plot: bool = False,
+) -> tuple[plt.Figure, plt.Axes]:
+    """
+    Plot a parallel coordinates chart that compares the values of all
+    numeric observed columns according to whether `missing_col` is missing.
+
+    Each line represents one row of the dataset. Blue lines correspond to
+    rows where `missing_col` is observed, while red lines correspond to
+    rows where `missing_col` is missing.
+
+    If the red lines cluster in a different region from the blue lines for
+    one or more columns, this suggests that the missingness of `missing_col` 
+    may be associated with the values of those columns, providing evidence 
+    consistent with a MAR mechanism.
+
+    Only numeric columns are included in the plot because parallel
+    coordinates require numerical values for normalization. All numeric
+    columns are normalized to the range [0, 1] so that they can be displayed
+    on the same scale.
+
+    Due to overplotting, this visualization is most useful for datasets with
+    a moderate number of rows.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used to plot.
+    missing_col : str
+        The name of the column whose missingness will be compared against the values
+        of the other columns
+    display_plot : bool, default = False
+        If True, displays the figure with ``plt.show()``
+
+    Returns
+    -------
+    tuple
+        (fig_parallel, ax_parallel) representing the plot available for display.
+    """
+    validate_dataframe(df)
+    validate_missing_col(df, missing_col)
+
+    columns = df.drop(columns=[missing_col]).select_dtypes(include="number").columns.tolist()
+  
+    if not columns:
+        raise ValueError("There are no numeric columns available for the parallel coordinates plot.")
+
+    data = df[columns].copy()
+    normalized_data = pd.DataFrame(index=data.index)
+
+    for column in columns:
+        col_min = data[column].min()
+        col_max = data[column].max()
+
+        if col_max > col_min:
+            normalized_data[column] = (data[column] - col_min) / (col_max - col_min)
+        else:
+            normalized_data[column] = 0.0
+
+    missing_mask = df[missing_col].isna()
+    x_positions = range(len(columns))
+
+    fig_parallel, ax_parallel = plt.subplots(figsize=(10, 6))
+
+    for _, row in normalized_data.loc[~missing_mask].iterrows():
+        ax_parallel.plot(x_positions, row.to_numpy(dtype=float, na_value=np.nan), color="blue", alpha=0.3)
+
+    for _, row in normalized_data.loc[missing_mask].iterrows():
+        ax_parallel.plot(x_positions, row.to_numpy(dtype=float, na_value=np.nan), color="red", alpha=0.3)
+
+    ax_parallel.plot([], [], color="blue", label=f"{missing_col} observed")
+    ax_parallel.plot([], [], color="red", label=f"{missing_col} missing")
+
+    ax_parallel.set_xticks(list(x_positions))
+    ax_parallel.set_xticklabels(columns, rotation=45, ha="right")
+    ax_parallel.set_ylabel("Normalized value")
+    ax_parallel.set_title(f"Parallel coordinates based on the missingness of {missing_col}")
+    ax_parallel.set_ylim(-0.05, 1.05)
+    ax_parallel.grid(axis="x", alpha=0.3)
+    ax_parallel.legend()
+
+    fig_parallel.tight_layout()
+
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_parallel)
+
+    return fig_parallel, ax_parallel

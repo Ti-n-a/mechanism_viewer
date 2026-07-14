@@ -1,11 +1,12 @@
 from .column_data_types import ColType
 from ._random import DEFAULT_RANDOM_STATE
 from .dataset_generator import generate_synthetic_dataset, apply_missingness, generate_dataset_with_missingness, apply_mnar, apply_mcar, apply_mar
-from .viewer_simple import plot_missing_rate, plot_missingness_distribution
+from .viewer_simple import plot_total_missingness, plot_missing_rate, plot_missingness_distribution
 from .viewer_matrix import missing_rows_matrix, missing_rate_matrix
 from .viewer_correlation import missingness_misscol_corr, value_misscol_corr, complete_and_misscol_corr, misscol_vs_all_corr
 from .viewer_upset import upset_missing_rows
-from .viewer_comparison import scatter_missingness_comparison, scatter_missingness_comparison_line, boxplot_comparison
+from .viewer_dendrogram import missingness_dendrogram
+from .viewer_comparison import scatter_missingness_comparison, scatter_missingness_comparison_line, boxplot_comparison, parallel_comparison
 from .viewer_imputation import scatter_imputation_comparison, plot_imputation_distribution
 from .accuracy_mar import run_random_forest, run_logistic_regression, test_mar_from_model_accuracy, interpret_mar_abd
 from .little_mcar import little_mcar_global, interpret_mcar_p_value, little_mcar_pairwise, plot_mcar_pairwise

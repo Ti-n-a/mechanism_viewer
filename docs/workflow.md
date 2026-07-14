@@ -42,6 +42,7 @@ Start with general diagnostic tools.
 
 ```python
 mv.plot_missing_rate(df_missing, display_plot=True)
+mv.missingness_dendrogram(df_missing, display_plot=True)
 mv.upset_missing_rows(df_missing, display_plot=True)
 ```
 

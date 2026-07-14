@@ -34,6 +34,9 @@ plugins:
             docstring_style: numpy
             show_source: false
             show_root_heading: true
+            filters:
+              - "!^_"
+              - "!^validate_"
 
 markdown_extensions:
   - admonition

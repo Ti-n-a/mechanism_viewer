@@ -4,7 +4,9 @@ This page summarizes the main diagnostic tools in `mechanism_viewer`.
 
 ## General Missingness Diagnostics
 
+- `plot_total_missingness`: bar chart with total number of missing and observed cells.
 - `plot_missing_rate`: heatmap with the missing rate of each column.
+- `missingness_dendrogram`: groups columns with similar missingness patterns using hierarchical clustering.
 - `upset_missing_rows`: UpSet similar plot counting the row-level missing combinations.
 
 ## Missingness Compared to Complete Columns
@@ -14,6 +16,7 @@ This page summarizes the main diagnostic tools in `mechanism_viewer`.
 - `missing_rate_matrix`: plot missig rates of columns based on the values of one observed column.
 - `scatter_missingness_comparison` and `scatter_missingness_comparison_line`: plot the missingness indicator against another column.
 - `boxplot_comparison`: use the missingness indicator to compare the distribution of an observed column.
+- `parallel_comparison`: parallel coordinates chart comparing observed values according to the missingness of a column.
 
 ## Correlation Plots
 

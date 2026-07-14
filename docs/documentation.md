@@ -9,10 +9,10 @@ This page provides reference documentation for the available tools and functions
 ### `mechanism_viewer.dataset_generator`
 
 ::: mechanism_viewer.dataset_generator
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ## Data Types
 
@@ -36,52 +36,60 @@ imputation strategy to apply.
 ### `mechanism_viewer.viewer_simple`
 
 ::: mechanism_viewer.viewer_simple
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### `mechanism_viewer.viewer_matrix`
 
 ::: mechanism_viewer.viewer_matrix
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### `mechanism_viewer.viewer_upset`
 
 ::: mechanism_viewer.viewer_upset
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
+
+### `mechanism_viewer.viewer_dendrogram`
+
+::: mechanism_viewer.viewer_dendrogram
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### `mechanism_viewer.viewer_correlation`
 
 ::: mechanism_viewer.viewer_correlation
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### `mechanism_viewer.viewer_comparison`
 
 ::: mechanism_viewer.viewer_comparison
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ## Imputation Diagnostics
 
 ### `mechanism_viewer.viewer_imputation`
 
 ::: mechanism_viewer.viewer_imputation
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### Parameter `missing_col_type` for Imputation
 
@@ -101,17 +109,17 @@ mv.plot_imputation_distribution(df_missing, "Col3", missing_col_type=ColType.DIS
 ### `mechanism_viewer.accuracy_mar`
 
 ::: mechanism_viewer.accuracy_mar
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 ### `mechanism_viewer.little_mcar`
 
 ::: mechanism_viewer.little_mcar
-options:
-show_root_heading: false
-show_source: false
-heading_level: 4
+    options:
+        show_root_heading: false
+        show_source: false
+        heading_level: 4
 
 </div>

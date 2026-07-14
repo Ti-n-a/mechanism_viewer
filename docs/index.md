@@ -19,8 +19,8 @@ Imputation choices and downstream model validity depend on the missingness mecha
 
 - Generate synthetic datasets with configurable column types and missingness patterns.
 - Apply MCAR, MAR, and MNAR mechanisms in individual columns.
-- Visualize missingness structure, dependence, and row-level patterns.
-- Compare observed and imputed distributions.
+- Visualize missingness structure, relationships, clustering, and row-level patterns.
+- Compare observed and imputed values and distributions.
 - Estimate whether MAR is plausible using model accuracy heuristics.
 - Run Little's MCAR test and pairwise MCAR checks.
 

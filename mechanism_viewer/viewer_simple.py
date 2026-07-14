@@ -11,9 +11,64 @@ from ._validation import validate_dataframe, validate_missing_col
 
 
 __all__ = [
+    "plot_total_missingness",
     "plot_missing_rate",
     "plot_missingness_distribution",
 ]
+
+
+def plot_total_missingness(
+    df: pd.DataFrame,
+    display_plot: bool = False,
+    ) -> tuple[plt.Figure, plt.Axes]:
+    """
+    Plot the total number and percentage of every observed and missing cells in the dataset.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        The dataset to be used for plotting
+    display_plot : bool, default = False
+        If True, displays the figure with ``plt.show()``
+
+    Returns
+    -------
+    tuple
+        (fig_total_missingness, ax_total_missingness) reobserveding the plot available for display.
+    """
+    validate_dataframe(df)
+
+    total_cells = df.size
+    total_missing = int(df.isna().sum().sum())
+    total_observed = total_cells - total_missing
+    totals = [total_observed, total_missing]
+
+    observed_percentage = total_observed / total_cells * 100
+    missing_percentage = total_missing / total_cells * 100
+
+    fig_total_missingness, ax_total_missingness = plt.subplots(figsize=(7, 5))
+    bars = ax_total_missingness.bar(["Observed values", "Missing values"], totals, color=["#029911", "#C92C3E"])
+
+    highest_count = max(totals)
+    label_offset = max(highest_count * 0.02, 0.5)
+
+    for bar, count, percentage in zip(bars, totals, [observed_percentage, missing_percentage]):
+        ax_total_missingness.text( bar.get_x() + bar.get_width() / 2, bar.get_height() + label_offset,
+                                f"{count:,}\n({percentage:.1f}%)", ha="center", va="bottom")
+
+    ax_total_missingness.set_ylim(0, highest_count * 1.15)
+    ax_total_missingness.set_title("Total of observed and missing values")
+    ax_total_missingness.set_ylabel("Count")
+    ax_total_missingness.spines["top"].set_visible(False)
+    ax_total_missingness.spines["right"].set_visible(False)
+    fig_total_missingness.tight_layout()
+
+    if display_plot:
+        plt.show()
+    else:
+        plt.close(fig_total_missingness)
+
+    return fig_total_missingness, ax_total_missingness
 
 
 def plot_missing_rate(
@@ -26,14 +81,14 @@ def plot_missing_rate(
     Parameters
     ----------
     df : pd.DataFrame
-        The dataset to be used
+        The dataset to be used for plotting
     display_plot : bool, default = False
         If True, displays figure with ``plt.show()``
    
     Returns
     -------
     tuple
-        (fig_missing_rate, ax_missing_rate) representing the plot available for display.
+        (fig_missing_rate, ax_missing_rate) reobserveding the plot available for display.
     """
     validate_dataframe(df)
 
@@ -83,7 +138,7 @@ def plot_missingness_distribution(
     Returns
     -------
     tuple
-        (fig1, ax1, fig2, ax2, ..., figN, axN) representing all plots available for display,
+        (fig1, ax1, fig2, ax2, ..., figN, axN) reobserveding all plots available for display,
         Order follows ``df.columns``, skipping ``missing_col``.
     """
     validate_dataframe(df)
