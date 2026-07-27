@@ -30,9 +30,10 @@ mechanism_viewer/
 ├── dataset_generator.py
 ├── viewer_simple.py
 ├── viewer_matrix.py
-├── viewer_correlation.py
 ├── viewer_upset.py
 ├── viewer_comparison.py
+├── viewer_correlation.py
+├── viewer_dendrogram.py
 ├── viewer_imputation.py
 ├── little_mcar.py
 ├── accuracy_mar.py
@@ -140,8 +141,6 @@ The real-world examples in this repository use publicly available datasets from 
 
 - [Horses Dataset](https://www.kaggle.com/datasets/uciml/horse-colic/code)
   - Used in: `use_cases/horses.ipynb`
-
-Please refer to the original sources for licensing and dataset documentation.
 
 ## Contributing
 
