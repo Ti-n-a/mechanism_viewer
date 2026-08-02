@@ -214,7 +214,7 @@ def missing_rate_matrix(
     data.drop(['Complete', 'Incomplete'], axis=1, inplace=True)
 
     fig_miss_matrix, ax_miss_matrix = plt.subplots(figsize=(10, 6))
-    im = ax_miss_matrix.imshow(df_scaled, aspect="auto", cmap="binary", interpolation="nearest", vmin=0, vmax=1)
+    im = ax_miss_matrix.imshow(df_scaled, aspect="auto", cmap="Reds", interpolation="nearest", vmin=0, vmax=1)
 
     # Print the column names we are comparing against column_name on y axis
     only_missing_cols_df = data.drop(column_name, axis=1, inplace=False)
