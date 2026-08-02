@@ -241,7 +241,7 @@ def misscol_vs_all_corr(
     missing_dataset = df.copy()
     missing_dataset[missing_col] = df[missing_col].isna().astype(int)
 
-    corr = missing_dataset.corrwith(missing_dataset[missing_col]).to_frame(name=missing_col)   
+    corr = missing_dataset.corrwith(missing_dataset[missing_col]).drop(index=missing_col).to_frame(name=missing_col)   
 
     n_rows = len(corr)     
 
