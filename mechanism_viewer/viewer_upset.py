@@ -78,7 +78,7 @@ def upset_missing_rows(
     combinations = comb_cnts_filtered['Combination'].apply(lambda tuple_combination: _get_combination_columns(tuple_combination, list(df.columns)))
 
     fig_similar_miss, ax_similar_miss = plt.subplots(figsize=(min(len(comb_cnts_filtered),10), 5))
-    ax_similar_miss.bar(combinations, comb_cnts_filtered["Count"], color='gray')
+    bars = ax_similar_miss.bar(combinations, comb_cnts_filtered["Count"], color='#d98362')
 
     ax_similar_miss.set_title('Number of rows with same missing patterns')
     ax_similar_miss.set_xlabel('Column combination (missing values at same rows)')
@@ -86,8 +86,8 @@ def upset_missing_rows(
     ax_similar_miss.tick_params(axis='x', rotation=90)     # Rotating the labels on x axis so they fit better
 
     # To add count text on top of each bar
-    for i, count in enumerate(comb_cnts_filtered["Count"]):
-        ax_similar_miss.text(i, count + 0.4, str(count), ha='center')
+    ax_similar_miss.bar_label(bars, padding=3, fmt="%d")
+    ax_similar_miss.margins(y=0.1)
 
     highest_count = max(comb_cnts_filtered["Count"]) + 5
     ax_similar_miss.set_yticks(range(0, highest_count+1, int((highest_count)/5) ))     # Set y axis ticks as integers (previously floats)

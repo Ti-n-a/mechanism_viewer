@@ -47,7 +47,7 @@ def plot_total_missingness(
     missing_percentage = total_missing / total_cells * 100
 
     fig_total_missingness, ax_total_missingness = plt.subplots(figsize=(7, 5))
-    bars = ax_total_missingness.bar(["Observed values", "Missing values"], totals, color=["#029911", "#C92C3E"])
+    bars = ax_total_missingness.bar(["Observed values", "Missing values"], totals, color=["#2ecc71", "#d26256"])
 
     highest_count = max(totals)
     label_offset = max(highest_count * 0.02, 0.5)
@@ -148,7 +148,8 @@ def plot_missingness_distribution(
 
     missing_label = f"Missing value on {missing_col}"
     observed_label = f"Observed value on {missing_col}"
-    palette = {missing_label: "#C92C3E", observed_label: "#029911"}
+    palette_histplot = {missing_label: "#db2f1d", observed_label: "#07ad35"}
+    palette_countplot = {missing_label: "#f55140", observed_label: "#2dd663"}
 
     missingness_col = "Missingness"
 
@@ -171,7 +172,7 @@ def plot_missingness_distribution(
                     hue=missingness_col,
                     multiple="dodge",
                     edgecolor="grey",
-                    palette=palette,
+                    palette=palette_histplot,
                     ax=ax_distribution,
                 )
             else:
@@ -180,7 +181,7 @@ def plot_missingness_distribution(
                     x=col,
                     hue=missingness_col,
                     edgecolor="grey",
-                    palette=palette,
+                    palette=palette_countplot,
                     ax=ax_distribution,
                 )
 
