@@ -81,7 +81,7 @@ def scatter_missingness_comparison(
 
     fig_comp, ax_comp = plt.subplots(figsize=(10, 2))
 
-    sns.scatterplot(x=df[column_name], y=missing_col_missingness, alpha=0.5, ax=ax_comp)
+    sns.scatterplot(x=df[column_name], y=missing_col_missingness, alpha=0.5, color="#e8591e", ax=ax_comp)
 
     ax_comp.set_title(f"Plotting of {column_name} using missingness of {missing_col}")
     ax_comp.set_xlabel(column_name)
@@ -196,8 +196,10 @@ def boxplot_comparison(
 
     group_order = [not_missing_str, missing_str, all_str]
 
+    colors = {not_missing_str: "#2ecc71", missing_str: "#d26256", all_str: "#3743d4"}
+
     fig_boxplot, ax_boxplot = plt.subplots(figsize=(10, 6))
-    sns.boxplot(x="group", y="value", data=plot_df, order=group_order, ax=ax_boxplot)
+    sns.boxplot(x="group", y="value", hue="group", data=plot_df, order=group_order, hue_order=group_order, palette=colors, legend=False, ax=ax_boxplot)
     ax_boxplot.set_title(f"Comparison of values of {column_name} with missingness in {missing_col}")
     ax_boxplot.set_xlabel('')
     ax_boxplot.set_ylabel(f"Values of {column_name}")

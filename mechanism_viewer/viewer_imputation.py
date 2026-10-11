@@ -533,6 +533,11 @@ def plot_imputation_distribution(
 
     fig_imput_dist, ax_imput_dist = plt.subplots(figsize=(8, 5))
 
+    original_color = "#214dd1"
+    imputed_color = "#e8591e"
+    original_color_hist = "#1346e8"
+    imputed_color_hist = "#f56d0c"
+
     if missing_col_type in (ColType.BINARY, ColType.DISC_CATEGORICAL):
         original_series = df[missing_col].dropna().astype(str)
         imputed_series = imputed_df[missing_col].astype(str)
@@ -540,15 +545,15 @@ def plot_imputation_distribution(
                              pd.DataFrame({"value": imputed_series, "source": "Imputed"}),
                             ], ignore_index=True,)
         
-        sns.countplot(data=plot_df, x="value", hue="source", ax=ax_imput_dist)
+        sns.countplot(data=plot_df, x="value", hue="source", palette={"Original": original_color, "Imputed": imputed_color}, ax=ax_imput_dist)
         ax_imput_dist.set_xlabel(missing_col)
         ax_imput_dist.set_ylabel("Count")
     elif missing_col_type == ColType.DISCRETE:
-        sns.histplot(df[missing_col].dropna(), label="Original", alpha=0.5, stat="density", discrete=True, ax=ax_imput_dist)
-        sns.histplot(imputed_df[missing_col], label="Imputed", alpha=0.5, stat="density", discrete=True, ax=ax_imput_dist)
+        sns.histplot(df[missing_col].dropna(), label="Original", alpha=0.5, stat="density", discrete=True, color=original_color_hist, ax=ax_imput_dist)
+        sns.histplot(imputed_df[missing_col], label="Imputed", alpha=0.5, stat="density", discrete=True, color=imputed_color_hist, ax=ax_imput_dist)
     else:
-        sns.kdeplot(df[missing_col].dropna(), label="Original", linewidth=2, ax=ax_imput_dist)
-        sns.kdeplot(imputed_df[missing_col], label="Imputed", linewidth=2, ax=ax_imput_dist)
+        sns.kdeplot(df[missing_col].dropna(), label="Original", linewidth=2, color=original_color, ax=ax_imput_dist)
+        sns.kdeplot(imputed_df[missing_col], label="Imputed", linewidth=2, color=imputed_color, ax=ax_imput_dist)
 
     ax_imput_dist.set_title(f"Distribution of {missing_col}: Original vs Imputed")
     ax_imput_dist.legend()

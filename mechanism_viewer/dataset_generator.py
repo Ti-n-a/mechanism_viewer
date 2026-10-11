@@ -381,6 +381,10 @@ def apply_mar(
     """
     total_missing_rows, new_column = _prepare_apply_mechanism(column_data, missing_rate)
 
+    # To solve test_zero_missing_rate
+    if total_missing_rows == 0:
+        return new_column
+
     n_complete_cols = len(observable_df.columns)
     if n_complete_cols < 1:
         raise ValueError(f"There must be at least 1 observable column for MAR: {n_complete_cols}")
@@ -423,6 +427,10 @@ def apply_mnar(
     new_column (pd.Series): A copy of the column with the MNAR mechanism applied
     """
     total_missing_rows, new_column = _prepare_apply_mechanism(column_data, missing_rate)
+
+    # To solve test_zero_missing_rate
+    if total_missing_rows == 0:
+        return new_column
 
     new_column_int = _validate_and_convert_to_numeric(data=new_column)
 
