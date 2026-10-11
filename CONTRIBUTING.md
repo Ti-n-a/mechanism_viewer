@@ -46,16 +46,10 @@ Contributions should preserve the following principles:
 
 4. Install dependencies:
 
-   This installs the package together with its main dependencies listed in `pyproject.toml`.
+   This installs the package together with its main, documentation, and testing dependencies listed in `pyproject.toml`.
 
    ```bash
-   pip install -e .
-   ```
-
-   To install documentation dependencies as well:
-
-   ```bash
-   pip install -e ".[docs]"
+   pip install -e ".[docs,test]"
    ```
 
 ## What Can I Contribute?
@@ -115,6 +109,20 @@ Contributions should preserve the following principles:
 
 4. Run the package locally to check that your changes work.
 
+5. Create or update tests for your changes when necessary.
+
+   Follow this guide:
+   - New functionality should include tests.
+   - Bug fixes should include a test that reproduces the issue.
+   - Changes to existing behavior should update the corresponding tests.
+   - Visualization tests should verify that functions run correctly, return the expected objects, and handle invalid input appropriately.
+
+6. Run the automated test suite:
+
+   ```bash
+   python -m pytest
+   ```
+
 5. Create or update the notebooks demonstrating the new functionality.
 
    This includes:
@@ -127,6 +135,7 @@ Contributions should preserve the following principles:
      - Provides additional validation of the new functionality
      - Shows that the feature produces meaningful results
      - Includes interpretation of outputs and notes on limitations of the approach
+     - If a new dataset is used, add it under `sample_data/` in its own subfolder (e.g. `sample_data/cancer/`).
 
 6. Update the documentation.
 

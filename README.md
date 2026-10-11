@@ -1,8 +1,8 @@
 # mechanism_viewer
 
-mechanism_viewer is a python package that can be used to help diagnose the missing data mechanism of a dataset.
+`mechanism_viewer` is a Python package for exploring and diagnosing missing data mechanisms in tabular datasets.
 
-It includes visualization tools, statistical testing, imputation tools, and synthetic dataset generation.
+It includes visualization tools, statistical diagnostics, imputation diagnostics, and synthetic data generation for investigating MCAR, MAR, and MNAR missingness.
 
 **Documentation:** [https://ti-n-a.github.io/mechanism_viewer/](https://ti-n-a.github.io/mechanism_viewer/)
 
@@ -26,58 +26,49 @@ Missing values depend on the missing values themselves or on unobserved variable
 
 ```bash
 mechanism_viewer/
-│
-├── dataset_generator.py
-├── viewer_simple.py
-├── viewer_matrix.py
-├── viewer_upset.py
-├── viewer_comparison.py
-├── viewer_correlation.py
-├── viewer_dendrogram.py
-├── viewer_imputation.py
-├── little_mcar.py
-├── accuracy_mar.py
-├── column_data_types.py
-├── _validation.py
-├── _utils.py
-└── _random.py
+├── .github/                  # GitHub Actions workflows
+├── mechanism_viewer/         # Package source code
+│   ├── __init__.py
+│   ├── _random.py
+│   ├── _utils.py
+│   ├── _validation.py
+│   ├── accuracy_mar.py
+│   ├── column_data_types.py
+│   ├── dataset_generator.py
+│   ├── little_mcar.py
+│   ├── viewer_comparison.py
+│   ├── viewer_correlation.py
+│   ├── viewer_dendrogram.py
+│   ├── viewer_imputation.py
+│   ├── viewer_matrix.py
+│   ├── viewer_simple.py
+│   └── viewer_upset.py
+├── tests/                    # Automated test suite
+├── examples/                 # Reproducible package examples
+├── use_cases/                # Real-world case studies
+├── sample_data/              # Example datasets used by notebooks
+├── docs/                     # MkDocs documentation source
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── mkdocs.yml
+└── pyproject.toml
 ```
 
 ## Installation
 
-1. Clone the repository:
+`mechanism_viewer` requires Python 3.10 or later.
+
+1. Install the package from PyPI:
 
    ```bash
-   git clone https://github.com/Ti-n-a/mechanism_viewer.git
-   cd mechanism_viewer
+   pip install mechanism_viewer
    ```
 
-2. Create a virtual environment.
-
-   Create a python virtual environment:
+2. Install documentation dependencies if necessary:
 
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate
-   ```
-
-   Or create a conda environment:
-
-   ```bash
-   conda create -n mechanism-viewer python=3.11
-   conda activate mechanism-viewer
-   ```
-
-3. Install the package:
-
-   ```bash
-   pip install -e .
-   ```
-
-4. Install documentation dependencies if necessary:
-
-   ```bash
-   pip install -e ".[docs]"
+   pip install "mechanism_viewer[docs]"
    ```
 
 ## Example
@@ -145,6 +136,10 @@ The real-world examples in this repository use publicly available datasets from 
 ## Contributing
 
 Please read `CONTRIBUTING.md` for more information.
+
+## License
+
+`mechanism_viewer` is distributed under the BSD 3-Clause "New" or "Revised" License. See [LICENSE](LICENSE) for details.
 
 ## Limitations
 

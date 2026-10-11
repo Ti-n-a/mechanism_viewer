@@ -10,12 +10,12 @@ Use it to investigate whether missingness is likely:
 
 The package combines visualization tools, diagnostics based on models, Little's MCAR test, and synthetic data generation.
 
-## Why use it
+## Why Use It?
 
 Imputation choices and downstream model validity depend on the missingness mechanism.
 `mechanism_viewer` gives a practical diagnostic toolbox to help decide how to handle missing data.
 
-## Main features
+## Main Features
 
 - Generate synthetic datasets with configurable column types and missingness patterns.
 - Apply MCAR, MAR, and MNAR mechanisms in individual columns.
@@ -26,38 +26,27 @@ Imputation choices and downstream model validity depend on the missingness mecha
 
 ## Installation
 
-1. Download the package from `https://github.com/Ti-n-a/mechanism_viewer`
+`mechanism_viewer` requires Python 3.10 or later.
 
-2. Place the package in any folder, as long as you remember the path.
+1. Open a terminal or command prompt.
 
-> Note: The path to be taken is the first folder from the package, not `mechanism_viewer` folder that is inside the package next to README.
+2. Install the package from PyPI:
 
-3. Open the terminal and execute the following command.
+   ```bash
+   pip install mechanism_viewer
+   ```
 
-> Note: The command will install the package in non-editable mode. In other words, if any changes are made to the package, you need to reinstall the package again.
+3. If you are using a Jupyter Notebook, you can instead run:
 
-```python
-python -m pip install <path_of_package>/mechanism_viewer
-```
+   ```python
+   %pip install mechanism_viewer
+   ```
 
-```python
-# If you are already inside the python environment
-pip install <path_of_package>/mechanism_viewer
-```
+4. Install documentation dependencies if necessary:
 
-As an alternative, you may install the package in editable mode, if you wish to edit the package internally.
-
-```python
-# To execute command outside the path
-python -m pip install -e <path_of_package>/mechanism_viewer
-```
-
-```python
-# For example, inside a Jupyter Notebook file on Windows
-%pip install -e "<path_of_package>\mechanism_viewer"
-```
-
-> Note: In this mode, it is only necessary to reload the kernel to have the most updated version of the package.
+   ```bash
+   pip install "mechanism_viewer[docs]"
+   ```
 
 ## Quick Start
 

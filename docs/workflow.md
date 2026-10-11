@@ -49,9 +49,9 @@ mv.upset_missing_rows(df_missing, display_plot=True)
 Then, inspect the missingness dependencies.
 
 ```python
-mv.plot_missingness_distribution(df_missing["Col1","Col2","Col4"], missing_col="Col3",
+mv.plot_missingness_distribution(df_missing[["Col1", "Col2", "Col4"]], missing_col="Col3",
                                     display_plot=True)
-mv.plot_missingness_distribution(df_missing["Col1","Col2","Col3"], missing_col="Col4",
+mv.plot_missingness_distribution(df_missing[["Col1", "Col2", "Col3"]], missing_col="Col4",
                                     display_plot=True)
 mv.missing_rate_matrix(df_missing, column_name="Col1", display_plot=True)
 mv.missing_rate_matrix(df_missing, column_name="Col2", display_plot=True)

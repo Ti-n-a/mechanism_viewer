@@ -4,22 +4,59 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mechanism_viewer"
-description = "Tools for diagnosing MCAR, MAR, and MNAR missing-data mechanisms with imputation visualization."
+version = "0.1.0"
+description = "Tools for diagnosing MCAR, MAR, and MNAR missing-data mechanisms using visualization, statistical testing, imputation, and synthetic data generation."
 readme = "README.md"
-version = "0.0.1"
 requires-python = ">=3.10"
+
 authors = [{ name = "Valentina Cadime" }]
+
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+
+keywords = [
+    "missing-data",
+    "missing-values",
+    "missingness",
+    "MCAR",
+    "MAR",
+    "MNAR",
+    "data-analysis",
+    "data-visualization",
+    "imputation",
+    "statistical-testing"
+]
+
 dependencies = [
     "pandas",
     "numpy",
     "matplotlib",
     "seaborn",
     "scikit-learn",
+    "scipy",
     "pyampute"
 ]
+
 [project.optional-dependencies]
 docs = [
     "mkdocs>=1.6",
     "mkdocs-material>=9.5",
     "mkdocstrings[python]>=0.25"
+]
+test = [
+    "pytest>=8",
+]
+
+[project.urls]
+Homepage = "https://github.com/Ti-n-a/mechanism_viewer"
+Documentation = "https://ti-n-a.github.io/mechanism_viewer/"
+Repository = "https://github.com/Ti-n-a/mechanism_viewer"
+Issues = "https://github.com/Ti-n-a/mechanism_viewer/issues"
+
+[tool.setuptools.packages.find]
+include = ["mechanism_viewer*"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:vert:PendingDeprecationWarning:seaborn.*"
 ]
