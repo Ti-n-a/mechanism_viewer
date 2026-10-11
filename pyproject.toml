@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mechanism_viewer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tools for diagnosing MCAR, MAR, and MNAR missing-data mechanisms using visualization, statistical testing, imputation, and synthetic data generation."
 readme = "README.md"
 requires-python = ">=3.10"
