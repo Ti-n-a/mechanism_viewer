@@ -105,7 +105,7 @@ Contributions should preserve the following principles:
 
 2. Make your changes.
 
-3. Update exports in `__init__.py`
+3. Update exports in `__init__.py` if necessary.
 
 4. Run the package locally to check that your changes work.
 
@@ -123,7 +123,7 @@ Contributions should preserve the following principles:
    python -m pytest
    ```
 
-5. Create or update the notebooks demonstrating the new functionality.
+7. Create or update the notebooks demonstrating the new functionality.
 
    This includes:
    - A notebook example:
@@ -137,7 +137,7 @@ Contributions should preserve the following principles:
      - Includes interpretation of outputs and notes on limitations of the approach
      - If a new dataset is used, add it under `sample_data/` in its own subfolder (e.g. `sample_data/cancer/`).
 
-6. Update the documentation.
+8. Update the documentation.
 
    This may include:
    - Updating function docstrings
@@ -145,20 +145,20 @@ Contributions should preserve the following principles:
    - Adding usage examples
    - Explaining assumptions, expected use cases, and limitations
 
-7. Commit your changes:
+9. Commit your changes:
 
    ```bash
    git add .
    git commit -m "Describe your change"
    ```
 
-8. Push your branch to your fork:
+10. Push your branch to your fork:
 
    ```bash
    git push origin your-branch-name
    ```
 
-9. Open a pull request against the main branch.
+11. Open a pull request against the main branch.
 
 ## Coding Standards
 

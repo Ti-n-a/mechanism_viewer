@@ -6,6 +6,10 @@ It includes visualization tools, statistical diagnostics, imputation diagnostics
 
 **Documentation:** [https://ti-n-a.github.io/mechanism_viewer/](https://ti-n-a.github.io/mechanism_viewer/)
 
+**PyPI:** [https://pypi.org/project/mechanism-viewer/](https://pypi.org/project/mechanism-viewer/)
+
+**Repository:** [https://github.com/Ti-n-a/mechanism_viewer/](https://github.com/Ti-n-a/mechanism_viewer/)
+
 ## Missing Data Mechanisms
 
 There are 3 types of missing data mechanism, which are MCAR, MAR, and MNAR.
@@ -59,7 +63,7 @@ mechanism_viewer/
 
 `mechanism_viewer` requires Python 3.10 or later.
 
-1. Install the package from PyPI:
+1. Install the package from [PyPI](https://pypi.org/project/mechanism-viewer/):
 
    ```bash
    pip install mechanism_viewer

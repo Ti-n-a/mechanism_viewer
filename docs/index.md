@@ -30,7 +30,7 @@ Imputation choices and downstream model validity depend on the missingness mecha
 
 1. Open a terminal or command prompt.
 
-2. Install the package from PyPI:
+2. Install the package from [PyPI](https://pypi.org/project/mechanism-viewer/):
 
    ```bash
    pip install mechanism_viewer
